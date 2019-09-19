@@ -9,7 +9,7 @@
 
 <br/>
 
-<img src="documentation/3D-render-front.png" height="290" alt="Front"> <img src="documentation/3D-render-back.png" height="290" alt="Back">
+<img src="documentation/3D-render-front.png" height="280" alt="Front"> <img src="documentation/3D-render-back.png" height="280" alt="Back">
 
 <br/>
 
