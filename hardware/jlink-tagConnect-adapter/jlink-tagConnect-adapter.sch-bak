@@ -5,10 +5,10 @@ EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
-Title ""
-Date ""
-Rev ""
-Comp ""
+Title "J-Link / Tag-Connect adapter board"
+Date "18/09/2019"
+Rev "1.0"
+Comp "Brecht Van Eeckhoudt"
 Comment1 ""
 Comment2 ""
 Comment3 ""
@@ -28,12 +28,12 @@ $EndComp
 $Comp
 L Connector_Generic:Conn_01x03 J4
 U 1 1 5D7F5429
-P 3800 4400
-F 0 "J4" H 3750 4600 50  0000 L CNN
-F 1 "Conn_01x03" H 3880 4351 50  0001 L CNN
-F 2 "Connector_PinSocket_2.54mm:PinSocket_1x03_P2.54mm_Vertical" H 3800 4400 50  0001 C CNN
-F 3 "~" H 3800 4400 50  0001 C CNN
-	1    3800 4400
+P 3850 4500
+F 0 "J4" H 3800 4700 50  0000 L CNN
+F 1 "Conn_01x03" H 3930 4451 50  0001 L CNN
+F 2 "Connector_PinSocket_2.54mm:PinSocket_1x03_P2.54mm_Vertical" H 3850 4500 50  0001 C CNN
+F 3 "~" H 3850 4500 50  0001 C CNN
+	1    3850 4500
 	-1   0    0    -1  
 $EndComp
 Text Label 4300 2000 2    50   ~ 0
@@ -339,17 +339,17 @@ F 3 "~" H 4800 5450 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 Wire Wire Line
-	4000 4300 4200 4300
-Text Label 4200 4300 2    50   ~ 0
+	4050 4400 4250 4400
+Text Label 4250 4400 2    50   ~ 0
 5V
-Text GLabel 4200 4400 2    50   Input ~ 0
+Text GLabel 4250 4500 2    50   Input ~ 0
 VREG-2
-Text GLabel 4200 4500 2    50   Input ~ 0
+Text GLabel 4250 4600 2    50   Input ~ 0
 VREG-3
 Wire Wire Line
-	4000 4400 4200 4400
+	4050 4500 4250 4500
 Wire Wire Line
-	4000 4500 4200 4500
+	4050 4600 4250 4600
 $Comp
 L Jumper:SolderJumper_3_Bridged12 JP1
 U 1 1 5D819C72
@@ -1743,8 +1743,8 @@ F 3 "~" H 3750 2300 50  0001 C CNN
 $EndComp
 Text Notes 3550 1700 0    50   ~ 10
 J-LINK HEADER
-Text Notes 3600 3950 0    50   ~ 10
+Text Notes 3650 4100 0    50   ~ 10
 DC-DC CONVERTER HEADER
-Text Notes 3600 4050 0    50   ~ 0
+Text Notes 3650 4200 0    50   ~ 0
 (not plugged in = disabled)
 $EndSCHEMATC

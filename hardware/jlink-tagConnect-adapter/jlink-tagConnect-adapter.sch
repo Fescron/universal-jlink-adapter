@@ -1747,4 +1747,14 @@ Text Notes 3650 4100 0    50   ~ 10
 DC-DC CONVERTER HEADER
 Text Notes 3650 4200 0    50   ~ 0
 (not plugged in = disabled)
+Text Notes 1700 6600 0    50   ~ 0
+NOTE: RTCK is the only SWD/JTAG pin\n  not connected to the Tag-Connect \n  header. Perhaps in a future board\n  revision this can be  put on pin 3\n  (now second GND)
+Wire Notes Line
+	1650 6200 1650 6150
+Wire Notes Line
+	1650 6150 3200 6150
+Wire Notes Line
+	3200 6150 3200 6200
+Wire Notes Line
+	1850 5800 1850 6150
 $EndSCHEMATC
