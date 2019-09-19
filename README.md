@@ -26,7 +26,7 @@ One can simply plug this adapter board in a [J-Link debugger](https://www.segger
 
 <img src="documentation/Tag-Connect-pinout.png" height="200" alt="Tag-Connect pinout">
 
-**Pushbutton** `SW1` can be used to mannually **reset** the target board. A **DC-DC converter** can be plugged in on header `J4` to supply the target board with the correct voltage using the 5V supply of the J-Link programmer. If the pinout of the converter doesn't match `VIN - VOUT - GND`, the last two pins can be changed around by swapping the solder joints on `JP1` and `JP2` on the bottom of the adapter. Then the pinout `VIN - GND - VOUT` will be selected.
+**Pinheaders** `J1` and `J2` can be used to simply break out the SWD/JTAG pins to a 2.54mm standard header. **Pushbutton** `SW1` can be used to mannually **reset** the target board. A **DC-DC converter** can be plugged in on header `J4` to supply the target board with the correct voltage using the 5V supply of the J-Link programmer. If the pinout of the converter doesn't match `VIN - VOUT - GND`, the last two pins can be changed around by swapping the solder joints on `JP1` and `JP2` on the bottom of the adapter. Then the pinout `VIN - GND - VOUT` will be selected.
 
 **Jumpers** `J6` and `J7` can also be used to swap some pinouts around. `J6` connects `pin 4` on the Tag-Connect cable to `RXD` or *doesn't connect it*. `J7` connects `pin 5` on the Tag-Connect cable to *nothing* or to `nTRST` (JTAG).
 
