@@ -16,7 +16,7 @@
 ## 1 - Quick links
 
 - [Schematic](documentation/jlink-tagConnect-adapter.pdf)
-- [Tag-Connect datasheet](datasheets/TC2050-IDC Datasheet.pdf)
+- [Tag-Connect datasheet](documentation/TC2050-IDC-Datasheet.pdf)
 
 <br/>
 
