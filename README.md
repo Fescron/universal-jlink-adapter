@@ -45,3 +45,13 @@ One can simply plug this adapter board in a [J-Link debugger](https://www.segger
 | R2 | 100 Ω 0805 Resistor |
 | C1 | 100 nF 0805 Capacitor |
 | SW1 | 2 pin SPST tact switch |
+
+<br/>
+
+## 3 - Layout guidelines for target board
+
+It's advised to add the following passives on the target board for protection and stability:
+- 100 kΩ pullup on `SWDIO`.
+- 10 kΩ pullup on `RXD`.
+- 100 Ω inline current limiting resistors on `TXD` and`RXD` lines.
+
