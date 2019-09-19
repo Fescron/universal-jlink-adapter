@@ -18,11 +18,11 @@
 
 ## 1 - Usage
 
-One can simply plug this adapter board in a [J-Link debugger](https://www.segger.com/products/debug-probes/j-link/models/j-link-base/) along with a [10 pin Tag-Connect adapter cable](http://www.tag-connect.com/TC2050-IDC) on the IDC connector. The cable will then have the approximate pinout (`RXD` instead of pin 7 `NC`) of the [standard 9-pin Cortex-M SWD/JTAG pinout](https://www.segger.com/products/debug-probes/j-link/accessories/adapters/9-pin-cortex-m-adapter/) from J-Link. The pinout of the Tag-Connect cable can be seen on the picure below (and for reference also on the bottom of the adapter board, but its pins aren't connected).
+One can plug this adapter board in a [J-Link debugger](https://www.segger.com/products/debug-probes/j-link/models/j-link-base/) along with a [10 pin Tag-Connect adapter cable](http://www.tag-connect.com/TC2050-IDC) on the IDC connector. The cable will then have the approximate pinout (`RXD` instead of pin 7 `NC`) of the [standard 9-pin Cortex-M SWD/JTAG pinout](https://www.segger.com/products/debug-probes/j-link/accessories/adapters/9-pin-cortex-m-adapter/) from J-Link. The pinout of the Tag-Connect cable can be seen on the picure below (and for reference also on the bottom of the adapter board, but its pins aren't connected).
 
 <img src="documentation/Tag-Connect-pinout.png" height="200" alt="Tag-Connect pinout">
 
-- **Pinheaders** `J1` and `J2` can be used to simply break out the SWD/JTAG pins to a 2.54mm standard header.
+- **Pinheaders** `J1` and `J2` can be used to break out the SWD/JTAG pins to a 2.54mm standard header.
 - **Pushbutton** `SW1` can be used to mannually **reset** the target board.
 - A **DC-DC converter** can be plugged in on header `J4` to supply the target board with the correct voltage using the 5V supply of the J-Link programmer.
   - If the pinout of the converter doesn't match `VIN - VOUT - GND`, the last two pins can be changed around by swapping the solder joints on `JP1` and `JP2` on the bottom of the adapter. Then the pinout `VIN - GND - VOUT` will be selected.
