@@ -11,14 +11,12 @@
 
 <br/>
 
-## 1 - Quick links
-
 - [Schematic](documentation/jlink-tagConnect-adapter.pdf)
 - [Tag-Connect datasheet](documentation/TC2050-IDC-Datasheet.pdf)
 
 <br/>
 
-## 2 - Usage
+## 1 - Usage
 
 One can simply plug this adapter board in a [J-Link debugger](https://www.segger.com/products/debug-probes/j-link/models/j-link-base/) along with a [10 pin Tag-Connect adapter cable](http://www.tag-connect.com/TC2050-IDC) on the IDC connector. The cable will then have the approximate pinout (`RXD` instead of pin 7 `NC`) of the [standard 9-pin Cortex-M SWD/JTAG pinout](https://www.segger.com/products/debug-probes/j-link/accessories/adapters/9-pin-cortex-m-adapter/) from J-Link. The pinout of the Tag-Connect cable can be seen on the picure below (and for reference also on the bottom of the adapter board, but its pins aren't connected).
 
@@ -32,7 +30,7 @@ One can simply plug this adapter board in a [J-Link debugger](https://www.segger
 
 <br/>
 
-## 3 - BOM
+## 2 - BOM
 
 |  Component  |  Value  |
 | ---------- | --------- |
