@@ -5,8 +5,6 @@
 ![GitHub Release Date](https://img.shields.io/github/release-date/Fescron/jlink-tagConnect-adapter.svg)
 ![GitHub release](https://img.shields.io/github/release/Fescron/jlink-tagConnect-adapter.svg)
 
-20 pin SWD/JTAG J-Link to 10 pin Tag-Connect adapter board
-
 <br/>
 
 <img src="documentation/3D-render-front.png" height="280" alt="Front"> <img src="documentation/3D-render-back.png" height="280" alt="Back">
