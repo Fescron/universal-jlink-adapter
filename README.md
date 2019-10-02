@@ -61,3 +61,4 @@ It's advised to add the following passives on the target board for protection an
 
 - Add RTCK signal to Tag-Connect cable pin 3 with jumper?
 - Add standard (or modified with same jumpers) 0.05" (1,27mm) SWD 10-pin debug header?
+- Omit reset button?
