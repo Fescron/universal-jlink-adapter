@@ -64,3 +64,4 @@ It's advised to add the following passives on the target board for protection an
 - Omit reset button?
 - Move Tag-Connect pinout from back to front.
 - Add labels to headers (Tag-Connect & SDW 0.05")
+- Add inline current measuring jumper
