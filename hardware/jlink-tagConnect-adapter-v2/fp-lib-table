@@ -1,0 +1,3 @@
+(fp_lib_table
+  (lib (name BrechtVE_Aesthetics)(type KiCad)(uri ${KIPRJMOD}/Footprints/BrechtVE_Aesthetics.pretty)(options "")(descr ""))
+)

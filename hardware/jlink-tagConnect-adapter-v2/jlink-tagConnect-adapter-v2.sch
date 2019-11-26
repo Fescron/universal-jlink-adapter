@@ -14,17 +14,6 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L BrechtVE_Aesthetics:Symbol_OSHW-EEVBLOG_SPFMDBC_10mm G1
-U 1 1 5DDC2639
-P 11000 6350
-F 0 "G1" H 11000 6175 60  0001 C CNN
-F 1 "Symbol_OSHW-EEVBLOG_SPFMDBC_10mm" H 11000 6525 60  0001 C CNN
-F 2 "" H 11000 6350 50  0001 C CNN
-F 3 "" H 11000 6350 50  0001 C CNN
-	1    11000 6350
-	1    0    0    -1  
-$EndComp
-$Comp
 L Connector_Generic:Conn_02x10_Odd_Even J1
 U 1 1 5DDC45BE
 P 1850 1850
@@ -3264,4 +3253,15 @@ Text Label 2400 5050 2    50   ~ 0
 GND
 Text Label 2400 5600 2    50   ~ 0
 VTREF
+$Comp
+L BrechtVE_Aesthetics:Symbol_OSHW-Logo_11.4x12mm G1
+U 1 1 5DDCA46F
+P 10975 6375
+F 0 "G1" H 10975 6170 60  0001 C CNN
+F 1 "Symbol_OSHW-Logo_11.4x12mm" H 10975 6580 60  0001 C CNN
+F 2 "" H 10975 6375 50  0001 C CNN
+F 3 "" H 10975 6375 50  0001 C CNN
+	1    10975 6375
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
