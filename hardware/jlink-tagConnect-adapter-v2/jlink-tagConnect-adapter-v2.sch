@@ -2946,61 +2946,59 @@ Text GLabel 3750 2650 0    50   Input ~ 0
 PIN9
 Text Notes 3650 1150 0    50   ~ 0
 SWD/JTAG OUTPUT HEADERS
-Text Notes 3900 3700 0    50   ~ 0
+Text Notes 3650 3700 0    50   ~ 0
 SWD/JTAG MODE SELECTION
 $Comp
 L Jumper:Jumper_3_Bridged12 JP1
 U 1 1 5DE49560
-P 4100 3950
-F 0 "JP1" H 4100 4063 50  0000 C CNN
-F 1 "Jumper_3_Bridged12" H 4100 4063 50  0001 C CNN
-F 2 "" H 4100 3950 50  0001 C CNN
-F 3 "~" H 4100 3950 50  0001 C CNN
-	1    4100 3950
+P 3850 3950
+F 0 "JP1" H 3850 4063 50  0000 C CNN
+F 1 "Jumper_3_Bridged12" H 3850 4063 50  0001 C CNN
+F 2 "" H 3850 3950 50  0001 C CNN
+F 3 "~" H 3850 3950 50  0001 C CNN
+	1    3850 3950
 	1    0    0    -1  
 $EndComp
 $Comp
 L Jumper:Jumper_3_Bridged12 JP2
 U 1 1 5DE49D82
-P 4100 4500
-F 0 "JP2" H 4100 4613 50  0000 C CNN
-F 1 "Jumper_3_Bridged12" H 4100 4613 50  0001 C CNN
-F 2 "" H 4100 4500 50  0001 C CNN
-F 3 "~" H 4100 4500 50  0001 C CNN
-	1    4100 4500
+P 3850 4500
+F 0 "JP2" H 3850 4613 50  0000 C CNN
+F 1 "Jumper_3_Bridged12" H 3850 4613 50  0001 C CNN
+F 2 "" H 3850 4500 50  0001 C CNN
+F 3 "~" H 3850 4500 50  0001 C CNN
+	1    3850 4500
 	1    0    0    -1  
 $EndComp
-Text GLabel 4200 4200 2    50   Input ~ 0
+Text GLabel 3950 4200 2    50   Input ~ 0
 PIN7
-Text GLabel 4200 4750 2    50   Input ~ 0
+Text GLabel 3950 4750 2    50   Input ~ 0
 PIN9
 Wire Wire Line
-	4100 4100 4100 4200
+	3850 4100 3850 4200
 Wire Wire Line
-	4100 4200 4200 4200
+	3850 4200 3950 4200
 Wire Wire Line
-	4100 4650 4100 4750
+	3850 4650 3850 4750
 Wire Wire Line
-	4100 4750 4200 4750
+	3850 4750 3950 4750
 Wire Wire Line
-	3850 3950 3650 3950
-Text Label 3650 3950 0    50   ~ 0
+	3600 3950 3400 3950
+Text Label 3400 3950 0    50   ~ 0
 RXD
-Text Notes 4700 4400 0    50   ~ 0
+Text Notes 4450 4400 0    50   ~ 0
 Both jumpers:\n1-2 = SWD-mode\n2-3 = JTAG-mode
 Wire Wire Line
-	3850 4500 3650 4500
-Text Label 3650 4500 0    50   ~ 0
+	3600 4500 3400 4500
+Text Label 3400 4500 0    50   ~ 0
 GND
-Text Notes 8400 4400 0    50   ~ 0
-GNDdetect can be used by the target board\nto detect if a debugger is present.\n(pin 9 in SWD mode connected to GND)
 Wire Wire Line
-	4350 3950 4550 3950
-Text Label 4550 3950 2    50   ~ 0
+	4100 3950 4300 3950
+Text Label 4300 3950 2    50   ~ 0
 RTCK
 Wire Wire Line
-	4350 4500 4550 4500
-Text Label 4550 4500 2    50   ~ 0
+	4100 4500 4300 4500
+Text Label 4300 4500 2    50   ~ 0
 ~TRST
 Text Notes 5950 1150 0    50   ~ 0
 SWD/JTAG BREAKOUT HEADER
@@ -3099,14 +3097,6 @@ Wire Wire Line
 	6100 2450 6600 2450
 Text Label 6100 2450 0    50   ~ 0
 5V-Supply
-Text Notes 8400 5000 0    50   ~ 0
-If RTCK is not available on the target board\nit should be connected to GND.
-Text Notes 8400 4750 0    50   ~ 0
-Put a 100 kΩ pullup resitor on the SWDIO line\nand a 10 kΩ pullup resistor on the RXD line \non the target board.
-Text Notes 8900 3700 0    50   ~ 0
-BEST PRACTICES
-Text Notes 8400 4100 0    50   ~ 0
-Use the 0.05" pinheader for 'regular'\ndevelopment and the TagConnect header\nfor fast on-location reprogramming.
 $Comp
 L Mechanical:MountingHole H1
 U 1 1 5DF2379A
@@ -3154,19 +3144,19 @@ $EndComp
 $Comp
 L Jumper:Jumper_2_Bridged JP3
 U 1 1 5DF28FF9
-P 4450 5600
-F 0 "JP3" H 4450 5703 50  0000 C CNN
-F 1 "Jumper_2_Bridged" H 4450 5704 50  0001 C CNN
-F 2 "" H 4450 5600 50  0001 C CNN
-F 3 "~" H 4450 5600 50  0001 C CNN
-	1    4450 5600
+P 4200 5600
+F 0 "JP3" H 4200 5703 50  0000 C CNN
+F 1 "Jumper_2_Bridged" H 4200 5704 50  0001 C CNN
+F 2 "" H 4200 5600 50  0001 C CNN
+F 3 "~" H 4200 5600 50  0001 C CNN
+	1    4200 5600
 	1    0    0    -1  
 $EndComp
-Text Notes 3700 5400 0    50   ~ 0
+Text Notes 3450 5400 0    50   ~ 0
 INLINE CURRENT MEASURING JUMPER
 Wire Wire Line
-	4650 5600 5100 5600
-Text Label 5100 5600 2    50   ~ 0
+	4400 5600 4850 5600
+Text Label 4850 5600 2    50   ~ 0
 VTREF-OUT
 $Comp
 L Connector_Generic:Conn_01x03 J5
@@ -3182,8 +3172,8 @@ $EndComp
 Text Label 3500 1450 0    50   ~ 0
 VTREF-OUT
 Wire Wire Line
-	4250 5600 3800 5600
-Text Label 3800 5600 0    50   ~ 0
+	4000 5600 3550 5600
+Text Label 3550 5600 0    50   ~ 0
 VTREF
 Text Notes 1350 3700 0    50   ~ 0
 DC-DC CONVERTER HEADER
@@ -3264,4 +3254,14 @@ F 3 "" H 10975 6375 50  0001 C CNN
 	1    10975 6375
 	1    0    0    -1  
 $EndComp
+Text Notes 8350 4100 0    50   ~ 0
+Use the 0.05" pinheader for 'regular'\ndevelopment and the TagConnect header\nfor fast on-location reprogramming.
+Text Notes 8850 3700 0    50   ~ 0
+BEST PRACTICES
+Text Notes 8350 4750 0    50   ~ 0
+Put a 100 kΩ pullup resitor on the SWDIO line\nand a 10 kΩ pullup resistor on the RXD line \non the target board.
+Text Notes 8350 5000 0    50   ~ 0
+If RTCK is not available on the target board\nit should be connected to GND.
+Text Notes 8350 4400 0    50   ~ 0
+GNDdetect (GNDd) can be used by the target\nboard to detect if a debugger is present.\n(pin 9 in SWD mode connected to GND)
 $EndSCHEMATC
