@@ -4,8 +4,8 @@ EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
-Title "J-Link / Tag-Connect adapter board"
-Date "2019-11-25"
+Title "Universal J-Link Adapter"
+Date "2019-11-28"
 Rev "v2.0"
 Comp "Brecht Van Eeckhoudt"
 Comment1 "adapter.brechtve.be"
@@ -19,7 +19,7 @@ U 1 1 5DDC45BE
 P 1850 1850
 F 0 "J1" H 1900 2375 50  0000 C CNN
 F 1 "Conn_02x10_Odd_Even" H 1900 2376 50  0001 C CNN
-F 2 "" H 1850 1850 50  0001 C CNN
+F 2 "Connector_PinSocket_2.54mm:PinSocket_2x10_P2.54mm_Horizontal" H 1850 1850 50  0001 C CNN
 F 3 "~" H 1850 1850 50  0001 C CNN
 	1    1850 1850
 	1    0    0    -1  
@@ -2846,7 +2846,7 @@ U 1 1 5DDE7407
 P 4150 1650
 F 0 "J2" H 4200 1975 50  0000 C CNN
 F 1 "Conn_02x05_Odd_Even" H 4200 1976 50  0001 C CNN
-F 2 "" H 4150 1650 50  0001 C CNN
+F 2 "Connector_IDC:IDC-Header_2x05_P2.54mm_Vertical" H 4150 1650 50  0001 C CNN
 F 3 "~" H 4150 1650 50  0001 C CNN
 	1    4150 1650
 	1    0    0    -1  
@@ -2860,14 +2860,14 @@ Wire Wire Line
 Wire Wire Line
 	3950 1550 3500 1550
 Wire Wire Line
-	3950 1650 3500 1650
+	3950 1650 3750 1650
 Wire Wire Line
 	3950 1750 3750 1750
 Wire Wire Line
 	3950 1850 3750 1850
 Text Label 3500 1550 0    50   ~ 0
 GND
-Text Label 3500 1650 0    50   ~ 0
+Text Label 3500 5600 0    50   ~ 0
 GND
 Wire Wire Line
 	4450 1450 4900 1450
@@ -2876,18 +2876,16 @@ Wire Wire Line
 Wire Wire Line
 	4450 1650 4900 1650
 Wire Wire Line
-	4450 1750 4900 1750
+	4450 1750 4700 1750
 Wire Wire Line
-	4450 1850 4900 1850
+	4450 1850 4700 1850
 Text Label 4900 1450 2    50   ~ 0
 SWDIO-TMS
 Text Label 4900 1550 2    50   ~ 0
 SWCLK-TCK
 Text Label 4900 1650 2    50   ~ 0
 SWO-TDO
-Text Label 4900 1750 2    50   ~ 0
-TXD-TDI
-Text Label 4900 1850 2    50   ~ 0
+Text Label 4700 1850 2    50   ~ 0
 ~RESET
 Text GLabel 3750 1750 0    50   Input ~ 0
 PIN7
@@ -2899,7 +2897,7 @@ U 1 1 5DE3270A
 P 4150 2450
 F 0 "J3" H 4200 2775 50  0000 C CNN
 F 1 "Conn_02x05_Odd_Even" H 4200 2776 50  0001 C CNN
-F 2 "" H 4150 2450 50  0001 C CNN
+F 2 "Connector_PinHeader_1.27mm:PinHeader_2x05_P1.27mm_Vertical_SMD" H 4150 2450 50  0001 C CNN
 F 3 "~" H 4150 2450 50  0001 C CNN
 	1    4150 2450
 	1    0    0    -1  
@@ -2909,7 +2907,7 @@ Wire Wire Line
 Wire Wire Line
 	3950 2350 3500 2350
 Wire Wire Line
-	3950 2450 3500 2450
+	3950 2450 3750 2450
 Wire Wire Line
 	3950 2550 3750 2550
 Wire Wire Line
@@ -2918,8 +2916,6 @@ Text Label 3500 2250 0    50   ~ 0
 VTREF-OUT
 Text Label 3500 2350 0    50   ~ 0
 GND
-Text Label 3500 2450 0    50   ~ 0
-GND
 Wire Wire Line
 	4450 2250 4900 2250
 Wire Wire Line
@@ -2927,18 +2923,16 @@ Wire Wire Line
 Wire Wire Line
 	4450 2450 4900 2450
 Wire Wire Line
-	4450 2550 4900 2550
+	4450 2550 4700 2550
 Wire Wire Line
-	4450 2650 4900 2650
+	4450 2650 4700 2650
 Text Label 4900 2250 2    50   ~ 0
 SWDIO-TMS
 Text Label 4900 2350 2    50   ~ 0
 SWCLK-TCK
 Text Label 4900 2450 2    50   ~ 0
 SWO-TDO
-Text Label 4900 2550 2    50   ~ 0
-TXD-TDI
-Text Label 4900 2650 2    50   ~ 0
+Text Label 4700 2650 2    50   ~ 0
 ~RESET
 Text GLabel 3750 2550 0    50   Input ~ 0
 PIN7
@@ -2948,95 +2942,36 @@ Text Notes 3650 1150 0    50   ~ 0
 SWD/JTAG OUTPUT HEADERS
 Text Notes 3650 3700 0    50   ~ 0
 SWD/JTAG MODE SELECTION
-$Comp
-L Jumper:Jumper_3_Bridged12 JP1
-U 1 1 5DE49560
-P 3850 3950
-F 0 "JP1" H 3850 4063 50  0000 C CNN
-F 1 "Jumper_3_Bridged12" H 3850 4063 50  0001 C CNN
-F 2 "" H 3850 3950 50  0001 C CNN
-F 3 "~" H 3850 3950 50  0001 C CNN
-	1    3850 3950
-	1    0    0    -1  
-$EndComp
-$Comp
-L Jumper:Jumper_3_Bridged12 JP2
-U 1 1 5DE49D82
-P 3850 4500
-F 0 "JP2" H 3850 4613 50  0000 C CNN
-F 1 "Jumper_3_Bridged12" H 3850 4613 50  0001 C CNN
-F 2 "" H 3850 4500 50  0001 C CNN
-F 3 "~" H 3850 4500 50  0001 C CNN
-	1    3850 4500
-	1    0    0    -1  
-$EndComp
-Text GLabel 3950 4200 2    50   Input ~ 0
+Text GLabel 4050 4200 2    50   Input ~ 0
 PIN7
-Text GLabel 3950 4750 2    50   Input ~ 0
+Text GLabel 4050 4750 2    50   Input ~ 0
 PIN9
 Wire Wire Line
-	3850 4100 3850 4200
+	3950 4100 3950 4200
 Wire Wire Line
-	3850 4200 3950 4200
+	3950 4200 4050 4200
 Wire Wire Line
-	3850 4650 3850 4750
+	3950 4650 3950 4750
 Wire Wire Line
-	3850 4750 3950 4750
+	3950 4750 4050 4750
 Wire Wire Line
-	3600 3950 3400 3950
-Text Label 3400 3950 0    50   ~ 0
+	3700 3950 3500 3950
+Text Label 3500 3950 0    50   ~ 0
 RXD
-Text Notes 4450 4400 0    50   ~ 0
-Both jumpers:\n1-2 = SWD-mode\n2-3 = JTAG-mode
+Text Notes 4550 4400 0    50   ~ 0
+JP1 & JP2:\n1-2 = SWD\n2-3 = JTAG
 Wire Wire Line
-	3600 4500 3400 4500
-Text Label 3400 4500 0    50   ~ 0
+	3700 4500 3500 4500
+Text Label 3500 4500 0    50   ~ 0
 GND
 Wire Wire Line
-	4100 3950 4300 3950
-Text Label 4300 3950 2    50   ~ 0
+	4200 3950 4400 3950
+Text Label 4400 3950 2    50   ~ 0
 RTCK
 Wire Wire Line
-	4100 4500 4300 4500
-Text Label 4300 4500 2    50   ~ 0
+	4200 4500 4400 4500
+Text Label 4400 4500 2    50   ~ 0
 ~TRST
-Text Notes 5950 1150 0    50   ~ 0
-SWD/JTAG BREAKOUT HEADER
-$Comp
-L Connector_Generic:Conn_01x11 J4
-U 1 1 5DE80D54
-P 6800 1950
-F 0 "J4" H 6750 2575 50  0000 L CNN
-F 1 "Conn_01x10" H 6880 1851 50  0001 L CNN
-F 2 "" H 6800 1950 50  0001 C CNN
-F 3 "~" H 6800 1950 50  0001 C CNN
-	1    6800 1950
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	6600 1450 6100 1450
-Text Label 6100 1450 0    50   ~ 0
-SWDIO-TMS
-Wire Wire Line
-	6600 1550 6100 1550
-Text Label 6100 1550 0    50   ~ 0
-SWCLK-TCK
-Wire Wire Line
-	6100 1650 6600 1650
-Wire Wire Line
-	6100 1750 6600 1750
-Wire Wire Line
-	6100 1850 6600 1850
-Wire Wire Line
-	6100 1950 6600 1950
-Wire Wire Line
-	6100 2050 6600 2050
-Wire Wire Line
-	6100 2150 6600 2150
-Wire Wire Line
-	6100 2250 6600 2250
-Wire Wire Line
-	6100 2350 6600 2350
 NoConn ~ 8200 1450
 NoConn ~ 8200 1550
 NoConn ~ 8200 1650
@@ -3077,94 +3012,30 @@ NoConn ~ 10300 2400
 NoConn ~ 10300 2500
 NoConn ~ 10300 2600
 NoConn ~ 10300 2700
-Text Label 6100 1650 0    50   ~ 0
-RXD
-Text Label 6100 1750 0    50   ~ 0
-TXD-TDI
-Text Label 6100 1850 0    50   ~ 0
-GND
-Text Label 6100 1950 0    50   ~ 0
-VTREF-OUT
-Text Label 6100 2050 0    50   ~ 0
-~RESET
-Text Label 6100 2150 0    50   ~ 0
-~TRST
-Text Label 6100 2250 0    50   ~ 0
-RTCK
-Text Label 6100 2350 0    50   ~ 0
-SWO-TDO
-Wire Wire Line
-	6100 2450 6600 2450
-Text Label 6100 2450 0    50   ~ 0
-5V-Supply
 $Comp
-L Mechanical:MountingHole H1
-U 1 1 5DF2379A
-P 9900 7050
-F 0 "H1" H 10000 7096 50  0000 L CNN
-F 1 "M3" H 10000 7005 50  0000 L CNN
-F 2 "" H 9900 7050 50  0001 C CNN
-F 3 "~" H 9900 7050 50  0001 C CNN
-	1    9900 7050
-	1    0    0    -1  
-$EndComp
-$Comp
-L Mechanical:MountingHole H4
-U 1 1 5DF24065
-P 10950 7050
-F 0 "H4" H 11050 7096 50  0000 L CNN
-F 1 "M3" H 11050 7005 50  0000 L CNN
-F 2 "" H 10950 7050 50  0001 C CNN
-F 3 "~" H 10950 7050 50  0001 C CNN
-	1    10950 7050
-	1    0    0    -1  
-$EndComp
-$Comp
-L Mechanical:MountingHole H3
-U 1 1 5DF24A8B
-P 10600 7050
-F 0 "H3" H 10700 7096 50  0000 L CNN
-F 1 "M3" H 10700 7005 50  0000 L CNN
-F 2 "" H 10600 7050 50  0001 C CNN
-F 3 "~" H 10600 7050 50  0001 C CNN
-	1    10600 7050
-	1    0    0    -1  
-$EndComp
-$Comp
-L Mechanical:MountingHole H2
-U 1 1 5DF24DAD
-P 10250 7050
-F 0 "H2" H 10350 7096 50  0000 L CNN
-F 1 "M3" H 10350 7005 50  0000 L CNN
-F 2 "" H 10250 7050 50  0001 C CNN
-F 3 "~" H 10250 7050 50  0001 C CNN
-	1    10250 7050
-	1    0    0    -1  
-$EndComp
-$Comp
-L Jumper:Jumper_2_Bridged JP3
+L Jumper:Jumper_2_Bridged JP5
 U 1 1 5DF28FF9
-P 4200 5600
-F 0 "JP3" H 4200 5703 50  0000 C CNN
-F 1 "Jumper_2_Bridged" H 4200 5704 50  0001 C CNN
-F 2 "" H 4200 5600 50  0001 C CNN
-F 3 "~" H 4200 5600 50  0001 C CNN
-	1    4200 5600
+P 6500 4800
+F 0 "JP5" H 6500 4903 50  0000 C CNN
+F 1 "Jumper_2_Bridged" H 6500 4904 50  0001 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 6500 4800 50  0001 C CNN
+F 3 "~" H 6500 4800 50  0001 C CNN
+	1    6500 4800
 	1    0    0    -1  
 $EndComp
-Text Notes 3450 5400 0    50   ~ 0
+Text Notes 5850 4550 0    50   ~ 0
 INLINE CURRENT MEASURING JUMPER
 Wire Wire Line
-	4400 5600 4850 5600
-Text Label 4850 5600 2    50   ~ 0
+	6700 4800 7150 4800
+Text Label 7150 4800 2    50   ~ 0
 VTREF-OUT
 $Comp
-L Connector_Generic:Conn_01x03 J5
+L Connector_Generic:Conn_01x03 J4
 U 1 1 5DF35AAD
 P 2150 4050
-F 0 "J5" H 2100 4275 50  0000 L CNN
+F 0 "J4" H 2100 4275 50  0000 L CNN
 F 1 "Conn_01x03" H 2230 4001 50  0001 L CNN
-F 2 "" H 2150 4050 50  0001 C CNN
+F 2 "Connector_PinSocket_2.54mm:PinSocket_1x03_P2.54mm_Vertical" H 2150 4050 50  0001 C CNN
 F 3 "~" H 2150 4050 50  0001 C CNN
 	1    2150 4050
 	1    0    0    -1  
@@ -3172,8 +3043,8 @@ $EndComp
 Text Label 3500 1450 0    50   ~ 0
 VTREF-OUT
 Wire Wire Line
-	4000 5600 3550 5600
-Text Label 3550 5600 0    50   ~ 0
+	6300 4800 5950 4800
+Text Label 5950 4800 0    50   ~ 0
 VTREF
 Text Notes 1350 3700 0    50   ~ 0
 DC-DC CONVERTER HEADER
@@ -3191,26 +3062,24 @@ Text GLabel 1750 4050 0    50   UnSpc ~ 0
 VREG1
 Text GLabel 1750 4150 0    50   UnSpc ~ 0
 VREG2
-Text Notes 1250 4800 0    50   ~ 0
-DC-DC CONVERTER PINOUT SELECTION
 $Comp
-L Jumper:SolderJumper_3_Bridged12 JP4
+L Jumper:SolderJumper_3_Bridged12 JP6
 U 1 1 5DF73ED8
 P 1950 5050
-F 0 "JP4" H 1950 5163 50  0000 C CNN
+F 0 "JP6" H 1950 5163 50  0000 C CNN
 F 1 "SolderJumper_3_Bridged12" H 1950 5164 50  0001 C CNN
-F 2 "" H 1950 5050 50  0001 C CNN
+F 2 "Jumper:SolderJumper-3_P1.3mm_Bridged12_Pad1.0x1.5mm_NumberLabels" H 1950 5050 50  0001 C CNN
 F 3 "~" H 1950 5050 50  0001 C CNN
 	1    1950 5050
 	1    0    0    -1  
 $EndComp
 $Comp
-L Jumper:SolderJumper_3_Bridged12 JP5
+L Jumper:SolderJumper_3_Bridged12 JP7
 U 1 1 5DF74A7B
 P 1950 5600
-F 0 "JP5" H 1950 5713 50  0000 C CNN
+F 0 "JP7" H 1950 5713 50  0000 C CNN
 F 1 "SolderJumper_3_Bridged12" H 1950 5714 50  0001 C CNN
-F 2 "" H 1950 5600 50  0001 C CNN
+F 2 "Jumper:SolderJumper-3_P1.3mm_Bridged12_Pad1.0x1.5mm_NumberLabels" H 1950 5600 50  0001 C CNN
 F 3 "~" H 1950 5600 50  0001 C CNN
 	1    1950 5600
 	1    0    0    -1  
@@ -3249,19 +3118,125 @@ U 1 1 5DDCA46F
 P 10975 6375
 F 0 "G1" H 10975 6170 60  0001 C CNN
 F 1 "Symbol_OSHW-Logo_11.4x12mm" H 10975 6580 60  0001 C CNN
-F 2 "" H 10975 6375 50  0001 C CNN
+F 2 "BrechtVE_Aesthetics:OSHW-Logo_5.7x6mm_SolderMask" H 10975 6375 50  0001 C CNN
 F 3 "" H 10975 6375 50  0001 C CNN
 	1    10975 6375
 	1    0    0    -1  
 $EndComp
-Text Notes 8350 4100 0    50   ~ 0
-Use the 0.05" pinheader for 'regular'\ndevelopment and the TagConnect header\nfor fast on-location reprogramming.
-Text Notes 8850 3700 0    50   ~ 0
+Text Notes 8350 4300 0    50   ~ 0
+Use the 0.05" pinheader for 'regular'\ndevelopment and the TagConnect cable\nfor fast, on-location reprogramming.
+Text Notes 8900 3950 0    50   ~ 0
 BEST PRACTICES
-Text Notes 8350 4750 0    50   ~ 0
-Put a 100 kΩ pullup resitor on the SWDIO line\nand a 10 kΩ pullup resistor on the RXD line \non the target board.
 Text Notes 8350 5000 0    50   ~ 0
+Put a 100 kΩ pullup resitor on the SWDIO line\nand a 10 kΩ pullup resistor on the RXD line \nof the target board.
+Text Notes 8350 5250 0    50   ~ 0
 If RTCK is not available on the target board\nit should be connected to GND.
-Text Notes 8350 4400 0    50   ~ 0
-GNDdetect (GNDd) can be used by the target\nboard to detect if a debugger is present.\n(pin 9 in SWD mode connected to GND)
+Text Notes 8350 4650 0    50   ~ 0
+GNDdetect (GNDd) can be used by the target\nboard to detect if a debugger is present.\n(pin 9 is in SWD mode connected to GND)
+Text Notes 8200 3350 0    50   ~ 0
+The connectors above slightly differ from the pinout of\nthe default J-Link connectors. The original pinout is\nput in brackers:  (key) (this is normally not populated),\n(nc) and (5v). SEE JUMPERS JP1-2-3-4 TO\nRECONFIGURE THESE PINS IF NECESSARY.
+Text Notes 5850 5250 0    50   ~ 0
+The target gets power from the adapter\nthrough VTREF(-OUT) if the DC-DC \nconverter is plugged in.
+Text GLabel 6850 3950 2    50   Input ~ 0
+PIN8
+Text Label 5950 3950 0    50   ~ 0
+TXD-TDI
+Text GLabel 4700 2550 2    50   Input ~ 0
+PIN8
+Text GLabel 4700 1750 2    50   Input ~ 0
+PIN8
+$Comp
+L Jumper:Jumper_2_Bridged JP4
+U 1 1 5DE00E05
+P 6500 3950
+F 0 "JP4" H 6500 4053 50  0000 C CNN
+F 1 "Jumper_2_Bridged" H 6500 4054 50  0001 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 6500 3950 50  0001 C CNN
+F 3 "~" H 6500 3950 50  0001 C CNN
+	1    6500 3950
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6300 3950 5950 3950
+Wire Wire Line
+	6700 3950 6850 3950
+Text GLabel 3750 1650 0    50   Input ~ 0
+PIN5
+Text GLabel 4050 5850 2    50   Input ~ 0
+PIN5
+$Comp
+L Jumper:Jumper_3_Bridged12 JP3
+U 1 1 5DE10AA8
+P 3950 5600
+F 0 "JP3" H 3950 5713 50  0000 C CNN
+F 1 "Jumper_3_Bridged12" H 3950 5713 50  0001 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical" H 3950 5600 50  0001 C CNN
+F 3 "~" H 3950 5600 50  0001 C CNN
+	1    3950 5600
+	1    0    0    -1  
+$EndComp
+$Comp
+L Jumper:Jumper_3_Bridged12 JP2
+U 1 1 5DE49D82
+P 3950 4500
+F 0 "JP2" H 3950 4613 50  0000 C CNN
+F 1 "Jumper_3_Bridged12" H 3950 4613 50  0001 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical" H 3950 4500 50  0001 C CNN
+F 3 "~" H 3950 4500 50  0001 C CNN
+	1    3950 4500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Jumper:Jumper_3_Bridged12 JP1
+U 1 1 5DE49560
+P 3950 3950
+F 0 "JP1" H 3950 4063 50  0000 C CNN
+F 1 "Jumper_3_Bridged12" H 3950 4063 50  0001 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical" H 3950 3950 50  0001 C CNN
+F 3 "~" H 3950 3950 50  0001 C CNN
+	1    3950 3950
+	1    0    0    -1  
+$EndComp
+Text GLabel 3750 2450 0    50   Input ~ 0
+PIN5
+Text Label 4600 5600 2    50   ~ 0
+5V-Supply
+Wire Wire Line
+	3700 5600 3500 5600
+Wire Wire Line
+	4200 5600 4600 5600
+Wire Wire Line
+	3950 5750 3950 5850
+Wire Wire Line
+	3950 5850 4050 5850
+Text Notes 3650 5350 0    50   ~ 0
+PIN 5 MODE SELECTION
+Text Notes 6150 3700 0    50   ~ 0
+PIN 8 DISCONNECT
+Text Notes 1250 4800 0    50   ~ 0
+DC-DC CONVERTER PINOUT SELECTION
+Wire Notes Line
+	8300 5300 8300 3800
+Wire Notes Line
+	5800 4950 5800 5300
+Wire Notes Line
+	5800 5300 7450 5300
+Wire Notes Line
+	7450 5300 7450 4950
+Wire Notes Line
+	7450 4950 5800 4950
+Wire Notes Line
+	8150 2900 8150 3400
+Wire Notes Line
+	8150 3400 10400 3400
+Wire Notes Line
+	10400 3400 10400 2900
+Wire Notes Line
+	10400 2900 8150 2900
+Wire Notes Line
+	10200 5300 8300 5300
+Wire Notes Line
+	10200 3800 10200 5300
+Wire Notes Line
+	8300 3800 10200 3800
 $EndSCHEMATC
