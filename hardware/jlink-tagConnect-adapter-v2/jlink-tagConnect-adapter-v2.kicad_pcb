@@ -1014,10 +1014,10 @@
       (net 8 /SWDIO-TMS))
     (pad 1 smd rect (at -1.95 -2.54 180) (size 2.4 0.74) (layers F.Cu F.Paste F.Mask)
       (net 16 /VTREF-OUT))
-    (model ${KIPRJMOD}/Footprints/Models/2x5/FTSH-105-01-L-DV-K.stp
-      (at (xyz 0 0 0))
+    (model ${KIPRJMOD}/Footprints/Models/2x05/FTSH-105-01-L-DV-K_from_stl.wrl
+      (offset (xyz 0 0 0.4))
       (scale (xyz 1 1 1))
-      (rotate (xyz -90 0 90))
+      (rotate (xyz 0 0 90))
     )
   )
 
