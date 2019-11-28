@@ -63,7 +63,7 @@ If the user wishes to **not power the target board using `VTREF`** (for example 
 
 ## 2 - KiCad debug header symbols
 
-On the repository [brechtve-kicad-stuff](https://github.com/Fescron/brechtve-kicad-things) (kicad.brechtve.be) you can find some symbols (and a lot of additional information regarding KiCad) where these additional functions, selectable using the jumpers, are depicted for both SWD and JTAG modes. They can be found in the library `BrechtVE_DebugHeader.lib`. The symbols can be linked to a 0.05" header on the target board and are:
+On the repository [brechtve-kicad-things](https://github.com/Fescron/brechtve-kicad-things) (kicad.brechtve.be) you can find some symbols (and a lot of additional information regarding KiCad) where these additional functions, selectable using the jumpers, are depicted for both SWD and JTAG modes. They can be found in the library `BrechtVE_DebugHeader.lib`. The symbols can be linked to a 0.05" header on the target board and are:
 
 <img src="documentation/pictures/v2/symbols.png" height="100" alt="SWD/JTAG symbols">
 
