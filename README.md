@@ -103,20 +103,20 @@ It's advised to add the following passives on the *target board* for protection 
 | J3            | 02x05 0.05" Male Key-Shrouded SMD header          | Samtec `FTSH-105-01-L-DV-K`    | [mouser.be](https://www.mouser.be/ProductDetail/Samtec/FTSH-105-01-L-DV-K?qs=sGAEpiMZZMs%252BGHln7q6pm6%2FHYleg514%2FqkaZJilyzC8%3D)            |
 |               | Through hole variant to put on some target boards | Samtec `FTSH-105-01-L-D-K`     | [mouser.be](https://www.mouser.be/ProductDetail/Samtec/FTSH-105-01-L-D-K?qs=%2Fha2pyFaduhoAtv%2FWE6syK%2F3gejFMKjm9lp5582mCss1896wuL7UnQ%3D%3D) |
 | J4            | 01x03 0.1" Female socket                          | Samtec `SSW-103-01-L-S`        | [mouser.be](https://www.mouser.be/ProductDetail/Samtec/SSW-103-01-L-S?qs=%2Fha2pyFaduiDpcebfdZXwHcP9wn7hG4FmDHWMRJsv%2Fv%2F1Ppvn3qVyw%3D%3D)    |
-| &nbsp;        |                                                   |                                |                                                                                                                                                 |
 | JP1, JP2, JP3 | 01x03 Male pinheader                              |                                |                                                                                                                                                 |
 | JP4, JP5      | 01x02 Male pinheader                              |                                |                                                                                                                                                 |
 |               | Shunt/jumper                                      | Samtec `SNT-100-BK-G`          | [mouser.be](https://www.mouser.be/ProductDetail/Samtec/SNT-100-BK-G?qs=sGAEpiMZZMs%252BGHln7q6pm%2FOU4QWS%2FX%252BKJSo22A%252BD7xs%3D)          |
+|               | TagConnect 10 pin IDC to needles without legs     | `TC-2050-IDC-NL`               | [digikey.be](https://www.digikey.be/product-detail/nl/tag-connect-llc/TC2050-IDC-NL/TC2050-IDC-NL-ND/2605367)                                   |
 
 <br/>
 
-- Samtec
-  - `L`: 10 µ" (0.25 µm) Gold on post/contact, Matte Tin on tail
-  - `F`: Gold flash on post/contact, Matte Tin on tail
-  - [SSW configuration utility](https://www.samtec.com/products/ssw)
-  - [FTSH configuration utility](https://www.samtec.com/products/ftsh)
-  - 0.05" 9 pin (polarized) header: `FTSH-105-01-L-DC-007-K`
-- TagConnect `TC2050-IDC-NL` [digikey.be](https://www.digikey.be/product-detail/nl/tag-connect-llc/TC2050-IDC-NL/TC2050-IDC-NL-ND/2605367)
+**Samtec**
+
+- `L`: 10 µ" (0.25 µm) Gold on post/contact, Matte Tin on tail
+- `F`: Gold flash on post/contact, Matte Tin on tail
+- [SSW configuration utility](https://www.samtec.com/products/ssw)
+- [FTSH configuration utility](https://www.samtec.com/products/ftsh)
+- 0.05" 9 pin (polarized) header: `FTSH-105-01-L-DC-007-K`
 
 <br/>
 
