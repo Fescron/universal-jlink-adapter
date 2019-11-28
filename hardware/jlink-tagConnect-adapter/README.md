@@ -1,10 +1,10 @@
-# jlink-tagConnect-adapter v1
+# jlink-tagConnect-adapter v1.0
 
 <br/>
 
 <img src="documentation/pictures/v1/3D-render-front.png" height="280" alt="Front"> <img src="documentation/pictures/v1/3D-render-back.png" height="280" alt="Back">
 
-This is an old version of the board and was never really used since it didn't follow the J-Link Needle adapter pinout. It's kept here for documentation purposes.
+**This is an old version of the board and was never really used since it didn't follow the J-Link Needle adapter pinout. It's kept here for documentation purposes.**
 
 - [Schematic](hardware/jlink-tagConnect-adapter/jlink-tagConnect-adapter.pdf)
 
