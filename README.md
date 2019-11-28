@@ -36,7 +36,7 @@ This 5V output needs to be enabled on the J-Link using the `J-Link Commander` (`
 power on perm
 ```
 
-If the uses wishes to **not power the target board using `VTREF`** (for example in the case that the target board is already getting its own power from a battery), the **DC-DC converter should simply not be plugged in**.
+If the user wishes to **not power the target board using `VTREF`** (for example in the case that the target board is already getting its own power from a battery), the **DC-DC converter should simply not be plugged in**.
 
 <br/>
 
@@ -104,8 +104,8 @@ It's advised to add the following passives on the *target board* for protection 
 |               | Through hole variant to put on some target boards | Samtec `FTSH-105-01-L-D-K`     | [mouser.be](https://www.mouser.be/ProductDetail/Samtec/FTSH-105-01-L-D-K?qs=%2Fha2pyFaduhoAtv%2FWE6syK%2F3gejFMKjm9lp5582mCss1896wuL7UnQ%3D%3D) |
 | J4            | 01x03 0.1" Female socket                          | Samtec `SSW-103-01-L-S`        | [mouser.be](https://www.mouser.be/ProductDetail/Samtec/SSW-103-01-L-S?qs=%2Fha2pyFaduiDpcebfdZXwHcP9wn7hG4FmDHWMRJsv%2Fv%2F1Ppvn3qVyw%3D%3D)    |
 | &nbsp;        |                                                   |                                |                                                                                                                                                 |
-| JP1, JP2, JP3 | 01x03 Male pinheader                  |                                |                                                                                                                                                 |
-| JP4, JP5      | 01x02 Male pinheader                   |                                |                                                                                                                                                 |
+| JP1, JP2, JP3 | 01x03 Male pinheader                              |                                |                                                                                                                                                 |
+| JP4, JP5      | 01x02 Male pinheader                              |                                |                                                                                                                                                 |
 |               | Shunt/jumper                                      | Samtec `SNT-100-BK-G`          | [mouser.be](https://www.mouser.be/ProductDetail/Samtec/SNT-100-BK-G?qs=sGAEpiMZZMs%252BGHln7q6pm%2FOU4QWS%2FX%252BKJSo22A%252BD7xs%3D)          |
 
 <br/>
