@@ -1,23 +1,12 @@
-# Universal J-Link Adapter
-
-![Shortcut](https://img.shields.io/badge/website-adapter.brechtve.be-yellow)
-![License](https://img.shields.io/badge/licence-CERN%20OHL%20v.1.2-blue)
-![GitHub last commit](https://img.shields.io/github/last-commit/Fescron/universal-jlink-adapter.svg)
-![GitHub Release Date](https://img.shields.io/github/release-date/Fescron/universal-jlink-adapter.svg)
-![GitHub release](https://img.shields.io/github/release/Fescron/universal-jlink-adapter.svg)
-
-<br/>
-
-**WIP v2.0**
+# jlink-tagConnect-adapter v1
 
 <br/>
 
 <img src="documentation/pictures/v1/3D-render-front.png" height="280" alt="Front"> <img src="documentation/pictures/v1/3D-render-back.png" height="280" alt="Back">
 
-<br/>
+This is an old version of the board and was never really used since it didn't follow the J-Link Needle adapter pinout. It's kept here for documentation purposes.
 
 - [Schematic](hardware/jlink-tagConnect-adapter/jlink-tagConnect-adapter.pdf)
-- [Tag-Connect datasheet](documentation/datasheets/TC2050-IDC-Datasheet.pdf)
 
 <br/>
 
@@ -50,19 +39,3 @@ One can plug this *4cm x 5cm* adapter board in a [J-Link debugger](https://www.s
 | R2        | 100 Ω 0805 Resistor                                                                                                                                     |
 | C1        | 100 nF 0805 Capacitor                                                                                                                                   |
 | SW1       | 2 pin SPST tact switch                                                                                                                                  |
-
-<br/>
-
-## 3 - Layout guidelines for target board
-
-It's advised to add the following passives on the target board for protection and stability:
-- 100 kΩ pullup on `SWDIO`.
-- 10 kΩ pullup on `RXD`.
-- 100 Ω inline current limiting resistors on `TXD` and`RXD` lines.
-
-<br/>
-
-## 4 - TODO
-
-- Directly buy from OSHPARK?
-- jlinkexe: `power on perm`
