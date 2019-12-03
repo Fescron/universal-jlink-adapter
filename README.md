@@ -8,7 +8,7 @@
 
 <br/>
 
-<img src="documentation/pictures/v2/PCB-front.png" height="360" alt="Front"> <img src="documentation/pictures/v2/PCB-back.png" height="360" alt="Back">
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <img src="documentation/pictures/v2/PCB-front.png" height="390" alt="Front">
 
 <br/>
 
@@ -46,6 +46,8 @@ If the user wishes to **not power the target board using `VTREF`** (for example 
 
 ### 1.2 - Additional functionality on unused pins using jumpers
 
+<img align="right" src="documentation/pictures/v2/PCB-back.png" height="550" alt="Back">
+
 - **PIN 5** is normally connected to GND.
   - On the [J-Link 10 pin Needle Adapter](https://www.segger.com/products/debug-probes/j-link/accessories/adapters/10-pin-needle-adapter/) this pin outputs the J-Link's `5V-Supply`. A jumper can be used to select this.
 - **PIN 7** is on the [standard 9-pin Cortex-M SWD/JTAG pinout](https://www.segger.com/products/debug-probes/j-link/accessories/adapters/9-pin-cortex-m-adapter/) *not populated* since this is the **key**.
@@ -65,14 +67,14 @@ If the user wishes to **not power the target board using `VTREF`** (for example 
 
 On the repository [brechtve-kicad-stuff](https://github.com/Fescron/brechtve-kicad-things) (kicad.brechtve.be) you can find some symbols (and a lot of additional information regarding KiCad) where these additional functions, selectable using the jumpers, are depicted for both SWD and JTAG modes. They can be found in the library `BrechtVE_DebugHeader.lib`. The symbols can be linked to a 0.05" header on the target board and are:
 
-<img src="documentation/pictures/v2/symbols.png" height="100" alt="SWD/JTAG symbols">
+<img src="documentation/pictures/v2/symbols.png" height="120" alt="SWD/JTAG symbols">
 
 <br/>
 <br/>
 
 Symbols are also supplied that can be linked to a TagConnect 2050 footprint. The pin numbers and corresponding functions are mostly the same as the previously mentioned SWD/JTAG connectors, but the direction in wich the pins are layed out on the PCB are different. This is reflected in other symbols:
 
-<img src="documentation/pictures/v2/symbols-tagConnect.png" height="110" alt="SWD/JTAG symbols">
+<img src="documentation/pictures/v2/symbols-tagConnect.png" height="133" alt="SWD/JTAG symbols">
 
 <br/>
 <br/>
@@ -95,18 +97,19 @@ It's advised to add the following passives on the *target board* for protection 
 - 0.1" = 2.54mm
 - 0.05" = 1.27mm
 
-| Component     | Footprint                                         | Type                           | Ordering                                                                                                                                        |
-| ------------- | ------------------------------------------------- | ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| J1            | 02x10 0.1" Right Angle Female IDC socket          | Sullins `SFH11-PBPC-D10-RA-BK` | [digiKey.be](https://www.digikey.be/product-detail/en/sullins-connector-solutions/SFH11-PBPC-D10-RA-BK/S9205-ND/1990098)                        |
-|               | 02x10 0.1" Right Angle Female socket              | Samtec `SSW-110-02-L-D-RA`     | [mouser.be](https://www.mouser.be/ProductDetail/Samtec/SSW-110-02-L-D-RA?qs=sGAEpiMZZMvffgRu4KC1RxM6nKwEP14AKIDk%2F38Cqz31wxmPLBdGrA%3D%3D)     |
-| J2            | 02x05 0.1" Male IDC header                        | On Shore `302-S101`            | [digikey.be](https://www.digikey.be/product-detail/en/on-shore-technology-inc/302-S101/ED1543-ND/2178422)                                       |
-| J3            | 02x05 0.05" Male Key-Shrouded SMD header          | Samtec `FTSH-105-01-L-DV-K`    | [mouser.be](https://www.mouser.be/ProductDetail/Samtec/FTSH-105-01-L-DV-K?qs=sGAEpiMZZMs%252BGHln7q6pm6%2FHYleg514%2FqkaZJilyzC8%3D)            |
-|               | Through hole variant to put on some target boards | Samtec `FTSH-105-01-L-D-K`     | [mouser.be](https://www.mouser.be/ProductDetail/Samtec/FTSH-105-01-L-D-K?qs=%2Fha2pyFaduhoAtv%2FWE6syK%2F3gejFMKjm9lp5582mCss1896wuL7UnQ%3D%3D) |
-| J4            | 01x03 0.1" Female socket                          | Samtec `SSW-103-01-L-S`        | [mouser.be](https://www.mouser.be/ProductDetail/Samtec/SSW-103-01-L-S?qs=%2Fha2pyFaduiDpcebfdZXwHcP9wn7hG4FmDHWMRJsv%2Fv%2F1Ppvn3qVyw%3D%3D)    |
-| JP1, JP2, JP3 | 01x03 Male pinheader                              |                                |                                                                                                                                                 |
-| JP4, JP5      | 01x02 Male pinheader                              |                                |                                                                                                                                                 |
-|               | Shunt/jumper                                      | Samtec `SNT-100-BK-G`          | [mouser.be](https://www.mouser.be/ProductDetail/Samtec/SNT-100-BK-G?qs=sGAEpiMZZMs%252BGHln7q6pm%2FOU4QWS%2FX%252BKJSo22A%252BD7xs%3D)          |
-|               | TagConnect 10 pin IDC to needles without legs     | `TC-2050-IDC-NL`               | [digikey.be](https://www.digikey.be/product-detail/nl/tag-connect-llc/TC2050-IDC-NL/TC2050-IDC-NL-ND/2605367)                                   |
+| Component     | Footprint                                                | Type                             | Ordering                                                                                                                                                 |
+| ------------- | -------------------------------------------------------- | -------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| J1            | 02x10 0.1" Right Angle Female IDC socket                 | Sullins `SFH11-PBPC-D10-RA-BK`   | [digiKey.be](https://www.digikey.be/product-detail/en/sullins-connector-solutions/SFH11-PBPC-D10-RA-BK/S9205-ND/1990098)                                 |
+|               | 02x10 0.1" Right Angle Female socket                     | Samtec `SSW-110-02-L-D-RA`       | [mouser.be](https://www.mouser.be/ProductDetail/Samtec/SSW-110-02-L-D-RA?qs=sGAEpiMZZMvffgRu4KC1RxM6nKwEP14AKIDk%2F38Cqz31wxmPLBdGrA%3D%3D)              |
+| J2            | 02x05 0.1" Male IDC header                               | Samtec `TST-105-01-L-D`          | [mouser.be](https://www.mouser.be/ProductDetail/Samtec/TST-105-01-L-D?qs=sGAEpiMZZMvlX3nhDDO4AI%252BRmCAOnNK%252B8W%2Fig2WTmT0%3D)                       |
+| J3            | 02x05 0.05" Male Key-Shrouded SMD header                 | Samtec `FTSH-105-01-L-DV-K`      | [mouser.be](https://www.mouser.be/ProductDetail/Samtec/FTSH-105-01-L-DV-K?qs=sGAEpiMZZMs%252BGHln7q6pm6%2FHYleg514%2FqkaZJilyzC8%3D)                     |
+|               | Through hole variant to put on some target boards        | Samtec `FTSH-105-01-L-D-K`       | [mouser.be](https://www.mouser.be/ProductDetail/Samtec/FTSH-105-01-L-D-K?qs=%2Fha2pyFaduhoAtv%2FWE6syK%2F3gejFMKjm9lp5582mCss1896wuL7UnQ%3D%3D)          |
+| J4            | 01x03 0.1" Female socket                                 | Samtec `SSW-103-01-L-S`          | [mouser.be](https://www.mouser.be/ProductDetail/Samtec/SSW-103-01-L-S?qs=%2Fha2pyFaduiDpcebfdZXwHcP9wn7hG4FmDHWMRJsv%2Fv%2F1Ppvn3qVyw%3D%3D)             |
+| JP1, JP2, JP3 | 01x03 Male pinheader (pins: 5,84 mm long)                | Samtec `TSW-103-07-L-S`          | [mouser.be](https://www.mouser.be/ProductDetail/Samtec/TSW-103-07-L-S?qs=sGAEpiMZZMvlX3nhDDO4AF6ANhyOCHSy6PrTyFT9uaw%3D)                                 |  |
+| JP4, JP5      | 01x02 Male pinheader (pins: 5,84 mm long)                | Samtec `TSW-102-07-L-S`          | [mouser.be](https://www.mouser.be/ProductDetail/Samtec/TSW-102-07-L-S?qs=sGAEpiMZZMvlX3nhDDO4AOtsNM6WvEvSgcnsBXZRa%252Bc%3D)                             |
+|               | Shunt/jumper                                             | Samtec `SNT-100-BK-G`            | [mouser.be](https://www.mouser.be/ProductDetail/Samtec/SNT-100-BK-G?qs=sGAEpiMZZMs%252BGHln7q6pm%2FOU4QWS%2FX%252BKJSo22A%252BD7xs%3D)                   |
+|               | TagConnect 10 pin IDC to needles without legs            | `TC-2050-IDC-NL`                 | [digikey.be](https://www.digikey.be/product-detail/nl/tag-connect-llc/TC2050-IDC-NL/TC2050-IDC-NL-ND/2605367)                                            |
+|               | 2x05 0.05" IDC cable, 6 inch (15 cm) long, strain relief | Samtec `FFSD-05-D-06.00-01-N-SR` | [mouser.be](https://www.mouser.be/ProductDetail/Samtec/FFSD-05-D-0600-01-N-SR?qs=%2Fha2pyFaduhvEfJBCJoRmJZ3QdL4KB7rLC97N%252B5iey1YZPhwEmwyVxDxQEfYY8Kp) |
 
 <br/>
 
@@ -115,7 +118,10 @@ It's advised to add the following passives on the *target board* for protection 
 - `L`: 10 µ" (0.25 µm) Gold on post/contact, Matte Tin on tail
 - `F`: Gold flash on post/contact, Matte Tin on tail
 - [SSW configuration utility](https://www.samtec.com/products/ssw)
+- [TST configuration utility](https://www.samtec.com/products/tst)
 - [FTSH configuration utility](https://www.samtec.com/products/ftsh)
+- [TSW configuration utility](https://www.samtec.com/products/tsw)
+- [FFSD configuration utility](https://www.samtec.com/products/ffsd)
 - 0.05" 9 pin (polarized) header: `FTSH-105-01-L-DC-007-K`
 
 <br/>
