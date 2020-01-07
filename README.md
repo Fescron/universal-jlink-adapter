@@ -129,3 +129,11 @@ It's advised to add the following passives on the *target board* for protection 
 ## 5 - Order PCB directly from OSHPARK
 
 **TODO**
+
+<br/>
+
+## 6 - Future improvements
+
+- Change the 0.05" programming header to use the (smd)/through hole variant of a shrouded IDC header
+   - https://www.samtec.com/products/shf
+   - https://www.samtec.com/products/eshf
