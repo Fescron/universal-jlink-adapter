@@ -135,5 +135,5 @@ It's advised to add the following passives on the *target board* for protection 
 ## 6 - Future improvements
 
 - Change the 0.05" programming header to use the (smd)/through hole variant of a shrouded IDC header
-   - https://www.samtec.com/products/shf
-   - https://www.samtec.com/products/eshf
+   - `ESHF-105-01-L-D-TH` ([mouser.be](https://www.mouser.be/ProductDetail/Samtec/ESHF-105-01-L-D-TH?qs=sGAEpiMZZMs%252BGHln7q6pm8Vn94ktop%2FJVjycWItzijSqlF9N489iqQ%3D%3D))
+   - [ESHF configuration utility](https://www.samtec.com/products/eshf)
