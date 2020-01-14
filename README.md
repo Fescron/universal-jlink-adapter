@@ -122,7 +122,7 @@ It's advised to add the following passives on the *target board* for protection 
 - [FTSH configuration utility](https://www.samtec.com/products/ftsh)
 - [TSW configuration utility](https://www.samtec.com/products/tsw)
 - [FFSD configuration utility](https://www.samtec.com/products/ffsd)
-- 0.05" 9 pin (polarized) header: `FTSH-105-01-L-DC-007-K`
+- 0.05" 9 pin (polarized) header: `FTSH-105-01-L-DV-007-K`
 
 <br/>
 
