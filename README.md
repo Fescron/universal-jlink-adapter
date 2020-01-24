@@ -138,3 +138,4 @@ It's advised to add the following passives on the *target board* for protection 
    - `ESHF-105-01-L-D-TH` ([mouser.be](https://www.mouser.be/ProductDetail/Samtec/ESHF-105-01-L-D-TH?qs=sGAEpiMZZMs%252BGHln7q6pm8Vn94ktop%2FJVjycWItzijSqlF9N489iqQ%3D%3D))
    - [ESHF configuration utility](https://www.samtec.com/products/eshf)
 - When `GNDdetect` is connected to a MCU GPIO pin, the jumper can be removed and the signal on pin 9 can be read with another device to allow for extra debug information.
+- SWO disconnect jumper? (extra GPIO for debugging)
