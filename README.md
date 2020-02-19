@@ -8,7 +8,8 @@
 
 <br/>
 
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <img src="documentation/pictures/v2/PCB-front.png" height="390" alt="Front">
+<img src="documentation/pictures/v2/PCB-front.png" height="280" alt="Adapter PCB">
+<img src="documentation/pictures/v2/adapter.png" height="280" alt="Adapter with J-Link">
 
 <br/>
 
@@ -20,7 +21,15 @@ This multifunctional adapter board, primarily designed for use with a [J-Link de
 
 The **0.05" header** is recommended for development when the target board is mostly connected to the debugger. The **0.1" IDC header** is recommended for use with a [10 pin Tag-Connect adapter cable](http://www.tag-connect.com/TC2050-IDC), so target boards can quickly be reprogrammed *on-location*.
 
+<img align="left" src="documentation/pictures/v2/cables.png" height="250" alt="Cables">
+
+On the picture next to this text on top you can see this TagConnect 2050 cable next to its corresponding PCB footprint. Below you can see the 0.05" header with its corresponding cable.
+
+<br/>
+
 A lot of useful information is also printed on the *silkscreen* of the PCB. Noteworthy is the **pinout numbering** of the 0.1" and 0.05" headers (wich are connected to SWD/JTAG pins) and also the numbering of the 10-pin Tag-Connect header on the front. The **functions for every pin** are also printed on the back of the PCB.
+
+
 
 <br/>
 
