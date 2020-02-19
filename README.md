@@ -8,8 +8,7 @@
 
 <br/>
 
-<img src="documentation/pictures/v2/PCB-front.png" height="280" alt="Adapter PCB">
-<img src="documentation/pictures/v2/adapter.png" height="280" alt="Adapter with J-Link">
+<img src="documentation/pictures/v2/PCB-front.png" height="270" alt="Adapter PCB"> <img src="documentation/pictures/v2/adapter.png" height="270" alt="Adapter with J-Link">
 
 <br/>
 
