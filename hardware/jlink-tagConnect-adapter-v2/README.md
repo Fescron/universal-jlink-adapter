@@ -8,7 +8,7 @@
 
 <br/>
 
-<img src="documentation/pictures/v2/PCB-front.png" height="270" alt="Adapter PCB"> <img src="documentation/pictures/v2/adapter.png" height="270" alt="Adapter with J-Link">
+<img src="../../documentation/pictures/v2/PCB-front.png" height="270" alt="Adapter PCB"> <img src="../../documentation/pictures/v2/adapter.png" height="270" alt="Adapter with J-Link">
 
 <br/>
 
@@ -20,7 +20,7 @@ This multifunctional adapter board, primarily designed for use with a [J-Link de
 
 The **0.05" header** is recommended for development when the target board is mostly connected to the debugger. The **0.1" IDC header** is recommended for use with a [10 pin Tag-Connect adapter cable](http://www.tag-connect.com/TC2050-IDC), so target boards can quickly be reprogrammed *on-location*.
 
-<img align="left" src="documentation/pictures/v2/cables.png" height="250" alt="Cables">
+<img align="left" src="../../documentation/pictures/v2/cables.png" height="250" alt="Cables">
 
 On the picture next to this text on top you can see this TagConnect 2050 cable next to its corresponding PCB footprint. Below you can see the 0.05" header with its corresponding cable.
 
@@ -54,7 +54,7 @@ If the user wishes to **not power the target board using `VTREF`** (for example 
 
 ### 1.2 - Additional functionality on unused pins using jumpers
 
-<img align="right" src="documentation/pictures/v2/PCB-back.png" height="550" alt="Back">
+<img align="right" src="../../documentation/pictures/v2/PCB-back.png" height="550" alt="Back">
 
 - **PIN 5** is normally connected to GND.
   - On the [J-Link 10 pin Needle Adapter](https://www.segger.com/products/debug-probes/j-link/accessories/adapters/10-pin-needle-adapter/) this pin outputs the J-Link's `5V-Supply`. A jumper can be used to select this.
@@ -75,14 +75,14 @@ If the user wishes to **not power the target board using `VTREF`** (for example 
 
 On the repository [brechtve-kicad-things](https://github.com/Fescron/brechtve-kicad-things) (kicad.brechtve.be) you can find some symbols (and a lot of additional information regarding KiCad) where these additional functions, selectable using the jumpers, are depicted for both SWD and JTAG modes. They can be found in the library `BrechtVE_DebugHeader.lib`. The symbols can be linked to a 0.05" header on the target board and are:
 
-<img src="documentation/pictures/v2/symbols.png" height="120" alt="SWD/JTAG symbols">
+<img src="../../documentation/pictures/v2/symbols.png" height="120" alt="SWD/JTAG symbols">
 
 <br/>
 <br/>
 
 Symbols are also supplied that can be linked to a TagConnect 2050 footprint. The pin numbers and corresponding functions are mostly the same as the previously mentioned SWD/JTAG connectors, but the direction in wich the pins are layed out on the PCB are different. This is reflected in other symbols:
 
-<img src="documentation/pictures/v2/symbols-tagConnect.png" height="133" alt="SWD/JTAG symbols">
+<img src="../../documentation/pictures/v2/symbols-tagConnect.png" height="133" alt="SWD/JTAG symbols">
 
 <br/>
 <br/>
