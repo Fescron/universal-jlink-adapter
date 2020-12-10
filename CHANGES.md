@@ -17,3 +17,4 @@
 
 - v1.0: Initial version (Brecht Van Eeckhoudt - 09/2019)
 - v2.0: Massive rework to other pinouts (Brecht Van Eeckhoudt - 25/11/2019)
+- V3.0: Changed 0.05" header from SMD to through-hole variant, added SWO/TDO disconnect jumper, moved pinout-documentation to the front of the PCB and changed some text, renamed jumpers and moved some other info to the back of the PCB.
