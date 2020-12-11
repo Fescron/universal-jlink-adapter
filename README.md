@@ -15,7 +15,7 @@
 
 | Quick access links |
 |------|
-| [Adapter v3.0 **schematic** (PDF)](hardware/jlink-tagConnect-adapter-v3/jlink-tagConnect-adapter-v3.pdf) // [Adapter v3.0 **gerber-files**](hardware/jlink-tagConnect-adapter-v3/gerber/)|
+| [Adapter v3.0 **schematic** (PDF)](hardware/jlink-tagConnect-adapter-v3/jlink-tagConnect-adapter-v3.pdf) // [Adapter v3.0 **gerber-files**](hardware/jlink-tagConnect-adapter-v3/Gerber/)|
 | [Buy this adapter-PCB on **OSHPark**]() (`TODO`) |
 | [Basic **J-Link Commander** usage and using **Segger Real-Time Transfer (RTT)** instead of UART](JLinkExe-SeggerRTT-debugging-TipsTricks.md) (`TODO`) |
 
