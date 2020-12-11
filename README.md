@@ -31,7 +31,7 @@ Furthermore, the adapter-PCB can **power the target board** through the `VTREF` 
 
 The **0.05" (2.54mm) header** is recommended for when the target board is mostly connected to the debugger and the board in question also has a header of this size. The **0.1" (1.27mm) IDC header** is recommended for use with regular *Dupont-wires* or a [10 pin Tag-Connect adapter cable](http://www.tag-connect.com/TC2050-IDC). The latter allows target boards to be quickly reprogrammed *on-location*.
 
-The picture on the left depicts the `TagConnect 2050` cable on the top-left, next to its corresponding PCB footprint. Below this is a 0.05" header with its corresponding cable.
+The picture on the left depicts the `TagConnect 2050` cable on the top-right, next to its corresponding PCB footprint. Below this is a 0.05" header with its corresponding cable.
 
 <br/>
 
@@ -93,7 +93,7 @@ In addition to the *default* SWD/JTAG-pinouts it's also possible to add extra fu
 - **PIN 6** is normally used for a `SWO` or `TDO` connection. A jumper labeled `SWO/TDO 6` can however be used to disconnect the debugger, so the pin coming from the MCU can be used as an additional debug signal (e.g. high when in some code, low when not). Simply remove the jumper and add a *Dupont*-cable on the pin labeled `6`.
 - **PIN 7** is on the [standard 9-pin Cortex-M SWD/JTAG pinout](https://www.segger.com/products/debug-probes/j-link/accessories/adapters/9-pin-cortex-m-adapter/) *not populated* since this is the **key**.
   - **SWD mode:** A jumper labeled `RTCK 7 JL.RX`, which can be seen on the picture on the right, can be used to connect this pin to the J-Link's VCOM `RX` pin. This way UART debugging functionality can be used in conjunction with SWD.
-  - *NOTE:* It's possibel that VCOM needs to be enabled on the probe. This can be done using **JLinkCommander** (`JLinkExe/JLink.exe`) by typing the command `vcom enable`. VCOM will start working on the next power-cycle.
+  - *NOTE:* It's possibel that VCOM needs to be enabled on the probe. This can be done using [J-Link Commander](https://wiki.segger.com/J-Link_Commander) (`JLinkExe/JLink.exe`) by typing the command `vcom enable`. VCOM will start working on the next power-cycle.
   - **JTAG mode:** The same jumper can also be used to connect this pin to `RTCK` if necessary.
 - **PIN 8**
   - **SWD mode:** Normally this pin is *not connected*, but a jumper labeled `JL.TX TDI 8` allows it to be connected to the J-Link's **VCOM** `TX` pin.
