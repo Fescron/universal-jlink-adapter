@@ -2,7 +2,7 @@
 
   (general
     (thickness 1.6)
-    (drawings 72)
+    (drawings 73)
     (tracks 169)
     (zones 0)
     (modules 15)
@@ -10,6 +10,10 @@
   )
 
   (page A4)
+  (title_block
+    (date 2020-12-26)
+  )
+
   (layers
     (0 F.Cu signal)
     (31 B.Cu signal)
@@ -1391,6 +1395,9 @@
     )
   )
 
+  (gr_text JLCJLCJLCJLC (at 117.856 106.68 90) (layer F.SilkS)
+    (effects (font (size 1 1) (thickness 0.15)))
+  )
   (gr_text "Universal J-Link Adapter" (at 112.395 95.25 90) (layer B.SilkS) (tstamp 5FC1098E)
     (effects (font (size 1 1) (thickness 0.15)) (justify left mirror))
   )
@@ -1773,7 +1780,7 @@
       )
     )
   )
-  (zone (net 1) (net_name /GND) (layer B.Cu) (tstamp 5FBFF8B2) (hatch edge 0.508)
+  (zone (net 1) (net_name /GND) (layer B.Cu) (tstamp 5FE73E6D) (hatch edge 0.508)
     (connect_pads (clearance 0.508))
     (min_thickness 0.254)
     (fill yes (arc_segments 32) (thermal_gap 0.508) (thermal_bridge_width 0.508))
