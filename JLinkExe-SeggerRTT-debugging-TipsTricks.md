@@ -173,6 +173,7 @@ The application supports a few arguments when called to, for example, directly s
 <br/>
 <br/>
 <br/>
+<br/>
 
 #### 3.3.4 - Telnet connection
 
@@ -192,6 +193,8 @@ As previously mentioned, the **J-Link Web Control Panel** can be accessed on [ht
 
 A RTT-session can be manually started, and the RTT control block can be both manually entered or auto-detected. It's possible to see the data on *channel 0 (terminal), 1 and 2* and data can also be send from the host to the target device.
 
+<br/>
+<br/>
 <br/>
 <br/>
 <br/>
