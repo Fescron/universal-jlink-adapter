@@ -11,7 +11,6 @@
 <img src="documentation/pictures/v3/jlink-adapter-v3.png" alt="Universal J-Link adapter on J-Link EDU debugger">
 
 <br/>
-<br/>
 
 | Quick access links |
 |------|
@@ -56,13 +55,13 @@ Aside from the ability to easily make connections to target boards using the wel
 
 ### 1.1 - Supply power to the target board (5V and/or other voltages)
 
-<img align="left" src="documentation/pictures/v3/converter-pin5-headers.png" height="130" alt="Converter and pin-5 headers">
+<img align="left" src="documentation/pictures/v3/converter-pin5-headers.png" height="120" alt="Converter and pin-5 headers">
 
 As previously stated, a **DC-DC converter or LDO regulator** can be plugged into the 3-pin female header on this adapter with the labels `JP1 JP2 5V`. This would allow the adapter to supply power through the `VTREF`-line (`PIN 1`) to the target board with the correct voltage, derived from the **5V supply of the J-Link programmer**. The 5V voltage can **also be made available *as-is* on** `PIN 5` of the output headers by putting a jumper in the correct position of the header labeled `GND 5 5V`. With the same jumper, `GND` can also be made available on `PIN 5`. Both the voltage-converter socket and the `PIN 5`-jumper are depicted on the picture on the left.
 
 If the user wishes to **not power the target board using** `VTREF`, for example in the case that the target board is already getting its own power from a battery, the **voltage converter should simply not be plugged in**. The J-Link debugger will then still get the correct I/O voltage as a logic-level reference if the MCU-supply-voltage is present on `VTREF` (`PIN 1`).
 
-<img align="left" src="documentation/pictures/v3/ldo-jumpers.png" height="130" alt="Voltage-converter pinout jumpers">
+<img align="left" src="documentation/pictures/v3/ldo-jumpers.png" height="120" alt="Voltage-converter pinout jumpers">
 
 If the **pinout of the 3-pin voltage converter doesn't match** `VIN - VOUT - GND`, the last two pins can be changed around by swapping the solder joints on `JP1` and `JP2` on the bottom of the PCB. This is also also depicted on the picture on the left. If the present lines are cut on both jumpers and new solder connections are made on the other side then the pinout `VIN - GND - VOUT` will be selected.
 
