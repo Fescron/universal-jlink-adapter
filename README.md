@@ -8,16 +8,16 @@
 
 <br/>
 
-<img src="documentation/pictures/v3/adapter.png" alt="Front of the adapter board">
+<img src="documentation/pictures/v3/jlink-adapter-v3.png" alt="Universal J-Link adapter on J-Link EDU debugger">
 
 <br/>
 <br/>
 
 | Quick access links |
 |------|
-| [Adapter v3.0 **schematic** (PDF)](hardware/jlink-tagConnect-adapter-v3/jlink-tagConnect-adapter-v3.pdf) // [Adapter v3.0 **gerber-files**](hardware/jlink-tagConnect-adapter-v3/Gerber/)|
-| [Buy this adapter-PCB on **OSHPark**]() (`TODO`) |
-| [Basic **J-Link Commander** usage and using **Segger Real-Time Transfer (RTT)** instead of UART](JLinkExe-SeggerRTT-debugging-TipsTricks.md) (`TODO`) |
+| [Adapter v3.0 **schematic** (PDF)](hardware/jlink-tagConnect-adapter-v3/jlink-tagConnect-adapter-v3.pdf) // [Adapter v3.0 **gerber-files**](hardware/jlink-tagConnect-adapter-v3/Gerber/) |
+| [Buy this adapter-PCB on **OSHPark**](https://github.com/Fescron/universal-jlink-adapter) (TODO) |
+| [Basic **J-Link Commander** usage and using **Segger Real-Time Transfer (RTT)** instead of UART](JLinkExe-SeggerRTT-debugging-TipsTricks.md) |
 
 <br/>
 
@@ -103,6 +103,10 @@ In addition to the *default* SWD/JTAG-pinouts it's also possible to add extra fu
   - **SWD mode:** Normally this pin is *not connected*, but sometimes a target board uses this pin as `GNDdetect` so it can detect the presence of a debugger. With a jumper labeled `nTRST 9 GND` this pin can be connected to GND to enable this functionality.
   - *NOTE:* When `PIN 9` is connected to a microcontroller pin that can act as an output, the adapter can be used to *break-out* this pin to another instrument for, for example, code-timing analysis. Simply remove the jumper and add a *Dupont*-cable on the pin labeled `9`.
   - **JTAG mode:** On J-Link's [9 pin](https://www.segger.com/products/debug-probes/j-link/accessories/adapters/9-pin-cortex-m-adapter/) and [19 pin](https://www.segger.com/products/debug-probes/j-link/accessories/adapters/19-pin-cortex-m-adapter/) Cortex-M adapters this pin can be connected to `nTRST` using a solder jumper. On this adapter board this can be done using a regular jumper.
+
+<br/>
+
+<img src="documentation/pictures/v3/adapter.png" alt="Front of the adapter board">
 
 <br/>
 
