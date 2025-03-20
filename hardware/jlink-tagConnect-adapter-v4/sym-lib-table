@@ -1,0 +1,5 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "BrechtVE_Aesthetics")(type "Legacy")(uri "${KIPRJMOD}/Libraries/BrechtVE_Aesthetics.lib")(options "")(descr ""))
+  (lib (name "BrechtVE_DebugHeader")(type "Legacy")(uri "${KIPRJMOD}/Libraries/BrechtVE_DebugHeader.lib")(options "")(descr ""))
+)

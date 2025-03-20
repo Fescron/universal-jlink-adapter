@@ -1,0 +1,48 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP DebugHeader_Cortex-M_JTAG_10p
+D Modified J-Link 9-pin Cortex-M JTAG header
+K programming header debug cortex-m jtag jlink j-link
+$ENDCMP
+#
+$CMP DebugHeader_Cortex-M_JTAG_10p_TagConnect
+D Modified J-Link 10-pin Needle Cortex-M JTAG header
+K programming header debug cortex-m jtag jlink j-link tagconnect tag-connect
+$ENDCMP
+#
+$CMP DebugHeader_Cortex-M_SWD_UART_10p
+D Modified J-Link 9-pin Cortex-M SWD header with UART pins
+K programming header debug cortex-m swd uart jlink j-link serial
+$ENDCMP
+#
+$CMP DebugHeader_Cortex-M_SWD_UART_10p_TagConnect
+D Modified J-Link 10-pin Needle Cortex-M SWD header with UART pins
+K programming header debug cortex-m swd uart jlink j-link tagconnect tag-connect serial
+$ENDCMP
+#
+$CMP DebugHeader_J-Link_Cortex-M_JTAG_10p_TagConnect
+D Standard J-Link 10-pin Needle Cortex-M JTAG header
+K programming header debug cortex-m jtag jlink j-link tagconnect tag-connect
+$ENDCMP
+#
+$CMP DebugHeader_J-Link_Cortex-M_JTAG_9p
+D Standard J-Link 9-pin Cortex-M JTAG header
+K programming header debug cortex-m jtag jlink j-link
+$ENDCMP
+#
+$CMP DebugHeader_J-Link_Cortex-M_SWD_10p_TagConnect
+D Standard J-Link 10-pin Needle Cortex-M SWD header
+K programming header debug cortex-m swd jlink j-link tagconnect tag-connect
+$ENDCMP
+#
+$CMP DebugHeader_J-Link_Cortex-M_SWD_9p
+D Standard J-Link 9-pin Cortex-M SWD header
+K programming header debug cortex-m swd jlink j-link
+$ENDCMP
+#
+$CMP DebugHeader_UART_4p
+D UART debug header with TXD-RXD-GND-VDD connections
+K programming header debug uart
+$ENDCMP
+#
+#End Doc Library
