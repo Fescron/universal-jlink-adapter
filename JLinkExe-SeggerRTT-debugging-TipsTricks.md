@@ -36,7 +36,7 @@
 |------|-----|-----|
 | `?` | Show all available commands | `? [<command>]`|
 | `Exit` | Close J-Link connection and quit | |
-| | | |
+| &nbsp; | | |
 | `Halt` `H` | Halt target chip | |
 | `IsHalted` `IH` | Check current CPU state (halted/running) | |
 | `MoE` | Show mode-of-entry, the reason why the CPU is halted | |
@@ -44,34 +44,34 @@
 | `Step` `S` | Single-step target chip | `Step [<NumSteps (dec)>]` |
 | `Reset` `R` | Reset target chip | |
 | `RSetType` `Rst` | Set the current reset type | `RSetType [<type>]` |
-| | | |
+| &nbsp; | | |
 | `ClrRESET` `R0` | Clear RESET pin | |
 | `SetRESET` `R1` | Set RESET pin | |
 | `ClrTRST` `TRST0` | Clear TRST pin | |
 | `SetTRST` `TRST1` |  Set TRST pin | |
-| | | |
+| &nbsp; | | |
 | `Erase` | Erase internal flash or flash range of selected device | `Erase [<SAddr> <EAddr>] [<noreset/reset>]` |
 | `LoadFile` | Flash firmware on the selected device | `LoadFile <FileName (bin/elf/hex/...)> [<Addr(.bin only)>] [<noreset/reset>]` |
 | `SaveBin` | Save target memory range into binary file | `SaveBin <filename> <addr> <NumBytes>` |
 | `VerifyBin` | Verify if specified bin-file is at the specified target memory location | `VerifyBin <filename> <addr>` |
-| | | |
+| &nbsp; | | |
 | `Mem` | Read memory of target chip | `Mem  [<Zone>:]<Addr> <NumItems (hex)>` |
 | `Regs` | Display contents of registers of halted target chip | |
 | `RReg` | Read register of target chip | `RReg <RegName>` |
 | `JTagId` `I` | Read JTAG ID of target chip | |
-| | | |
+| &nbsp; | | |
 | `Connect` `Con` | Establish a target connection | |
 | `Device` | Select a device to connect to and perform a reconnect | `Device <DeviceName/?>`|
 | `SelectInterface` `SI` | Select target interface (SWD, JTAG, ICSP, ...) | `SI <Interface (SWD/JTAG/...)>` |
 | `Speed` | Set target interface speed | `Speed <freq>/auto/adaptive` |
-| | | |
+| &nbsp; | | |
 | `ShowHWStatus` `ST` | Show debugger hardware status | |
 | `ShowFWInfo` `F` | Show debugger firmware info | |
 | `ShowConf` `Conf` | Show debugger configuration | |
 | `Power` | Switch power supply for target (J-Link 5V-out) | `Power <On/Off> [perm]` |
 | `VCOM` | Enable/disable VCOM (Takes effect after power cycle of the J-Link) | `VCOM <enable/disable>` |
 | `VTREF` | Set a fixed mV-value for VTref on J-Link | `VTREF <Value (mV)>` |
-| | | |
+| &nbsp; | | |
 | `TestWSpeed` `TestW` | Measure download speed into target memory | `TestWSpeed [<Addr> [<Size>]]` |
 | `TestRSpeed` `TestR` | Measure upload speed from target memory | `TestRSpeed [<Addr> [<Size>] [<NumBlocks>]]` |
 | `TestCSpeed` `TestC` | Measure CPU speed | `TestCSpeed [<RAMAddr>]` |
