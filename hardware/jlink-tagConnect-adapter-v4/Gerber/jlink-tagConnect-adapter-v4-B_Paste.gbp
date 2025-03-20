@@ -1,14 +1,73 @@
-G04 #@! TF.GenerationSoftware,KiCad,Pcbnew,5.1.5-52549c5~86~ubuntu19.04.1*
-G04 #@! TF.CreationDate,2020-12-26T14:34:18+01:00*
-G04 #@! TF.ProjectId,jlink-tagConnect-adapter-v3,6a6c696e-6b2d-4746-9167-436f6e6e6563,rev?*
+G04 #@! TF.GenerationSoftware,KiCad,Pcbnew,7.0.10-7.0.10~ubuntu22.04.1*
+G04 #@! TF.CreationDate,2025-03-20T21:46:33+01:00*
+G04 #@! TF.ProjectId,jlink-tagConnect-adapter-v4,6a6c696e-6b2d-4746-9167-436f6e6e6563,rev?*
 G04 #@! TF.SameCoordinates,Original*
 G04 #@! TF.FileFunction,Paste,Bot*
 G04 #@! TF.FilePolarity,Positive*
 %FSLAX46Y46*%
 G04 Gerber Fmt 4.6, Leading zero omitted, Abs format (unit mm)*
-G04 Created by KiCad (PCBNEW 5.1.5-52549c5~86~ubuntu19.04.1) date 2020-12-26 14:34:18*
+G04 Created by KiCad (PCBNEW 7.0.10-7.0.10~ubuntu22.04.1) date 2025-03-20 21:46:33*
 %MOMM*%
 %LPD*%
+G01*
 G04 APERTURE LIST*
+G04 Aperture macros list*
+%AMRoundRect*
+0 Rectangle with rounded corners*
+0 $1 Rounding radius*
+0 $2 $3 $4 $5 $6 $7 $8 $9 X,Y pos of 4 corners*
+0 Add a 4 corners polygon primitive as box body*
+4,1,4,$2,$3,$4,$5,$6,$7,$8,$9,$2,$3,0*
+0 Add four circle primitives for the rounded corners*
+1,1,$1+$1,$2,$3*
+1,1,$1+$1,$4,$5*
+1,1,$1+$1,$6,$7*
+1,1,$1+$1,$8,$9*
+0 Add four rect primitives between the rounded corners*
+20,1,$1+$1,$2,$3,$4,$5,0*
+20,1,$1+$1,$4,$5,$6,$7,0*
+20,1,$1+$1,$6,$7,$8,$9,0*
+20,1,$1+$1,$8,$9,$2,$3,0*%
+G04 Aperture macros list end*
+%ADD10RoundRect,0.237500X0.237500X-0.250000X0.237500X0.250000X-0.237500X0.250000X-0.237500X-0.250000X0*%
+%ADD11RoundRect,0.237500X0.237500X-0.300000X0.237500X0.300000X-0.237500X0.300000X-0.237500X-0.300000X0*%
+G04 #@! TA.AperFunction,Profile*
+%ADD12C,0.101600*%
+G04 #@! TD*
 G04 APERTURE END LIST*
+D10*
+X124968000Y-98956500D03*
+X124968000Y-97131500D03*
+D11*
+X119888000Y-98906500D03*
+X119888000Y-97181500D03*
+D12*
+X137795000Y-93345000D02*
+G75*
+G03*
+X135890000Y-91440000I-1905000J0D01*
+G01*
+X137795000Y-120015000D02*
+X137795000Y-93345000D01*
+X89535000Y-120015000D02*
+G75*
+G03*
+X91440000Y-121920000I1905000J0D01*
+G01*
+X91440000Y-121920000D02*
+X135890000Y-121920000D01*
+X135890000Y-121920000D02*
+G75*
+G03*
+X137795000Y-120015000I0J1905000D01*
+G01*
+X135890000Y-91440000D02*
+X91440000Y-91440000D01*
+X91440000Y-91440000D02*
+G75*
+G03*
+X89535000Y-93345000I0J-1905000D01*
+G01*
+X89535000Y-93345000D02*
+X89535000Y-120015000D01*
 M02*
