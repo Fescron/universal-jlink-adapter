@@ -2,7 +2,7 @@
 
 <br/>
 
-- [Segger J-Link debugging tips & tricks](#segger-j-link-debugging-tips--tricks)
+- [Segger J-Link debugging tips \& tricks](#segger-j-link-debugging-tips--tricks)
   - [1 - J-Link Commander](#1---j-link-commander)
   - [2 - J-Link Web Control Panel](#2---j-link-web-control-panel)
   - [3 - Debugging using UART vs Segger Real-Time Transfer (RTT)](#3---debugging-using-uart-vs-segger-real-time-transfer-rtt)
@@ -26,42 +26,55 @@
 
 ## 1 - J-Link Commander
 
-`JLink.exe/JLinkExe` is a simple yet powerful command-line utility that can be very useful in the first stages of getting new hardware working and the programming utility of a software development program doesn't give much feedback why programming failed. Below is a list of some very handy commands, more information about J-Link Commander can be found on [this wiki page](https://wiki.segger.com/J-Link_Commander).
+`JLink.exe/JLinkExe` is a simple yet powerful command-line utility that can be very useful in the first stages of getting new hardware working and the programming utility of a software development program doesn't give much feedback why programming failed. Below is a list of some very handy commands, more information about J-Link Commander can be found on [this wiki page](https://kb.segger.com/J-Link_Commander).
 
 <br/>
 
+**Note:** Arguments in `[ ]` are optional
+
 | Command | Function | Syntax |
 |------|-----|-----|
-| `?` | Show all available commands | |
-| `q` | Quit | |
-| `qc` | Close J-Link connection and quit | |
+| `?` | Show all available commands | `? [<command>]`|
+| `Exit` | Close J-Link connection and quit | |
 | | | |
-| `h` | Halt target chip | |
-| `IsHalted` | Check current CPU state (halted/running) | |
-| `moe` | Show mode-of-entry, the reason why the CPU is halted | |
-| `g` | Run target chip (go) | |
-| `s` | Single-step target chip | `s [<NumSteps (dec)>]` |
-| `r` | Reset target chip | |
-| `RSetType` | Set the current reset type | `RSetType <type>` |
+| `Halt` `H` | Halt target chip | |
+| `IsHalted` `IH` | Check current CPU state (halted/running) | |
+| `MoE` | Show mode-of-entry, the reason why the CPU is halted | |
+| `Go` `G` | Run target chip (go) | |
+| `Step` `S` | Single-step target chip | `Step [<NumSteps (dec)>]` |
+| `Reset` `R` | Reset target chip | |
+| `RSetType` `Rst` | Set the current reset type | `RSetType [<type>]` |
 | | | |
-| `erase` | Erase internal flash or flash range of selected device | `erase [<SAddr>, <EAddr>]` |
-| `mem` | Read memory of target chip | `mem  [<Zone>:]<Addr>, <NumBytes> (hex)` |
+| `ClrRESET` `R0` | Clear RESET pin | |
+| `SetRESET` `R1` | Set RESET pin | |
+| `ClrTRST` `TRST0` | Clear TRST pin | |
+| `SetTRST` `TRST1` |  Set TRST pin | |
+| | | |
+| `Erase` | Erase internal flash or flash range of selected device | `Erase [<SAddr> <EAddr>] [<noreset/reset>]` |
+| `LoadFile` | Flash firmware on the selected device | `LoadFile <FileName (bin/elf/hex/...)> [<Addr(.bin only)>] [<noreset/reset>]` |
+| `SaveBin` | Save target memory range into binary file | `SaveBin <filename> <addr> <NumBytes>` |
+| `VerifyBin` | Verify if specified bin-file is at the specified target memory location | `VerifyBin <filename> <addr>` |
+| | | |
+| `Mem` | Read memory of target chip | `Mem  [<Zone>:]<Addr> <NumItems (hex)>` |
 | `Regs` | Display contents of registers of halted target chip | |
-| `rreg` | Read register of target chip | `rreg <RegName>` |
-| `i` | Read JTAG ID of target chip | |
+| `RReg` | Read register of target chip | `RReg <RegName>` |
+| `JTagId` `I` | Read JTAG ID of target chip | |
 | | | |
-| `unlock` | Unlock a device (`nRESET` has to be connected) | `unlock <DeviceName>` |
-| `connect` | Establish a target connection | |
-| `device` | Select a device to connect to and perform a reconnect | |
-| `si` | Select target interface (SWD, JTAG, ICSP, ...) | `si <Interface>` |
-| `speed` | Set target interface speed | `speed <freq>/auto/adaptive` |
+| `Connect` `Con` | Establish a target connection | |
+| `Device` | Select a device to connect to and perform a reconnect | `Device <DeviceName/?>`|
+| `SelectInterface` `SI` | Select target interface (SWD, JTAG, ICSP, ...) | `SI <Interface (SWD/JTAG/...)>` |
+| `Speed` | Set target interface speed | `Speed <freq>/auto/adaptive` |
 | | | |
-| `st` | Show debugger hardware status | |
-| `f` | Show debugger firmware info | |
-| `conf` | Show debugger configuration | |
-| `power` | Switch power supply for target (J-Link 5V-out) | `power <On/Off> [perm]` |
+| `ShowHWStatus` `ST` | Show debugger hardware status | |
+| `ShowFWInfo` `F` | Show debugger firmware info | |
+| `ShowConf` `Conf` | Show debugger configuration | |
+| `Power` | Switch power supply for target (J-Link 5V-out) | `Power <On/Off> [perm]` |
 | `VCOM` | Enable/disable VCOM (Takes effect after power cycle of the J-Link) | `VCOM <enable/disable>` |
-| `VTREF` | Set a fixed mV-value for VTref on J-Link | `VTREF <ValuemV>` |
+| `VTREF` | Set a fixed mV-value for VTref on J-Link | `VTREF <Value (mV)>` |
+| | | |
+| `TestWSpeed` `TestW` | Measure download speed into target memory | `TestWSpeed [<Addr> [<Size>]]` |
+| `TestRSpeed` `TestR` | Measure upload speed from target memory | `TestRSpeed [<Addr> [<Size>] [<NumBlocks>]]` |
+| `TestCSpeed` `TestC` | Measure CPU speed | `TestCSpeed [<RAMAddr>]` |
 
 <br/>
 
@@ -75,7 +88,7 @@ When a J-Link debugger has an active debug-session, for instance when it's used 
 
 ## 3 - Debugging using UART vs Segger Real-Time Transfer (RTT)
 
-The next paragraphs serve as an introduction and summary of RTT functionality. A lot of the following information was taken from the [Segger RTT Wiki page](https://wiki.segger.com/RTT). Be sure to read this if more detailed information is required.
+The next paragraphs serve as an introduction and summary of RTT functionality. A lot of the following information was taken from the [Segger RTT Wiki page](https://kb.segger.com/RTT). Be sure to read this if more detailed information is required.
 
 <br/>
 
@@ -89,7 +102,7 @@ I wrote [dbprint](https://github.com/Fescron/dbprint) in a way that it didn't ne
 
 <br/>
 
-Because of the rather MCU-specific [dbprint](https://github.com/Fescron/dbprint) code and the fact that I did not have a spare UART connection for a recent project, I looked for another way to do **printf debugging**. I first came across **Single Wire Output (SWO)** but since not all ARM-cores support this functionality no real time was spend figuring out how to get this to work. I have a [Segger J-Link debugger](https://www.segger.com/products/debug-probes/j-link/) so I have the ability to use [Segger Real-Time Transfer (RTT)](https://www.segger.com/products/debug-probes/j-link/technology/about-real-time-transfer). This supports all target processors which allows background memory access, so the **Cortex-M** and RX devices. Support for targets without this functionality is also being added (Cortex-A/R and RISC-V), be sure to check the [Segger RTT Wiki page (Modes)](https://wiki.segger.com/RTT#Modes) for more information about this.
+Because of the rather MCU-specific [dbprint](https://github.com/Fescron/dbprint) code and the fact that I did not have a spare UART connection for a recent project, I looked for another way to do **printf debugging**. I first came across **Single Wire Output (SWO)** but since not all ARM-cores support this functionality no real time was spend figuring out how to get this to work. I have a [Segger J-Link debugger](https://www.segger.com/products/debug-probes/j-link/) so I have the ability to use [Segger Real-Time Transfer (RTT)](https://www.segger.com/products/debug-probes/j-link/technology/about-real-time-transfer). This supports all target processors which allows background memory access, so the **Cortex-M** and RX devices. Support for targets without this functionality is also being added (Cortex-A/R and RISC-V), be sure to check the [Segger RTT Wiki page (Modes)](https://kb.segger.com/RTT#RTT_operation_Modes) for more information about this.
 
 With [Segger Real-Time Transfer (RTT)](https://www.segger.com/products/debug-probes/j-link/technology/about-real-time-transfer) it's possible to have a very high-speed bidirectional connection to a target device which can be used to transfer debug information. This can be done **without affecting he MCU's real-time behavior** and **without any additional connections alongside those for programming**. The [RTT implementation code](https://github.com/adfernandes/segger-rtt) writes data to or reads data from special defined memory blocks in the target's memory (*RTT buffers*). These can be found by a [J-Link debugger](https://www.segger.com/products/debug-probes/j-link/) in the target's known RAM regions because the control block contains a special `ID`. The debugger can then read data from and write data to these specific memory blocks to facilitate the bidirectional connection.
 
@@ -147,7 +160,7 @@ Sending **text input** is to `Down-Channel 0`. The target application can read t
 
 <br/>
 
-The application can be called with arguments other than `-a` or `--autoconnect`. More information about these can be found on the [Segger RTT Viewer Wiki page (Command line options)](https://wiki.segger.com/J-Link_RTT_Viewer#Command_line_options).
+The application can be called with arguments other than `-a` or `--autoconnect`. More information about these can be found on the [Segger RTT Viewer Wiki page (Command line options)](https://kb.segger.com/J-Link_RTT_Viewer#Command_line_options).
 
 <br/>
 
@@ -167,7 +180,7 @@ The application supports a few arguments when called. `-LocalEcho <1/0/On/Off>` 
 
 `JLinkRTTLogger.exe/JLinkRTTLoggerExe` is a command-line application which opens a dedicated connection to J-Link and can be used **stand-alone**, without a running debug session. Data from all RTT Up-Channels can be read and logged to a file (default = `Up-Channel 1`).
 
-The application supports a few arguments when called to, for example, directly set the target device or RTT channel. More information about this can be found on the [Segger RTT Wiki page (RTT Logger)](https://wiki.segger.com/RTT#RTT_Logger).
+The application supports a few arguments when called to, for example, directly set the target device or RTT channel. More information about this can be found on the [Segger RTT Logger Wiki page](https://kb.segger.com/J-Link_RTT_Logger).
 
 <br/>
 <br/>
@@ -181,7 +194,7 @@ If a connection to a J-Link is active, for example in the case of an ongoing *de
 
 The connection will be closed when the connection to the target is closed, for example in the case where a debug session is halted. Use the **J-Link RTT Client** to automatically reconnect if a debug session is restarted afterwards.
 
-It's also possible to change the channel, set the *RTT Control Block address* and the *RTT Control Block search range* with so called *Segger Telnet Config Strings*. These strings have to be send within `100 ms` after opening the telnet connection. As an example, the string `$$SEGGER_TELNET_ConfigStr=RTTCh;1$$` sets the channel to `Up/Down-Channel 1`. More information about these strings can be found on the [Segger RTT Wiki page (Segger Telnet Config String)](https://wiki.segger.com/RTT#SEGGER_TELNET_Config_String).
+It's also possible to change the channel, set the *RTT Control Block address* and the *RTT Control Block search range* with so called *Segger Telnet Config Strings*. These strings have to be send within `100 ms` after opening the telnet connection. As an example, the string `$$SEGGER_TELNET_ConfigStr=RTTCh;1$$` sets the channel to `Up/Down-Channel 1`. More information about these strings can be found on the [Segger RTT Wiki page (Segger Telnet Config String)](https://kb.segger.com/RTT#SEGGER_TELNET_Config_String).
 
 <br/>
 
