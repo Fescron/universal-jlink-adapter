@@ -12,11 +12,11 @@
 
 <br/>
 
-| Quick access links |
-|------|
+| Quick access links                                                                                                                                                                        |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [Adapter v4.0 **schematic** (PDF)](hardware/jlink-tagConnect-adapter-v4/jlink-tagConnect-adapter-v4.pdf) // [Adapter v4.0 **gerber-files**](hardware/jlink-tagConnect-adapter-v4/Gerber/) |
-| [Buy this adapter-PCB on **OSHPark**](https://github.com/Fescron/universal-jlink-adapter) (TODO) |
-| [Basic **J-Link Commander** usage and using **Segger Real-Time Transfer (RTT)** instead of UART](JLinkExe-SeggerRTT-debugging-TipsTricks.md) |
+| [Buy this adapter-PCB on **OSHPark**](https://github.com/Fescron/universal-jlink-adapter) (TODO)                                                                                          |
+| [Basic **J-Link Commander** usage and using **Segger Real-Time Transfer (RTT)** instead of UART](JLinkExe-SeggerRTT-debugging-TipsTricks.md)                                              |
 
 <br/>
 
@@ -46,9 +46,10 @@ The picture on the left depicts the `TagConnect 2050` cable on the top-right, ne
   - [1 - Adapter functionality](#1---adapter-functionality)
     - [1.1 - Supply power to the target board (5V and/or other voltages)](#11---supply-power-to-the-target-board-5v-andor-other-voltages)
     - [1.2 - Additional functionality on "unused" pins using jumpers](#12---additional-functionality-on-unused-pins-using-jumpers)
-  - [2 - KiCad debug header symbols](#2---kicad-debug-header-symbols)
+  - [2 - Serial Flashing](#2---serial-flashing)
   - [3 - Layout guidelines for target boards](#3---layout-guidelines-for-target-boards)
-  - [4 - Simplified BOM](#4---simplified-bom)
+  - [4 - BOM](#4---bom)
+  - [5 - KiCad debug header symbols](#5---kicad-debug-header-symbols)
 
 <br/>
 
@@ -127,7 +128,43 @@ A two-pin `GND` header also facilitates some additional ground-wire connections.
 
 <br/>
 
-## 2 - KiCad debug header symbols
+## 2 - Serial Flashing
+
+Due to the availability of the jumpers certain pins can be used to detect if a target board is plugged in. A board such as the [Macropedal](https://github.com/Fescron/macropedal) can be used to detect if for example `pin 5` is connected to ground through a connected board. The *Macropedal* can then enter a command in a terminal to flash firmware to a board. For this refer to [Segger J-Link debugging tips & tricks - 2 - Scripting](JLinkExe-SeggerRTT-debugging-TipsTricks.md#2---scripting). This way one after the board can be programmed in a series production scenario.
+
+<br/>
+
+## 3 - Layout guidelines for target boards
+
+It's advised to add the following passives on the *target board* for protection and stability. This is also mentioned in the [adapter schematic](hardware/jlink-tagConnect-adapter-v4/jlink-tagConnect-adapter-v4.pdf).
+
+- 10 kΩ pullup on `SWDIO|TMS`, `TDO`, `TDI` (and `RXD`)
+- 10 kΩ pulldown on `SWCLK|TCK`
+- 33 to 100 Ω inline current limiting resistors on `TXD` and`RXD` lines
+  - This is mostly important for when `UART` is available on additional external headers, and is less important if this is made available on the SWD-header. 100 pF capacitors (*after* the series resistors) can also help with some filtering and ESD mitigation.
+
+<br/>
+
+## 4 - BOM
+
+| Component              | Footprint                                                | Manufacturer `Partnumber`      | Ordering                                                                                                                 |
+| ---------------------- | -------------------------------------------------------- | ------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
+| J1                     | 02x10 0.1" (2.54mm) Right Angle Keyed Female IDC Socket  | Sullins `SFH11-PBPC-D10-RA-BK` | [digikey.be](https://www.digikey.be/product-detail/en/sullins-connector-solutions/SFH11-PBPC-D10-RA-BK/S9205-ND/1990098) |
+| J2                     | 02x05 0.1" Male Key-Shrouded IDC Header                  | Samtec `TST-105-01-L-D`        | [digikey.be](https://www.digikey.be/en/products/detail/samtec-inc/TST-105-01-L-D/2685818)                                |
+| J3                     | 02x05 0.05" (1.27mm) Male Key-Shrouded Header            | Samtec `FTSH-105-01-L-D-K`     | [digikey.be](https://www.digikey.be/en/products/detail/samtec-inc/FTSH-105-01-L-D-K/2649979)                             |
+| J4                     | 01x03 0.1" Female IDC Socket                             | Samtec `SSW-103-01-G-S`        | [digikey.be](https://www.digikey.be/en/products/detail/samtec-inc/SSW-103-01-G-S/1112104)                                |
+| J5, JP4, JP5, JP8, JP9 | 01x02 0.1" Male IDC Header                               | Samtec `TSW-102-07-L-S`        | [digikey.be](https://www.digikey.be/en/products/detail/samtec-inc/TSW-102-07-L-S/1101425)                                |
+| JP3, JP6, JP7          | 01x03 0.1" Male IDC Header                               | Samtec `TSW-103-07-L-S`        | [digikey.be](https://www.digikey.be/en/products/detail/samtec-inc/TSW-103-07-L-S/1101424)                                |
+| SW1                    | 6.5mm Pitch                                              | C&K `PTS636SL43 LFS`           | [digikey.be](https://www.digikey.be/en/products/detail/c-k/PTS636SL43-LFS/10071714)                                      |
+| R1                     | 100 Ω 0603 1% (1 kΩ should also work)                    | Yageo `RC0603FR-07100RL`       | [digikey.be](https://www.digikey.be/en/products/detail/yageo/RC0603FR-07100RL/726888)                                    |
+| C1                     | 100 nF 0603 10% 16V X7R                                  | Yageo `CC0603KRX7R7BB104`      | [digikey.be](https://www.digikey.be/en/products/detail/yageo/CC0603KRX7R7BB104/302822)                                   |
+|                        | 2.54mm Pitch Jumpers                                     | Samtec `SNT-100-BK-G`          | [digikey.be](https://www.digikey.be/en/products/detail/samtec-inc/SNT-100-BK-G/1756763)                                  |
+|                        | 02x05 0.05" IDC Cable, 6 inch (15 cm) Long               | Samtec `FFSD-05-D-06.00-01-N`  | [digikey.be](https://www.digikey.be/en/products/detail/samtec-inc/FFSD-05-D-06-00-01-N/1106577)                          |
+|                        | TagConnect 10 pin IDC to Needles Without Legs (`...-NL`) | TagConnect `TC-2050-IDC-NL`    | [digikey.be](https://www.digikey.be/product-detail/nl/tag-connect-llc/TC2050-IDC-NL/TC2050-IDC-NL-ND/2605367)            |
+
+<br/>
+
+## 5 - KiCad debug header symbols
 
 On the repository [brechtve-kicad-things](https://github.com/Fescron/brechtve-kicad-things) (kicad.brechtve.be) symbols are available where these additional functions, selectable using the jumpers, are depicted for both SWD and JTAG modes. The "regular" pinouts are put into brackets. The symbols can be found in the library `BrechtVE_DebugHeader.lib`.
 
@@ -148,36 +185,3 @@ Symbols are also supplied to be linked to a **TagConnect 2050 footprint**. The p
 <br/>
 
 For reference these symbols, along with additional information regarding jumpers and layout guidelines, can be found on the [adapter schematic](hardware/jlink-tagConnect-adapter-v4/jlink-tagConnect-adapter-v4.pdf). A lot more information regarding KiCad itself is also available on the repository [brechtve-kicad-things](https://github.com/Fescron/brechtve-kicad-things).
-
-<br/>
-
-## 3 - Layout guidelines for target boards
-
-It's advised to add the following passives on the *target board* for protection and stability. This is also mentioned in the [adapter schematic](hardware/jlink-tagConnect-adapter-v4/jlink-tagConnect-adapter-v4.pdf).
-
-- 10 kΩ pullup on `SWDIO|TMS`, `TDO`, `TDI` (and `RXD`)
-- 10 kΩ pulldown on `SWCLK|TCK`
-- 33 to 100 Ω inline current limiting resistors on `TXD` and`RXD` lines
-  - This is mostly important for when `UART` is available on additional external headers, and is less important if this is made available on the SWD-header.
-
-<br/>
-
-## 4 - Simplified BOM
-
-| Component   | Footprint                                                | Manufacturer `Type`                             | Ordering                                                                                                                                                 |
-| ------------- | -------------------------------------------------------- | -------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| J1            | 02x10 0.1" (2.54mm) Right Angle Female IDC socket                 | Sullins `SFH11-PBPC-D10-RA-BK`   | [digikey.be](https://www.digikey.be/product-detail/en/sullins-connector-solutions/SFH11-PBPC-D10-RA-BK/S9205-ND/1990098)                                 |
-| J1 (alt.)               | 02x10 0.1" Right Angle Female socket                     | Samtec `SSW-110-02-L-D-RA`       | [mouser.be](https://www.mouser.be/ProductDetail/Samtec/SSW-110-02-L-D-RA?qs=sGAEpiMZZMvffgRu4KC1RxM6nKwEP14AKIDk%2F38Cqz31wxmPLBdGrA%3D%3D)              |
-| J2            | 02x05 0.1" Male IDC header                               | Samtec `TST-105-01-L-D`          | [mouser.be](https://www.mouser.be/ProductDetail/Samtec/TST-105-01-L-D?qs=sGAEpiMZZMvlX3nhDDO4AI%252BRmCAOnNK%252B8W%2Fig2WTmT0%3D)                       |
-| J3              | 02x05 0.05" (1.27mm) Male Key-Shrouded header        | Samtec `FTSH-105-01-L-D-K`       | [mouser.be](https://www.mouser.be/ProductDetail/Samtec/FTSH-105-01-L-D-K?qs=%2Fha2pyFaduhoAtv%2FWE6syK%2F3gejFMKjm9lp5582mCss1896wuL7UnQ%3D%3D)          |
-| SW1 | 6.5mm pitch | C&K `PTS636SL43 LFS` | [ digikey.be](https://www.digikey.be/en/products/detail/c-k/PTS636SL43-LFS/10071714) |
-| R1 and C1 | 0603 |  (generic 100 Ω and 100 nF) |  |
-|               | TagConnect 10 pin IDC to needles without legs            | TagConnect `TC-2050-IDC-NL`                 | [digikey.be](https://www.digikey.be/product-detail/nl/tag-connect-llc/TC2050-IDC-NL/TC2050-IDC-NL-ND/2605367)                                            |
-|               | 02x05 0.05" IDC cable, 6 inch (15 cm) long | Samtec `FFSD-05-D-06.00-01-N` | [mouser.be](https://www.mouser.be/ProductDetail/Samtec/FFSD-05-D-0600-01-N?qs=IAPfasySNH%2Fh8ArRPOeNJA%3D%3D) |
-
-<br/>
-
-**Samtec connectors:**
-
-- `L`: 10 µ" (0.25 µm) Gold on post/contact, Matte Tin on tail.
-- `F`: Gold flash on post/contact, Matte Tin on tail.
