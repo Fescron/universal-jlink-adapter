@@ -15,7 +15,6 @@
 | Quick access links                                                                                                                                                                        |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [Adapter v4.0 **schematic** (PDF)](hardware/jlink-tagConnect-adapter-v4/jlink-tagConnect-adapter-v4.pdf) // [Adapter v4.0 **gerber-files**](hardware/jlink-tagConnect-adapter-v4/Gerber/) |
-| [Buy this adapter-PCB on **OSHPark**](https://github.com/Fescron/universal-jlink-adapter) (TODO)                                                                                          |
 | [Basic **J-Link Commander** usage and using **Segger Real-Time Transfer (RTT)** instead of UART](JLinkExe-SeggerRTT-debugging-TipsTricks.md)                                              |
 
 <br/>
