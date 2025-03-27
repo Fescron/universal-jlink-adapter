@@ -8,7 +8,7 @@
 
 <br/>
 
-<img src="documentation/pictures/v3/jlink-adapter-v3.png" alt="Universal J-Link adapter on J-Link EDU debugger">
+<img src="documentation/pictures/v4/jlink-adapter-v4.png" alt="Universal J-Link adapter on J-Link EDU debugger">
 
 <br/>
 
