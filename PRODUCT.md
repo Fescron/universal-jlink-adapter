@@ -9,4 +9,4 @@
 
 ## Contact points
 
-- Brecht Van Eeckhoudt (mail@brechtve.be)
+- Brecht Van Eeckhoudt (brecht@brechtve.be)

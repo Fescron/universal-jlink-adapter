@@ -18,3 +18,4 @@
 - v1.0: Initial version (Brecht Van Eeckhoudt - 09/2019)
 - v2.0: Massive rework to other pinouts (Brecht Van Eeckhoudt - 25/11/2019)
 - V3.0: Changed 0.05" header from SMD to through-hole variant, added SWO/TDO disconnect jumper, moved pinout-documentation to the front of the PCB and changed some text, renamed jumpers and moved some other info to the back of the PCB (Brecht Van Eeckhoudt - 11/2020)
+- v4.0: Added GND testpoints, a reset button (+ disconnect jumper and footprints for a filter resistor and capacitor) and moved some silk around (Brecht Van Eeckhoudt - 20-07-2024)
