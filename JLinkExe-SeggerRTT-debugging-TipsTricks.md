@@ -27,65 +27,71 @@
 
 ## 1 - J-Link Commander
 
-`JLink.exe/JLinkExe` is a simple yet powerful command-line utility that can be very useful in the first stages of getting new hardware working and the programming utility of a software development program doesn't give much feedback why programming failed. Below is a list of some very handy commands, more information about J-Link Commander can be found on [this wiki page](https://kb.segger.com/J-Link_Commander).
+`JLink.exe/JLinkExe` is a simple yet powerful command-line utility which can be very useful in the first stages of getting new hardware working and/or if the programming utility of a software development program doesn't give much feedback on why programming failed. Below is a list of some very useful commands. More information about J-Link Commander can be found on [this wiki page](https://kb.segger.com/J-Link_Commander).
 
 <br/>
 
-**Note:** Arguments in `[ ]` are optional
+Some general notes:
 
-| Command                | Function                                                                | Syntax                                                                        |
-| ---------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| `?`                    | Show all available commands                                             | `? [<command>]`                                                               |
-| `Exit`                 | Close J-Link connection and quit                                        |                                                                               |
-| &nbsp;                 |                                                                         |                                                                               |
-| `Halt` `H`             | Halt target chip                                                        |                                                                               |
-| `IsHalted` `IH`        | Check current CPU state (halted/running)                                |                                                                               |
-| `MoE`                  | Show mode-of-entry, the reason why the CPU is halted                    |                                                                               |
-| `Go` `G`               | Run target chip                                                         |                                                                               |
-| `Step` `S`             | Single-step target chip                                                 | `Step [<NumSteps (dec)>]`                                                     |
-| `Reset` `R`            | Reset target chip                                                       |                                                                               |
-| `RSetType` `Rst`       | Set the current reset type                                              | `RSetType [<type>]`                                                           |
-| &nbsp;                 |                                                                         |                                                                               |
-| `ClrRESET` `R0`        | Clear RESET pin                                                         |                                                                               |
-| `SetRESET` `R1`        | Set RESET pin                                                           |                                                                               |
-| `ClrTRST` `TRST0`      | Clear TRST pin                                                          |                                                                               |
-| `SetTRST` `TRST1`      | Set TRST pin                                                            |                                                                               |
-| `ClrTDI` `TDI0`        | Clear TRST pin                                                          |                                                                               |
-| `SetTDI` `TDI1`        | Set TRST pin                                                            |                                                                               |
-| &nbsp;                 |                                                                         |                                                                               |
-| `Erase`                | Erase internal flash or flash range of selected device                  | `Erase [<SAddr> <EAddr>] [<noreset/reset>]`                                   |
-| `LoadFile`             | Flash firmware on the selected device                                   | `LoadFile <FileName (bin/elf/hex/...)> [<Addr(.bin only)>] [<noreset/reset>]` |
-| `SaveBin`              | Save target memory range into binary file                               | `SaveBin <filename> <addr> <NumBytes>`                                        |
-| `VerifyBin`            | Verify if specified bin-file is at the specified target memory location | `VerifyBin <filename> <addr>`                                                 |
-| &nbsp;                 |                                                                         |                                                                               |
-| `Mem`                  | Read memory of target chip                                              | `Mem  [<Zone>:]<Addr> <NumItems (hex)>`                                       |
-| `Regs`                 | Display contents of registers of halted target chip                     |                                                                               |
-| `RReg`                 | Read register of target chip                                            | `RReg <RegName>`                                                              |
-| `JTagId` `I`           | Read JTAG ID of target chip                                             |                                                                               |
-| &nbsp;                 |                                                                         |                                                                               |
-| `Connect` `Con`        | Establish a target connection                                           |                                                                               |
-| `Device`               | Select a device to connect to and perform a reconnect                   | `Device <DeviceName/?>`                                                       |
-| `SelectInterface` `SI` | Select target interface (SWD, JTAG, ICSP, ...)                          | `SI <Interface (SWD/JTAG/...)>`                                               |
-| `Speed`                | Set target interface speed                                              | `Speed <freq>/auto/adaptive`                                                  |
-| &nbsp;                 |                                                                         |                                                                               |
-| `ShowHWStatus` `ST`    | Show debugger hardware status                                           |                                                                               |
-| `ShowFWInfo` `F`       | Show debugger firmware info                                             |                                                                               |
-| `ShowConf` `Conf`      | Show debugger configuration                                             |                                                                               |
-| `Power`                | Switch power supply for target (J-Link 5V-out)                          | `Power <On/Off> [perm]`                                                       |
-| `VCOM`                 | Enable/disable VCOM (Takes effect after power cycle of the J-Link)      | `VCOM <enable/disable>`                                                       |
-| `VTREF`                | Set a fixed mV-value for VTref on J-Link                                | `VTREF <Value (mV)>`                                                          |
-| &nbsp;                 |                                                                         |                                                                               |
-| `TestWSpeed` `TestW`   | Measure download speed into target memory                               | `TestWSpeed [<Addr> [<Size>]]`                                                |
-| `TestRSpeed` `TestR`   | Measure upload speed from target memory                                 | `TestRSpeed [<Addr> [<Size>] [<NumBlocks>]]`                                  |
-| `TestCSpeed` `TestC`   | Measure CPU speed                                                       | `TestCSpeed [<RAMAddr>]`                                                      |
+- Arguments in `[ ... ]` are optional
+- Arguments in `< ... >` need to be filled in with values (`' ... '` denote fixed strings)
+- `FileName` expects (ideally) an absolute path
+
+<br/>
+
+| Command                | Function                                                            | Syntax                                                                            |
+| ---------------------- | ------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `?`                    | Show all available commands                                         | `? [<Command>]`                                                                   |
+| `Exit`                 | Close J-Link connection and quit                                    |                                                                                   |
+| &nbsp;                 |                                                                     |                                                                                   |
+| `Halt` `H`             | Halt target chip                                                    |                                                                                   |
+| `IsHalted` `IH`        | Check current CPU state (halted/running)                            |                                                                                   |
+| `MoE`                  | Show mode-of-entry, the reason why the CPU is halted                |                                                                                   |
+| `Go` `G`               | Run target chip                                                     |                                                                                   |
+| `Step` `S`             | Single-step target chip                                             | `Step [<NumSteps (dec)>]`                                                         |
+| `Reset` `R`            | Reset target chip                                                   |                                                                                   |
+| `RSetType` `Rst`       | Set current reset type                                              | `RSetType [<Type>]`                                                               |
+| &nbsp;                 |                                                                     |                                                                                   |
+| `ClrRESET` `R0`        | Clear RESET pin                                                     |                                                                                   |
+| `SetRESET` `R1`        | Set RESET pin                                                       |                                                                                   |
+| `ClrTRST` `TRST0`      | Clear TRST pin                                                      |                                                                                   |
+| `SetTRST` `TRST1`      | Set TRST pin                                                        |                                                                                   |
+| `ClrTDI` `TDI0`        | Clear TDI pin                                                       |                                                                                   |
+| `SetTDI` `TDI1`        | Set TDI pin                                                         |                                                                                   |
+| &nbsp;                 |                                                                     |                                                                                   |
+| `Erase`                | Erase internal flash or flash range of selected device              | `Erase [<SAddr> <EAddr>] [<'noreset'/'reset'>]`                                   |
+| `LoadFile`             | Flash firmware on selected device                                   | `LoadFile <FileName (bin/elf/hex/...)> [<Addr(.bin only)>] [<'noreset'/'reset'>]` |
+| `SaveBin`              | Save target memory range into binary file                           | `SaveBin <FileName> <Addr> <NumBytes>`                                            |
+| `VerifyBin`            | Verify if specified bin-file is at specified target memory location | `VerifyBin <FileName> <Addr>`                                                     |
+| &nbsp;                 |                                                                     |                                                                                   |
+| `Mem`                  | Read memory of target chip                                          | `Mem  [<Zone>:]<Addr> <NumItems (hex)>`                                           |
+| `Regs`                 | Display contents of registers of halted target chip                 |                                                                                   |
+| `RReg`                 | Read register of target chip                                        | `RReg <RegName>`                                                                  |
+| `JTagId` `I`           | Read JTAG ID of target chip                                         |                                                                                   |
+| &nbsp;                 |                                                                     |                                                                                   |
+| `Connect` `Con`        | Establish a target connection                                       |                                                                                   |
+| `Device`               | Select a device to connect to and perform a reconnect               | `Device <DeviceName/'?'>`                                                         |
+| `SelectInterface` `SI` | Select target interface                                             | `SI <Interface ('SWD'/'JTAG'/...)>`                                               |
+| `Speed`                | Set target interface speed                                          | `Speed <Freq/'auto'/'adaptive'>`                                                  |
+| &nbsp;                 |                                                                     |                                                                                   |
+| `ShowHWStatus` `ST`    | Show debugger hardware status                                       |                                                                                   |
+| `ShowFWInfo` `F`       | Show debugger firmware info                                         |                                                                                   |
+| `ShowConf` `Conf`      | Show debugger configuration                                         |                                                                                   |
+| `Power`                | Switch power supply for target (J-Link 5V-out)                      | `Power <'On'/'Off'> ['perm']`                                                     |
+| `VCOM`                 | Enable/disable VCOM (takes effect after power cycle of J-Link)      | `VCOM <'enable'/'disable'>`                                                       |
+| `VTREF`                | Set a fixed mV-value for VTref on J-Link                            | `VTREF <Value (mV)>`                                                              |
+| &nbsp;                 |                                                                     |                                                                                   |
+| `TestWSpeed` `TestW`   | Measure download speed into target memory                           | `TestWSpeed [<Addr> [<Size>]]`                                                    |
+| `TestRSpeed` `TestR`   | Measure upload speed from target memory                             | `TestRSpeed [<Addr> [<Size>] [<NumBlocks>]]`                                      |
+| `TestCSpeed` `TestC`   | Measure CPU speed                                                   | `TestCSpeed [<RAMAddr>]`                                                          |
 
 <br/>
 
 ## 2 - Scripting
 
-The above commands can be put in files and subsequently executed to automatically perform, for example, flashing operations. The following sequence connects to a device, flashes firmware to it, resets the target and exits.
+The above commands can be put in files and subsequently executed to automatically perform, for example, flashing operations. The following sequence connects to a device, flashes firmware to it, resets the target and exits (which lets the firmware start running).
 
-```
+```shell
 Device STM32F103C8
 SelectInterface SWD
 Speed auto
@@ -97,13 +103,13 @@ Reset
 Exit
 ```
 
-The above script can then be executed in for example Powershell, with the following syntax:
+The above script can then be executed in for example Powershell, using the following syntax:
 
-```
+```powershell
 & 'C:\Program Files\SEGGER\JLink\JLink.exe' -CommandFile firmware-flashing.jlink
 ```
 
-Replace the path to the actual install location. Note that the extension of the scripting-file does not matter.
+Replace the path to the actual J-Link installation location. Note that the extension of the scripting-file does not matter.
 
 <br/>
 
@@ -111,44 +117,46 @@ Replace the path to the actual install location. Note that the extension of the 
 
 <img align="right" src="documentation/pictures/JLink/JLinkWeb.png" width="440" alt="J-Link Control Panel">
 
-When a J-Link debugger has an active debug-session, for instance when it's used as a programmer or when `JLinkRTTViewerExe` is running, the **J-Link Web Control Panel** can be accessed on [http://localhost:19080/](http://localhost:19080/). This can be a very useful and intuitive tool where a lot of settings and functions can be easily accessed. The tab **RTT** can for example be used as a simple RTT-viewer.
+When a J-Link debugger has an active debug-session, for instance when it is being used as a programmer or when `JLinkRTTViewerExe` is running, the **J-Link Web Control Panel** can be accessed on [http://localhost:19080/](http://localhost:19080/). This can be a very useful and intuitive tool where a lot of settings and functions can be easily accessed. The tab **RTT** can for example be used as a simple RTT-viewer.
 
 <br/>
 
 ## 4 - Debugging using UART vs Segger Real-Time Transfer (RTT)
 
-The next paragraphs serve as an introduction and summary of RTT functionality. A lot of the following information was taken from the [Segger RTT Wiki page](https://kb.segger.com/RTT). Be sure to read this if more detailed information is required.
+The next paragraphs serve as an introduction and summary of RTT functionality. A lot of the following information was taken from the [Segger RTT Wiki page](https://kb.segger.com/RTT). Refer to this page if more detailed information is required.
 
 <br/>
 
 ### 4.1 - Why use RTT and how does it work
 
-Until recently I debugged with both **breakpoints** and a **UART connection**, the latter I use for real-time code-flow information and displaying variable values. **Using UART has a few disadvantages** though.
+Some firmware developers debug using both **breakpoints** and a **UART connection**, the latter of which can be used for real-time code-flow information and displaying variable values. **Using UART however has a few disadvantages**.
 
-First of all you need two extra connections, `TXD` and `RXD`, alongside the regular debugging pins. Using UART also means you loose a MCU peripheral, some RAM and FLASH space and precious clock-cycles. For a recent project I didn't have a single UART peripheral available for debugging purposes, so I couldn't use my self-written low-level UART debugging library [dbprint](https://github.com/Fescron/dbprint).
+First of all two extra pin-connections are necessary (`TXD` and `RXD`), alongside the regular debugging pins. Using UART also means one looses a MCU peripheral, some RAM and FLASH space and precious clock-cycles.
+<!-- For a recent project I didn't have a single UART peripheral available for debugging purposes, so I couldn't use my self-written low-level UART debugging library [dbprint](https://github.com/Fescron/dbprint). -->
 
-I wrote [dbprint](https://github.com/Fescron/dbprint) in a way that it didn't need any external libraries, apart from the MCU-specific UART reading/writing functionality. All of the value-translations, like printing `uint32_t` in *decimal* or *hexadecimal* notation, were done with self-written functions. While it is interesting to understand everything that's going on *under-the-hood*, there are some limitations to this. A lot of time was spend creating the functions and the ability to *port* the code to a different MCU was not really kept in mind from the start. Printing `float` values is up until now also not possible.
+<!-- I wrote [dbprint](https://github.com/Fescron/dbprint) in a way that it didn't need any external libraries, apart from the MCU-specific UART reading/writing functionality. All of the value-translations, like printing `uint32_t` in *decimal* or *hexadecimal* notation, were done with self-written functions. While it is interesting to understand everything that's going on *under-the-hood*, there are some limitations to this. A lot of time was spend creating the functions and the ability to *port* the code to a different MCU was not really kept in mind from the start. Printing `float` values is up until now also not possible. -->
 
 <br/>
 
-Because of the rather MCU-specific [dbprint](https://github.com/Fescron/dbprint) code and the fact that I did not have a spare UART connection for a recent project, I looked for another way to do **printf debugging**. I first came across **Single Wire Output (SWO)** but since not all ARM-cores support this functionality no real time was spend figuring out how to get this to work. I have a [Segger J-Link debugger](https://www.segger.com/products/debug-probes/j-link/) so I have the ability to use [Segger Real-Time Transfer (RTT)](https://www.segger.com/products/debug-probes/j-link/technology/about-real-time-transfer). This supports all target processors which allows background memory access, so the **Cortex-M** and RX devices. Support for targets without this functionality is also being added (Cortex-A/R and RISC-V), be sure to check the [Segger RTT Wiki page (Modes)](https://kb.segger.com/RTT#RTT_operation_Modes) for more information about this.
+<!-- Because of the rather MCU-specific [dbprint](https://github.com/Fescron/dbprint) code and the fact that I did not have a spare UART connection for a recent project, I looked for another way to do **printf debugging**. -->
 
-With [Segger Real-Time Transfer (RTT)](https://www.segger.com/products/debug-probes/j-link/technology/about-real-time-transfer) it's possible to have a very high-speed bidirectional connection to a target device which can be used to transfer debug information. This can be done **without affecting he MCU's real-time behavior** and **without any additional connections alongside those for programming**. The [RTT implementation code](https://github.com/adfernandes/segger-rtt) writes data to or reads data from special defined memory blocks in the target's memory (*RTT buffers*). These can be found by a [J-Link debugger](https://www.segger.com/products/debug-probes/j-link/) in the target's known RAM regions because the control block contains a special `ID`. The debugger can then read data from and write data to these specific memory blocks to facilitate the bidirectional connection.
+If one looks for other *feedback* solutions **Single Wire Output (SWO)** can come to mind. Not all ARM-cores however support this functionality, meaning it is unfortunately not a *one size fits all* solution. If one however has a [Segger J-Link debugger](https://www.segger.com/products/debug-probes/j-link/) it is possible to use [Segger Real-Time Transfer (RTT)](https://www.segger.com/products/debug-probes/j-link/technology/about-real-time-transfer). This supports all target processors which allow background memory access, such as the **Cortex-M** and Renesas RX devices. Support for targets without this functionality is also being added (Cortex-A/R and RISC-V), be sure to check the [Segger RTT Wiki page (Modes)](https://kb.segger.com/RTT#RTT_operation_Modes) for more information regarding this.
+
+With [Segger Real-Time Transfer (RTT)](https://www.segger.com/products/debug-probes/j-link/technology/about-real-time-transfer) it is possible to have a very high-speed bidirectional connection to a target device, which can be used to transfer debug information. This can be done **without affecting the MCU's real-time behavior** and **without any additional connections alongside those for programming**. The [RTT implementation code](https://github.com/adfernandes/segger-rtt) writes data to or reads data from special defined memory blocks in the target's memory (*RTT buffers*). These can be found by a [J-Link debugger](https://www.segger.com/products/debug-probes/j-link/) in the target's known RAM regions because the control block contains a special `ID`. The debugger can subsequently read data from and write data to these specific memory blocks, to facilitate the bidirectional connection.
 
 <br/>
 
 ### 4.2 - RTT channels (~buffers) and ROM/RAM usage
 
-RTT supports **multiple channels in both directions**, up to the host and down to the target. These can be used for different purposes, like having a separate *debug* and *error* channel, sending trace information, ... . The default implementation uses one channel per direction (`up/down-channel 0`), which are meant for printable terminal output and input.
+RTT supports **multiple channels in both directions**, up to the host and down to the target. These can be used for different purposes, such as having a separate *debug* and *error* channel, sending trace information, ... . The default implementation uses one channel per direction (`up/down-channel 0`), which are meant for printable terminal output and input.
 
-Each channel can be configured to be blocking or non-blocking. In **blocking mode** the application will wait when the buffer is full, until all memory could be written and read back by the host (`SEGGER_RTT_MODE_BLOCK_IF_FIFO_FULL`). This results in a blocked application state but prevents data from getting lost. In **non-blocking mode** only data which fits into the buffer (`SEGGER_RTT_MODE_NO_BLOCK_TRIM`), or none at all (`SEGGER_RTT_MODE_NO_BLOCK_SKIP`, default), will be written and the rest will be discarded. This allows **running in real-time, even when no debugger is connected**.
-
-<br/>
-
-The [RTT implementation code](https://github.com/adfernandes/segger-rtt) uses `~500 Bytes` of **ROM**. `24 Bytes` for the ID and `24 Bytes` per channel are required for the control block in **RAM**. Each channel requires some additional **RAM** for the buffer. The recommended  sizes are `1 kByte` (`1024 Bytes`) for *up channels* (default = `1 kByte`) and `16 - 32 Bytes` for *down channels* (default = `16 Bytes` ). By default maximum 3 up/down channels are available and the buffer for bulk-sending chars via RTT (`SEGGER_RTT_printf()`) is `64 Bytes`. All of the default valued can be overridden in the `SEGGER_RTT_Conf.h` file.
+Each channel can be configured to be blocking or non-blocking. In **blocking mode** the application will wait when the buffer is full, until all memory could be written and read back by the host (`SEGGER_RTT_MODE_BLOCK_IF_FIFO_FULL`). This results in a blocked application state but prevents data from getting lost. In **non-blocking mode** only data which fits into the buffer (`SEGGER_RTT_MODE_NO_BLOCK_TRIM`), or none at all (`SEGGER_RTT_MODE_NO_BLOCK_SKIP`, the default), will be written and the rest will be discarded. This allows **running in real-time, even when no debugger is connected**.
 
 <br/>
 
+The [RTT implementation code](https://github.com/adfernandes/segger-rtt) uses about `500 Bytes` of **ROM**. `24 Bytes` for the ID and `24 Bytes` per channel are required for the control block in **RAM**. Each channel requires some additional **RAM** for the buffer. The recommended  sizes are `1 kByte` (`1024 Bytes`) for *up channels* (default = `1 kByte`) and `16 - 32 Bytes` for *down channels* (default = `16 Bytes` ). By default maximum 3 up/down channels are available and the buffer for bulk-sending chars via RTT (`SEGGER_RTT_printf()`) is `64 Bytes`. All of the default valued can be overridden in the `SEGGER_RTT_Conf.h` file.
+
+<br/>
 
 ### 4.3 - Host-side RTT connection
 
@@ -156,14 +164,15 @@ The [RTT implementation code](https://github.com/adfernandes/segger-rtt) uses `~
 
 <img align="right" src="documentation/pictures/JLink/JLinkRTTViewerExe.png" width="430" alt="JLinkRTTViewerExe">
 
-`JLinkRTTViewer.exe/JLinkRTTViewerExe` is a GUI application that can be used in two modes:
+`JLinkRTTViewer.exe/JLinkRTTViewerExe` is a GUI application which can be used in two modes:
+
 - **Stand-alone mode**, opening a dedicated connection to J-Link and target.
 - **Attach mode**, connecting to an existing J-Link connection of a debugger or **J-Link Commander** and running *parallel* alongside it.
-  - Using the argument `-a` or `--autoconnect` when calling `JLinkRTTViewerExe` supresses the settings popup-dialog and directly selects *attach-mode*.
+  - Using the argument `-a` or `--autoconnect` when calling `JLinkRTTViewerExe` suppresses the settings popup-dialog and directly selects *attach-mode*.
 
 <br/>
 
-In this application **terminal output** of `Up-Channel 0` is displayed. Additionally up to 16 **virtual Terminals** are possible on `Up-Channel 0`. They can be displayed as separate tabs. The target application can switch between *virtual* terminals with `SEGGER_RTT_SetTerminal()` and `SEGGER_RTT_TerminalOut()`.
+In this application **terminal output** of `Up-Channel 0` is displayed. Additionally up to 16 **virtual Terminals** are possible on `Up-Channel 0`,which can be displayed as separate tabs. The target application can switch between *virtual* terminals with `SEGGER_RTT_SetTerminal()` and `SEGGER_RTT_TerminalOut()`.
 
 Sending **text input** is to `Down-Channel 0`. The target application can read this with `SEGGER_RTT_GetKey()` and `SEGGER_RTT_Read()`. It can be configured to directly send each character while typing or to buffer it until *Enter* is pressed (*Input -> Sending...*). In **stand-alone mode** the GUI application can retry to send input, in case the target input buffer is full, until all data could be sent to the target (*Input -> Sending... -> Block if FIFO full*).
 
@@ -175,21 +184,21 @@ Sending **text input** is to `Down-Channel 0`. The target application can read t
 
 <br/>
 
-- The **All Terminals** tab
-  - Displays the complete output of `Channel 0`.
-  - Can display the user input (*Input -> Echo input... -> Echo to "All Terminals"*).
-  - Prefixes each output line by the *virtual* Terminal it has been sent to.
-  - Shows output on *virtual* Terminal 1 in red, and output on *virtual*  Terminals 2 - 15 in gray.
-- The **Terminal 0 - 15** tab
-  - Displays the output which has been sent to the specific *virtual* Terminal.
-  - Interprets and displays Text Control Codes as sent by the application to show colored text or erase the screen.
-- The **Terminal 0** tab
-  - Shows by default the output of a RTT application which has not set a Terminal ID.
-  - Can display the user input (*Input -> Echo input... -> Echo to "Terminal 0"*).
+- The **All Terminals** tab:
+  - Displays the complete output of `Channel 0`
+  - Can display the user input (*Input -> Echo input... -> Echo to "All Terminals"*)
+  - Prefixes each output line by the *virtual* Terminal it has been sent to
+  - Shows output on *virtual* Terminal 1 in red, and output on *virtual*  Terminals 2 - 15 in gray
+- The **Terminal 0 - 15** tab:
+  - Displays the output which has been sent to the specific *virtual* Terminal
+  - Interprets and displays Text Control Codes as sent by the application to show colored text or erase the screen
+- The **Terminal 0** tab:
+  - Shows by default the output of an RTT application which has not set a Terminal ID
+  - Can display the user input (*Input -> Echo input... -> Echo to "Terminal 0"*)
 
 <br/>
 
-The application can be called with arguments other than `-a` or `--autoconnect`. More information about these can be found on the [Segger RTT Viewer Wiki page (Command line options)](https://kb.segger.com/J-Link_RTT_Viewer#Command_line_options).
+The application can also be called with arguments other than `-a` or `--autoconnect`. More information about these can be found on the [Segger RTT Viewer Wiki page (Command line options)](https://kb.segger.com/J-Link_RTT_Viewer#Command_line_options).
 
 <br/>
 
@@ -199,7 +208,7 @@ The application can be called with arguments other than `-a` or `--autoconnect`.
 
 `JLinkRTTClient.exe/JLinkRTTClientExe` is a command-line application which acts as a Telnet client that automatically tries to reconnect to a J-Link connection when a debug session is closed. Communication is done using `Up/Down-Channel 0`. The application **has to be used in parallel** to a existing J-Link connection (via **J-Link Commander**) or running debug session.
 
-The application supports a few arguments when called. `-LocalEcho <1/0/On/Off>` enables (default) or disables local echo. `-RTTTelnetPort <port>` changes the used port (default = `19021`).
+The application supports a few arguments when called. `-LocalEcho <1/0/On/Off>` enables (the default) or disables local echo. `-RTTTelnetPort <port>` changes the used port (default = `19021`).
 
 <br/>
 
@@ -207,7 +216,7 @@ The application supports a few arguments when called. `-LocalEcho <1/0/On/Off>` 
 
 <img align="right" src="documentation/pictures/JLink/JLinkRTTLoggerExe.png" width="360" alt="JLinkRTTLoggerExe">
 
-`JLinkRTTLogger.exe/JLinkRTTLoggerExe` is a command-line application which opens a dedicated connection to J-Link and can be used **stand-alone**, without a running debug session. Data from all RTT Up-Channels can be read and logged to a file (default = `Up-Channel 1`).
+`JLinkRTTLogger.exe/JLinkRTTLoggerExe` is a command-line application which opens a dedicated connection to a J-Link and can be used **stand-alone**, without a running debug session. Data from all RTT Up-Channels can be read and logged to a file (default = `Up-Channel 1`).
 
 The application supports a few arguments when called to, for example, directly set the target device or RTT channel. More information about this can be found on the [Segger RTT Logger Wiki page](https://kb.segger.com/J-Link_RTT_Logger).
 
@@ -223,7 +232,7 @@ If a connection to a J-Link is active, for example in the case of an ongoing *de
 
 The connection will be closed when the connection to the target is closed, for example in the case where a debug session is halted. Use the **J-Link RTT Client** to automatically reconnect if a debug session is restarted afterwards.
 
-It's also possible to change the channel, set the *RTT Control Block address* and the *RTT Control Block search range* with so called *Segger Telnet Config Strings*. These strings have to be send within `100 ms` after opening the telnet connection. As an example, the string `$$SEGGER_TELNET_ConfigStr=RTTCh;1$$` sets the channel to `Up/Down-Channel 1`. More information about these strings can be found on the [Segger RTT Wiki page (Segger Telnet Config String)](https://kb.segger.com/RTT#SEGGER_TELNET_Config_String).
+It is also possible to change the channel, set the *RTT Control Block address* as well as the *RTT Control Block search range* with so called *Segger Telnet Config Strings*. These strings have to be send within `100 ms` after opening the telnet connection. As an example, the string `$$SEGGER_TELNET_ConfigStr=RTTCh;1$$` sets the channel to `Up/Down-Channel 1`. More information about these strings can be found on the [Segger RTT Wiki page (Segger Telnet Config String)](https://kb.segger.com/RTT#SEGGER_TELNET_Config_String).
 
 <br/>
 
@@ -231,9 +240,9 @@ It's also possible to change the channel, set the *RTT Control Block address* an
 
 <img align="right" src="documentation/pictures/JLink/JLinkWeb-RTT.png" width="400" alt="JLinkWeb-RTT">
 
-As previously mentioned, the **J-Link Web Control Panel** can be accessed on [http://localhost:19080/](http://localhost:19080/) when a J-Link debugger has an active debug-session. The **RTT-tab** can here be used as a simple yet intuitive RTT-viewer.
+As previously mentioned, the **J-Link Web Control Panel** can be accessed on [http://localhost:19080/](http://localhost:19080/) when a J-Link debugger has an active debug-session. The **RTT-tab** can be used as a simple yet intuitive RTT-viewer.
 
-A RTT-session can be manually started, and the RTT control block can be both manually entered or auto-detected. It's possible to see the data on *channel 0 (terminal), 1 and 2* and data can also be send from the host to the target device.
+An RTT session can be manually started, and the RTT control block can be both manually entered or auto-detected. It is possible to see the data on *channel 0 (terminal), 1 and 2* and data can also be send from the host to the target device.
 
 <br/>
 <br/>
@@ -250,17 +259,17 @@ A RTT-session can be manually started, and the RTT control block can be both man
 
 <br/>
 
-The SEGGER RTT implementation is written in *ANSI C* and can be integrated into any embedded application using the code, available for download using the above links. It can be used via a simple and easy to use API (see the following chapters for examples) and it is even possible to override the standard `printf()` functions to use RTT so less overhead is used. A method to write formatted strings is also available (`SEGGER_RTT_Printf()`), which is smaller than most standard library `printf` implementations and does not require heap and only a configurable amount of stack.
+The SEGGER RTT implementation is written in *ANSI C* and can be integrated into any embedded application using the code, available for download using the above links. It can be used via a simple and easy to use API (see the following chapters for examples). It is even possible to override the standard `printf()` functions to use RTT, which leads to less overhead. A method to write formatted strings is also available (`SEGGER_RTT_Printf()`), which is smaller than most standard library `printf` implementations. Additionally it does not require heap and only a configurable amount of stack.
 
-The SEGGER RTT implementation is fully configurable with pre-processor defines. Reading and writing can be made task-safe with `Lock()` and `Unlock()` routines, the number of buffers, as well as the size of the terminal buffers can be set up easily. Most of this is done in the configuration-file `SEGGER_RTT_Conf.h`
-
-<br/>
-
-**The following chapters list examples for most of the available functions. Not all of them are covered, for all available functions please check** `SEGGER_RTT.c`
+The SEGGER RTT implementation is fully configurable with pre-processor defines. Reading and writing can be made task-safe with `SEGGER_RTT_LOCK()` and `SEGGER_RTT_UNLOCK()` routines (to prevent interrupts and task switches from within an RTT operation), the number of buffers as well as the size of the terminal buffers can be set up easily. Most of this is done in the configuration-file `SEGGER_RTT_Conf.h`
 
 <br/>
 
-***IMPORTANT:*** Be sure to always include the Segger RTT header-file when using RTT functionality in source-files:
+**The following chapters list examples for most of the available functions. Not all of them are covered, for all available functions please refer to** `SEGGER_RTT.c`
+
+<br/>
+
+:warning: **IMPORTANT:** Be sure to always include the Segger RTT header-file when using RTT functionality in source-files:
 
 ```C
 /* Include Segger RTT functionality (includes SEGGER_RTT_Conf.h as well) */
@@ -289,7 +298,7 @@ SEGGER_RTT_Init();
 
 *Output/up buffer 0* is configured during compile-time. The following method-calls can change the behavior if the buffer is full. These are the so-called **buffer flags**.
 
-***NOTE:*** `int`, returned by the RTT functions and assumed to be 32-bits in size, is not explicitly casted to `int8_t` but the returned values should fit according to the underlying code.
+:pencil2: **NOTE:** `int`, returned by the RTT functions and assumed to be 32-bits in size, is not explicitly casted to `int8_t` but the returned values should fit according to the underlying code.
 
 ```C
 /** Configure output/up buffer 0 (first parameter) in non-blocking-skip mode
@@ -299,7 +308,7 @@ SEGGER_RTT_Init();
 int8_t result = SEGGER_RTT_SetFlagsUpBuffer(0, SEGGER_RTT_MODE_NO_BLOCK_SKIP);
 
 /** Configure output/up buffer 0 (first parameter) in non-blocking-trim mode
-  *  - Application does not wait, data that can't fit is lost if the fifo-buffer is full
+  *  - Application does not wait, data which can't fit is lost if the fifo-buffer is full
   *  - Returns "0" if the configuration was successful or "-1" if an error occurred */
 int8_t result = SEGGER_RTT_SetFlagsUpBuffer(0, SEGGER_RTT_MODE_NO_BLOCK_TRIM);
 
@@ -311,7 +320,7 @@ int8_t result = SEGGER_RTT_SetFlagsUpBuffer(0, SEGGER_RTT_MODE_BLOCK_IF_FIFO_FUL
 
 <br/>
 
-***NOTE:*** The RAM regions or the specific address of the Control Block can also be set via the **host** applications to speed up detection or if the block cannot be found automatically.
+:pencil2: **NOTE:** The RAM regions or the specific address of the Control Block can also be set via the **host** applications to speed up detection or if the block cannot be found automatically.
 
 <br/>
 
@@ -319,7 +328,7 @@ int8_t result = SEGGER_RTT_SetFlagsUpBuffer(0, SEGGER_RTT_MODE_BLOCK_IF_FIFO_FUL
 
 Below are a few examples on how to facilitate basic character output.
 
-***NOTE:*** `int`, returned by the RTT functions and assumed to be 32-bits in size, is not explicitly casted to `uint8_t` but the returned values should fit according to the underlying code.
+:pencil2: **NOTE:** `int`, returned by the RTT functions and assumed to be 32-bits in size, is not explicitly casted to `uint8_t` but the returned values should fit according to the underlying code.
 
 ```C
 /** Clear the screen and reposition the cursor to the top-left (RTT_CTRL_CLEAR), 
@@ -363,7 +372,7 @@ uint8_t bytes = SEGGER_RTT_PutChar(0, 'a');
 
 When using **J-Link RTT Viewer** to capture the RTT messages, some methods are available to change the *(virtual) Terminal* to which data is send. This is internally done with specific sequences that are interpreted by the J-Link RTT Viewer. Other applications like a Telnet Client will ignore them.
 
-***NOTE:*** `int`, returned by the RTT functions and assumed to be 32-bits in size, is not explicitly casted to `int8_t` but the returned values should fit according to the underlying code.
+:pencil2: **NOTE:** `int`, returned by the RTT functions and assumed to be 32-bits in size, is not explicitly casted to `int8_t` but the returned values should fit according to the underlying code.
 
 ```C
 /** Change the "virtual" terminal on channel 0 to show all following "Write",
@@ -514,7 +523,7 @@ Text and/or values can be given a specific color with the following *color contr
 
 <br/>
 
-Below are two examples with colored text using the methods `SEGGER_RTT_WriteString` and `SEGGER_RTT_printf`, both of which use the *color control sequences* a bit different.
+Below are two examples with colored text using the methods `SEGGER_RTT_WriteString` and `SEGGER_RTT_printf`, both of which use the *color control sequences* slightly different.
 
 ```C
 /** Print some colored text to output/up-buffer 0 (first parameter)
@@ -549,7 +558,7 @@ int32_t result = SEGGER_RTT_printf(0,
 
 #### 4.5.6 - Character/value reading (input)
 
-***NOTE:*** `int`, returned by the RTT functions and assumed to be 32-bits in size, is not explicitly casted to `uint8_t`/`int16_t` but the returned values should fit according to the underlying code.
+:pencil2: **NOTE:** `int`, returned by the RTT functions and assumed to be 32-bits in size, is not explicitly casted to `uint8_t`/`int16_t` but the returned values should fit according to the underlying code.
 
 ```C
 /** Wait for (at least one) character, previously stored by the host, to be available 
@@ -573,7 +582,7 @@ uint8_t result = SEGGER_RTT_HasKey();
   * (first parameter)
   *  - A pointer to a buffer to store the characters (second parameter) and its size 
   *    in bytes (third parameter) (1 char = 1 byte) need to be given
-  *  - Returns the number of bytes that have been read
+  *  - Returns the number of bytes which have been read
   *  - Internally calls "SEGGER_RTT_ReadNoLock" */
 uint32_t characters = "";
 uint32_t bytes = SEGGER_RTT_Read(0, &characters, 4);
