@@ -35,12 +35,12 @@ Some general notes:
 
 - Arguments in `[ ... ]` are optional
 - Arguments in `< ... >` need to be filled in with values (`' ... '` denote fixed strings)
-- `FileName` (ideally) expects an absolute path
+- `FileName` expects an absolute path (depending on where `JLink.exe/JLinkExe` is *started*)
 - The commands are case-insensitive
 
 <br/>
 
-| Command                | Function                                                            | Syntax                                                                            |
+| (Short) Command        | Function                                                            | Syntax                                                                            |
 | ---------------------- | ------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
 | `?`                    | Show all available commands                                         | `? [<Command>]`                                                                   |
 | `Exit`                 | Close J-Link connection and quit                                    |                                                                                   |
@@ -118,28 +118,28 @@ Replace the path to the actual J-Link installation location. Note that the exten
 
 <img align="right" src="documentation/pictures/JLink/JLinkWeb.png" width="440" alt="J-Link Control Panel">
 
-When a J-Link debugger has an active debug-session, for instance when it is being used as a programmer or when `JLinkRTTViewerExe` is running, the **J-Link Web Control Panel** can be accessed on [http://localhost:19080/](http://localhost:19080/). This can be a very useful and intuitive tool where a lot of settings and functions can be easily accessed. The tab **RTT** can for example be used as a simple RTT-viewer.
+When a J-Link debugger has an active debug session, for instance when it is being used as a programmer or when `JLinkRTTViewerExe` is running, the **J-Link Web Control Panel** can be accessed on [http://localhost:19080/](http://localhost:19080/). This can be a very useful and intuitive tool where a lot of settings and functions can be easily accessed. The tab **RTT** can for example be used as a simple RTT-viewer.
 
 <br/>
 
 ## 4 - Debugging using UART vs Segger Real-Time Transfer (RTT)
 
-The next paragraphs serve as an introduction and summary of RTT functionality. A lot of the following information was taken from the [Segger RTT Wiki page](https://kb.segger.com/RTT). Refer to this page if more detailed information is required.
+The following sections serve as an introduction and summary of RTT functionality. A lot of the following information was taken from the [Segger RTT Wiki page](https://kb.segger.com/RTT). Refer to this page if more detailed information is required.
 
 <br/>
 
 ### 4.1 - Why use RTT and how does it work
 
-Some firmware developers debug using both **breakpoints** and a **UART connection**, the latter of which can be used for real-time code-flow information and displaying variable values. **Using UART however has a few disadvantages**. First of all two extra pin-connections are necessary (`TXD` and `RXD`), alongside the regular debugging pins. Using UART also means one looses a MCU peripheral, some RAM and FLASH space and precious clock-cycles.
+Some firmware developers debug using both **breakpoints** and a **UART connection**, the latter of which can be used for real-time code-flow information and displaying variable values. **Using UART however has a few disadvantages**. First of all two extra pin-connections are necessary (`TXD` and `RXD`), alongside the regular debugging pins. Using UART also means one looses an MCU peripheral, some RAM and flash space and precious clock-cycles.
 <!-- For a recent project I didn't have a single UART peripheral available for debugging purposes, so I couldn't use my self-written low-level UART debugging library [dbprint](https://github.com/Fescron/dbprint). -->
 
 <!-- I wrote [dbprint](https://github.com/Fescron/dbprint) in a way that it didn't need any external libraries, apart from the MCU-specific UART reading/writing functionality. All of the value-translations, like printing `uint32_t` in *decimal* or *hexadecimal* notation, were done with self-written functions. While it is interesting to understand everything that's going on *under-the-hood*, there are some limitations to this. A lot of time was spend creating the functions and the ability to *port* the code to a different MCU was not really kept in mind from the start. Printing `float` values is up until now also not possible. -->
 
 <!-- Because of the rather MCU-specific [dbprint](https://github.com/Fescron/dbprint) code and the fact that I did not have a spare UART connection for a recent project, I looked for another way to do **printf debugging**. -->
 
-If one looks for other *feedback* solutions **Single Wire Output (SWO)** can come to mind. Not all ARM-cores however support this functionality, meaning it is unfortunately not a *one size fits all* solution. If one however has a [Segger J-Link debugger](https://www.segger.com/products/debug-probes/j-link/) it is possible to use [Segger Real-Time Transfer (RTT)](https://www.segger.com/products/debug-probes/j-link/technology/about-real-time-transfer). This supports all target processors which allow background memory access, such as the **Cortex-M** and Renesas RX devices. Support for targets without this functionality is also being added (Cortex-A/R and RISC-V), be sure to check the [Segger RTT Wiki page (Modes)](https://kb.segger.com/RTT#RTT_operation_Modes) for more information regarding this.
+If one searches for other *feedback* mechanisms **Single Wire Output (SWO)** can come to mind. Not all ARM-cores however support this functionality, meaning it is unfortunately not a *one size fits all* solution. If one however has a [Segger J-Link debugger](https://www.segger.com/products/debug-probes/j-link/) it is possible to use [Segger Real-Time Transfer (RTT)](https://www.segger.com/products/debug-probes/j-link/technology/about-real-time-transfer). This supports all target processors which allow background memory access, such as the **Cortex-M** and Renesas RX devices. Support for targets without this functionality (Cortex-A/R and RISC-V) is also being added, be sure to check the [Segger RTT Wiki page (Modes)](https://kb.segger.com/RTT#RTT_operation_Modes) for more information regarding this.
 
-With [Segger Real-Time Transfer (RTT)](https://www.segger.com/products/debug-probes/j-link/technology/about-real-time-transfer) it is possible to have a very high-speed bidirectional connection to a target device, which can be used to transfer debug information. This can be done **without affecting the MCU's real-time behavior** and **without any additional connections alongside those for programming**. The [RTT implementation code](https://github.com/adfernandes/segger-rtt) writes data to or reads data from special defined memory blocks in the target's memory (*RTT buffers*). These can be found by a [J-Link debugger](https://www.segger.com/products/debug-probes/j-link/) in the target's known RAM regions because the control block contains a special `ID`. The debugger can subsequently read data from and write data to these specific memory blocks, to facilitate the bidirectional connection.
+With Segger RTT it is possible to have a very high-speed bidirectional connection to a target device, which can be used to transfer debug information. This can be done **without affecting the MCU's real-time behavior** and **without any additional connections alongside those for programming**. The [RTT implementation code](https://github.com/adfernandes/segger-rtt) writes data to or reads data from special defined memory blocks in the target's memory (*RTT buffers*). These can be found by a J-Link debugger in the target's known RAM regions because the control block contains a special *ID*. The debugger can subsequently read data from and write data to these specific memory blocks, to facilitate the bidirectional connection.
 
 <br/>
 
@@ -147,11 +147,11 @@ With [Segger Real-Time Transfer (RTT)](https://www.segger.com/products/debug-pro
 
 RTT supports **multiple channels in both directions**, up to the host and down to the target. These can be used for different purposes, such as having a separate *debug* and *error* channel, sending trace information, ... . The default implementation uses one channel per direction (`up/down-channel 0`), which are meant for printable terminal output and input.
 
-Each channel can be configured to be blocking or non-blocking. In **blocking mode** the application will wait when the buffer is full, until all memory could be written and read back by the host (`SEGGER_RTT_MODE_BLOCK_IF_FIFO_FULL`). This results in a blocked application state but prevents data from getting lost. In **non-blocking mode** only data which fits into the buffer (`SEGGER_RTT_MODE_NO_BLOCK_TRIM`), or none at all (`SEGGER_RTT_MODE_NO_BLOCK_SKIP`, the default), will be written and the rest will be discarded. This allows **running in real-time, even when no debugger is connected**.
+Each channel can be configured to be blocking or non-blocking. In **blocking mode** the application will wait when the buffer is full, until all memory could be written and read back by the host (`SEGGER_RTT_MODE_BLOCK_IF_FIFO_FULL`). This results in a blocked application state but prevents data from getting lost. In **non-blocking mode** only data which fits into the buffer (`SEGGER_RTT_MODE_NO_BLOCK_TRIM`, the rest will be discarded), or none at all (`SEGGER_RTT_MODE_NO_BLOCK_SKIP`, the default mode), will be written. This allows **running in real-time, even when no debugger is connected**.
 
 <br/>
 
-The [RTT implementation code](https://github.com/adfernandes/segger-rtt) uses about `500 Bytes` of **ROM**. `24 Bytes` for the ID and `24 Bytes` per channel are required for the control block in **RAM**. Each channel requires some additional **RAM** for the buffer. The recommended  sizes are `1 kByte` (`1024 Bytes`) for *up channels* (default = `1 kByte`) and `16 - 32 Bytes` for *down channels* (default = `16 Bytes` ). By default maximum 3 up/down channels are available and the buffer for bulk-sending chars via RTT (`SEGGER_RTT_printf()`) is `64 Bytes`. All of the default valued can be overridden in the `SEGGER_RTT_Conf.h` file.
+The [RTT implementation code](https://github.com/adfernandes/segger-rtt) uses about `500 Bytes` of **ROM**. `24 Bytes` for the ID and `24 Bytes` per channel are required for the control block in **RAM**. Each channel requires some additional **RAM** for the buffer. The recommended  sizes are `1 kByte` (`1024 Bytes`) for *up channels* (the default is `1 kByte`) and `16 - 32 Bytes` for *down channels* (the default is `16 Bytes`). By default a maximum of 3 up/down channels are available and the buffer for bulk-sending chars via RTT (`SEGGER_RTT_printf()`) is `64 Bytes`. All of the default valued can be overridden in the `SEGGER_RTT_Conf.h` file.
 
 <br/>
 
@@ -163,21 +163,21 @@ The [RTT implementation code](https://github.com/adfernandes/segger-rtt) uses ab
 
 `JLinkRTTViewer.exe/JLinkRTTViewerExe` is a GUI application which can be used in two modes:
 
-- **Stand-alone mode**, opening a dedicated connection to J-Link and target.
-- **Attach mode**, connecting to an existing J-Link connection of a debugger or **J-Link Commander** and running *parallel* alongside it.
+- **Stand-alone mode**, opening a dedicated connection to a J-Link debugger and connected target.
+- **Attach mode**, connecting to an existing J-Link connection from either a debug session or **J-Link Commander** and running *parallel* alongside it.
   - Using the argument `-a` or `--autoconnect` when calling `JLinkRTTViewerExe` suppresses the settings popup-dialog and directly selects *attach-mode*.
 
 <br/>
 
-In this application **terminal output** of `Up-Channel 0` is displayed. Additionally up to 16 **virtual Terminals** are possible on `Up-Channel 0`,which can be displayed as separate tabs. The target application can switch between *virtual* terminals with `SEGGER_RTT_SetTerminal()` and `SEGGER_RTT_TerminalOut()`.
+In this application **terminal output** of `Up-Channel 0` is displayed. Additionally up to 16 **virtual Terminals** are possible on `Up-Channel 0`, which can be displayed as separate tabs. The target application can switch between *virtual* terminals with `SEGGER_RTT_SetTerminal()` and `SEGGER_RTT_TerminalOut()`.
 
-Sending **text input** is to `Down-Channel 0`. The target application can read this with `SEGGER_RTT_GetKey()` and `SEGGER_RTT_Read()`. It can be configured to directly send each character while typing or to buffer it until *Enter* is pressed (*Input -> Sending...*). In **stand-alone mode** the GUI application can retry to send input, in case the target input buffer is full, until all data could be sent to the target (*Input -> Sending... -> Block if FIFO full*).
+Sending **text input** is done to `Down-Channel 0`. The target application can read this with `SEGGER_RTT_GetKey()` and `SEGGER_RTT_Read()`. It can be configured to directly send each character while typing or to buffer it until *Enter* is pressed (*Input -> Sending...*). In **stand-alone mode** the GUI application can retry to send input, in case the target input buffer is full, until all data could be sent to the target (*Input -> Sending... -> Block if FIFO full*).
 
 <br/>
 
 **Terminal output and text input** on `Channel 0` can be **logged**. The format is the same as used in the *All Terminals* tab. Terminal Logging can be started via *Logging -> Start Terminal Logging...*.
 
-**Data output** on `Channel 1` can also be **logged**, for example if an application sends instrumented event tracing data to this channel. The data log file contains a header and footer and the binary data as received from the application. Data Logging can be started via *Logging -> Start Data Logging...*. **Data Logging is only available in stand-alone mode!**
+**Data output** on `Channel 1` can also be **logged**, for example if an application sends instrumented event tracing data to this channel. The data log file contains a header and footer and the binary data as received from the application. Data Logging can be started via *Logging -> Start Data Logging...*. Note that **Data Logging is only available in stand-alone mode!**
 
 <br/>
 
@@ -203,9 +203,9 @@ The application can also be called with arguments other than `-a` or `--autoconn
 
 <img align="right" src="documentation/pictures/JLink/JLinkRTTClientExe.png" width="430" alt="JLinkRTTClientExe">
 
-`JLinkRTTClient.exe/JLinkRTTClientExe` is a command-line application which acts as a Telnet client and automatically tries to reconnect to a J-Link connection when a debug session is closed. Communication is done using `Up/Down-Channel 0`. The application **has to be used in parallel** to a existing J-Link connection (via **J-Link Commander**) or running debug session.
+`JLinkRTTClient.exe/JLinkRTTClientExe` is a command-line application which acts as a Telnet client and automatically tries to reconnect to a J-Link connection when a debug session is closed. Communication is done using `Up/Down-Channel 0`. The application **has to be used in parallel** to a existing J-Link connection, thus in tandem with running **J-Link Commander** or with an ongoing debug session.
 
-The application supports a few arguments when called. `-LocalEcho <1/0/On/Off>` enables (the default) or disables local echo. `-RTTTelnetPort <port>` changes the used port (default = `19021`).
+The application supports a few arguments when called. `-LocalEcho <1/0/On/Off>` enables (which is the default setting) or disables local echo. `-RTTTelnetPort <port>` changes the used port (the default is `19021`).
 
 <br/>
 
@@ -213,7 +213,7 @@ The application supports a few arguments when called. `-LocalEcho <1/0/On/Off>` 
 
 <img align="right" src="documentation/pictures/JLink/JLinkRTTLoggerExe.png" width="360" alt="JLinkRTTLoggerExe">
 
-`JLinkRTTLogger.exe/JLinkRTTLoggerExe` is a command-line application which opens a dedicated connection to a J-Link and can be used **stand-alone**, without a running debug session. Data from all RTT Up-Channels can be read and logged to a file (default = `Up-Channel 1`).
+`JLinkRTTLogger.exe/JLinkRTTLoggerExe` is a command-line application which opens a dedicated connection to a J-Link debugger and can be used **stand-alone**, without a running debug session. Data from all RTT Up-Channels can be read and logged to a file (but the default is only `Up-Channel 1`).
 
 The application supports a few arguments when called to, for example, directly set the target device or RTT channel. More information about this can be found on the [Segger RTT Logger Wiki page](https://kb.segger.com/J-Link_RTT_Logger).
 
@@ -225,9 +225,9 @@ The application supports a few arguments when called to, for example, directly s
 
 #### 4.3.4 - Telnet connection
 
-If a connection to a J-Link is active, for example in the case of an ongoing *debug session* of a target device, a **Telnet client** can be used to (by default) communicate on `Up/Down-Channel 0`. The address the client has to connect to is `localhost:19021`.
+If a connection to a J-Link debugger is active, for example in the case of an ongoing *debug session* of a target device, a **Telnet client** can be used to (by default) communicate on `Up/Down-Channel 0`. The address the client has to connect to is `localhost:19021`.
 
-The connection will be closed when the connection to the target is closed, for example in the case where a debug session is halted. Use the **J-Link RTT Client** to automatically reconnect if a debug session is restarted afterwards.
+The connection will be closed when the connection to the target is closed, for example in case of a debug session being halted. Use the **J-Link RTT Client** to automatically reconnect if a debug session is restarted afterwards.
 
 It is also possible to change the channel, set the *RTT Control Block address* as well as the *RTT Control Block search range* with so called *Segger Telnet Config Strings*. These strings have to be send within `100 ms` after opening the telnet connection. As an example, the string `$$SEGGER_TELNET_ConfigStr=RTTCh;1$$` sets the channel to `Up/Down-Channel 1`. More information about these strings can be found on the [Segger RTT Wiki page (Segger Telnet Config String)](https://kb.segger.com/RTT#SEGGER_TELNET_Config_String).
 
@@ -237,7 +237,7 @@ It is also possible to change the channel, set the *RTT Control Block address* a
 
 <img align="right" src="documentation/pictures/JLink/JLinkWeb-RTT.png" width="400" alt="JLinkWeb-RTT">
 
-As previously mentioned, the **J-Link Web Control Panel** can be accessed on [http://localhost:19080/](http://localhost:19080/) when a J-Link debugger has an active debug-session. The **RTT-tab** can be used as a simple yet intuitive RTT-viewer.
+As previously mentioned, the **J-Link Web Control Panel** can be accessed on [http://localhost:19080/](http://localhost:19080/) when a J-Link debugger has an active debug session. The **RTT-tab** can be used as a simple yet intuitive RTT-viewer.
 
 An RTT session can be manually started, and the RTT control block can be both manually entered or auto-detected. It is possible to see the data on *channel 0 (terminal), 1 and 2* and data can also be send from the host to the target device.
 
@@ -256,20 +256,20 @@ An RTT session can be manually started, and the RTT control block can be both ma
 
 <br/>
 
-The SEGGER RTT implementation is written in *ANSI C* and can be integrated into any embedded application using the code, available for download using the above links. It can be used via a simple and easy to use API (see the following chapters for examples). It is even possible to override the standard `printf()` functions to use RTT, which leads to less overhead. A method to write formatted strings is also available (`SEGGER_RTT_Printf()`), which is smaller than most standard library `printf` implementations. Additionally it does not require heap and only a configurable amount of stack.
+The SEGGER RTT implementation is written in *ANSI C* and can be integrated into any embedded application using the code available for download using the above links. It can be used via a simple and easy to use API, which is explained using examples in the following chapters. It is even possible to override the standard `printf()` functions to use RTT, thereby leading to less overhead. A method to write formatted strings is also available (`SEGGER_RTT_Printf()`), which is smaller than most standard library `printf` implementations. Additionally it does not require heap and only a configurable amount of the stack.
 
-The SEGGER RTT implementation is fully configurable with pre-processor defines. Reading and writing can be made task-safe with `SEGGER_RTT_LOCK()` and `SEGGER_RTT_UNLOCK()` routines (to prevent interrupts and task switches from within an RTT operation), the number of buffers as well as the size of the terminal buffers can be set up easily. Most of this is done in the configuration-file `SEGGER_RTT_Conf.h`
+The SEGGER RTT implementation is fully configurable with pre-processor defines. Reading and writing can be made task-safe with `SEGGER_RTT_LOCK()` and `SEGGER_RTT_UNLOCK()` routines, to prevent interrupts and task switches from within an RTT operation. The number of buffers as well as the size of the terminal buffers can also be set up easily. Most of this is done in the [`SEGGER_RTT_Conf.h`](https://github.com/adfernandes/segger-rtt/blob/master/Config/SEGGER_RTT_Conf.h) configuration-file.
 
 <br/>
 
-**The following chapters list examples for most of the available functions. Not all of them are covered, for all available functions please refer to** `SEGGER_RTT.c`
+**The following chapters list examples for most of the available functions. Not all of them are covered, please refer to [`SEGGER_RTT.c`](https://github.com/adfernandes/segger-rtt/blob/master/RTT/SEGGER_RTT.c) for every available function.**
 
 <br/>
 
 :warning: **IMPORTANT:** Be sure to always include the Segger RTT header-file when using RTT functionality in source-files:
 
 ```C
-/* Include Segger RTT functionality (includes SEGGER_RTT_Conf.h as well) */
+/* Include Segger RTT functionality (which also includes SEGGER_RTT_Conf.h) */
 #include "SEGGER_RTT.h"
 ```
 
@@ -277,7 +277,7 @@ The SEGGER RTT implementation is fully configurable with pre-processor defines. 
 
 #### 4.4.1 - Initialization and configuration
 
-Because of the way the implementation is written, **generally no initialization and configuration is needed**. Most of the time one can start using RTT printing methods without calling additional configuration methods. In some cases it is however useful to initialize RTT manually or change some of the underlying functionality, so examples for some of the available methods are described in the following paragraphs.
+Because of the way the implementation is written, **generally no initialization and configuration is needed**. Most of the time one can start using RTT printing methods without calling additional configuration functions. In some cases it is however useful to initialize RTT manually or change some of the underlying functionality, so examples for some of the available methods are described in the following paragraphs.
 
 ```C
 /** Automatically initialize RTT and also to clear the screen and reposition 
@@ -293,24 +293,24 @@ SEGGER_RTT_Init();
 
 <br/>
 
-*Output/up buffer 0* is configured during compile-time. The following method-calls can change the behavior if the buffer is full. These are the so-called **buffer flags**.
+*Output/up buffer 0* is configured during compile-time. The following function-calls can change the behavior if the buffer is full. These are the so-called **buffer flags**.
 
 :pencil: **NOTE:** `int`, returned by the RTT functions and assumed to be 32-bits in size, is not explicitly casted to `int8_t` but the returned values should fit according to the underlying code.
 
 ```C
 /** Configure output/up buffer 0 (first parameter) in non-blocking-skip mode
-  *  - Application does not wait, all data is lost if the fifo-buffer is full
+  *  - The application does not wait, all data is lost if the FIFO-buffer is full
   *  - This is the default mode
   *  - Returns "0" if the configuration was successful or "-1" if an error occurred */
 int8_t result = SEGGER_RTT_SetFlagsUpBuffer(0, SEGGER_RTT_MODE_NO_BLOCK_SKIP);
 
 /** Configure output/up buffer 0 (first parameter) in non-blocking-trim mode
-  *  - Application does not wait, data which can't fit is lost if the fifo-buffer is full
+  *  - The application does not wait, data which can't fit is lost if the FIFO-buffer is full
   *  - Returns "0" if the configuration was successful or "-1" if an error occurred */
 int8_t result = SEGGER_RTT_SetFlagsUpBuffer(0, SEGGER_RTT_MODE_NO_BLOCK_TRIM);
 
 /** Configure output/up buffer 0 (first parameter) in blocking mode
-  *  - Application waits if necessary, no data is lost
+  *  - The application waits if necessary, no data is lost
   *  - Returns "0" if the configuration was successful or "-1" if an error occurred */
 int8_t result = SEGGER_RTT_SetFlagsUpBuffer(0, SEGGER_RTT_MODE_BLOCK_IF_FIFO_FULL);
 ```
@@ -367,7 +367,7 @@ uint8_t bytes = SEGGER_RTT_PutChar(0, 'a');
 
 #### 4.4.3 - Character output to "virtual" terminals in J-Link RTT Viewer
 
-When using **J-Link RTT Viewer** to capture the RTT messages, some methods are available to change the *(virtual) Terminal* to which data is send. This is internally done with specific sequences which are interpreted by the J-Link RTT Viewer. Other applications like a Telnet Client will ignore them.
+When using **J-Link RTT Viewer** to capture the RTT messages, some methods are available to change the *(virtual) Terminal* to which data is send. This is internally done using specific sequences which are interpreted by the J-Link RTT Viewer. Other applications like a Telnet Client will ignore them.
 
 :pencil: **NOTE:** `int`, returned by the RTT functions and assumed to be 32-bits in size, is not explicitly casted to `int8_t` but the returned values should fit according to the underlying code.
 
@@ -513,10 +513,10 @@ int32_t result = SEGGER_RTT_printf(0, "Value = %-4u\r\n", value);
 Text and/or values can be given a specific color with the following *color control sequences*:
 
 - `RTT_CTRL_RESET` Reset the text- and background color.
-- `RTT_CTRL_TEXT_xxx` Set the **text** color to one of the following colors.
+- `RTT_CTRL_TEXT_xxx` Set the **text** color to one of the following colors:
   - `BLACK`, `RED`, `GREEN`, `YELLOW`, `BLUE`, `MAGENTA`, `CYAN`, `WHITE` (light grey)
   - `BRIGHT_BLACK` (dark grey), `BRIGHT_RED`, `BRIGHT_GREEN`, `BRIGHT_YELLOW`, `BRIGHT_BLUE`, `BRIGHT_MAGENTA`, `BRIGHT_CYAN`, `BRIGHT_WHITE`
-- `RTT_CTRL_BG_xxx` Set the **background** color to one of the previous colors.
+- `RTT_CTRL_BG_xxx` Set the **background** color to one of the previously listed colors.
 
 <br/>
 
@@ -536,7 +536,7 @@ uint32_t result = SEGGER_RTT_WriteString(0,
         RTT_CTRL_RESET"Normal text again.\r\n"
     );
 
-/** Same as above but with another method
+/** Same as above but using another method
   *  - Internally calls "SEGGER_RTT_vprintf" and eventually "SEGGER_RTT_Write"
   *  - If result >= 0 then it equals the amount of bytes stored in the up-buffer
   *  - If result < 0 then an error occurred
