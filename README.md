@@ -29,7 +29,7 @@ Finally a physical reset button (with optional 100 Ω series-resistor and 100 nF
 
 <img align="left" src="documentation/pictures/v2/cables.png" height="260" alt="Headers and corresponding cables">
 
-The **0.05" (1.27mm) header** is recommended for when the target board is mostly connected to the debugger and the board in question also has a header of this size. The **0.1" (2.54mm) IDC header** is recommended for use with either regular *Dupont-wires* or a [10 pin Tag-Connect adapter cable](http://www.tag-connect.com/TC2050-IDC). The latter allows target boards to be programmed without having to need a dedicated programming connector mounted, and thus saves on cost.
+The **0.05" (1.27mm) header** is recommended for when the target board is mostly connected to the debugger and the board in question also has a header of this size. The **0.1" (2.54mm) IDC header** is recommended for use with either regular jumper-wires or a [10 pin Tag-Connect adapter cable](http://www.tag-connect.com/TC2050-IDC). The latter allows target boards to be programmed without having to need a dedicated programming connector mounted, and thus saves on cost.
 
 The figure on the left depicts the `TagConnect 2050` (*no-legs*) cable on the top-right, next to its corresponding PCB footprint. Below this is a 0.05" header with its corresponding cable.
 
@@ -104,10 +104,10 @@ In addition to the *default* SWD or JTAG-pinouts it is also possible to add extr
   - On the [J-Link 10 pin Needle Adapter](https://www.segger.com/products/debug-probes/j-link/accessories/adapters/10-pin-needle-adapter/) this pin outputs the J-Link's `5V-Supply`. A jumper can be used to select this, which was already mentioned in the previous paragraph.
   - :bulb: **TIP:** See [the following section](#2---serial-flashing) to use this pin for **serial programming**.
 - :pushpin: **PIN 6** is normally used for an `SWO` or `TDO` connection. A jumper labeled `SWO TDO 6` can however be used to disconnect the debugger from the target board.
-  - :bulb: **TIP:** Disconnecting the pin from the debugger can enable the MCU's output pin to be used as a GPIO debug signal. It can for example be set high if some code is running, and low when this is not the case. Simply remove the jumper and add a *Dupont*-wire on the pin labeled `6`.
+  - :bulb: **TIP:** Disconnecting the pin from the debugger can enable the MCU's output pin to be used as a GPIO debug signal. It can for example be set high if some code is running, and low when this is not the case. Simply remove the jumper and add a jumper-wire on the pin labeled `6`.
 - :pushpin: **PIN 7** is on the [standard 9-pin Cortex-M SWD/JTAG pinout](https://www.segger.com/products/debug-probes/j-link/accessories/adapters/9-pin-cortex-m-adapter/) *not populated* since this is the **key**.
   - **SWD mode:** A jumper labeled `RTCK 7 JL.RX`, which can be seen on the figure on the right, can be used to connect this pin to the J-Link's VCOM `RX` pin. This way UART debugging can be used in conjunction with SWD.
-    - :bulb: **TIP:** The jumper can also be removed, and a separate UART `TXD` signal from a target board can be connected to the J-Link's `RX` input by connecting a *Dupont*-wire to the `JL.RX` pin.
+    - :bulb: **TIP:** The jumper can also be removed, and a separate UART `TXD` signal from a target board can be connected to the J-Link's `RX` input by connecting a jumper-wire to the `JL.RX` pin.
     - :pencil: **NOTE:** It is possible VCOM needs to be enabled on the probe. This can be done using [J-Link Commander](https://kb.segger.com/J-Link_Commander) (`JLinkExe/JLink.exe`) by executing the following command (VCOM will start working on the next power-cycle):
       ```shell
       VCOM enable
@@ -115,25 +115,25 @@ In addition to the *default* SWD or JTAG-pinouts it is also possible to add extr
   - **JTAG mode:** The same jumper can also be used to connect this pin to `RTCK` if necessary.
 - :pushpin: **PIN 8**
   - **SWD mode:** Normally this pin is *not connected*, but a jumper labeled `JL.TX TDI 8` allows it to be connected to the J-Link's **VCOM** `TX` pin.
-    - :bulb: **TIP:** The jumper can also be removed, and a separate UART `RXT` signal from a target board can be connected to the J-Link's `TX` output by connecting a *Dupont*-wire to the `JL.TX` pin.
+    - :bulb: **TIP:** The jumper can also be removed, and a separate UART `RXD` signal from a target board can be connected to the J-Link's `TX` output by connecting a jumper-wire to the `JL.TX` pin.
   - **JTAG mode:** On J-Link's [9 pin](https://www.segger.com/products/debug-probes/j-link/accessories/adapters/9-pin-cortex-m-adapter/) and [19 pin](https://www.segger.com/products/debug-probes/j-link/accessories/adapters/19-pin-cortex-m-adapter/) Cortex-M adapters `PIN 9` is connected to `TDI`.
-  - :bulb: **TIP:** the `TDI` signal of a J-Link can be set *low* and *high* using **J-Link Commander** by executing `TDI0` and `TDI1` respectively <!-- TODO Even if no debug connection is active? -->
+    - :bulb: **TIP:** The `TDI` signal of a J-Link can be set *low* and *high* using **J-Link Commander** by executing `TDI0` and `TDI1` respectively <!-- TODO Even if no debug connection is active? -->
   - :pencil: **NOTE:** `JL.TX` and `TDI` are in both modes located on the same physical pin. This means this pin should normally not need to be disconnected when using the adapter in one or the other mode.
 - :pushpin: **PIN 9**
   - **SWD mode:** Normally this pin is *not connected*, but sometimes a target board uses this pin as `GNDdetect` so it can detect the presence of a debugger. With a jumper labeled `nTRST 9 GND` this pin can be connected to GND to enable this functionality.
-    - :bulb: **TIP:** When `PIN 9` is connected to a microcontroller pin which can act as an output, the adapter can be used to *break-out* this pin to another instrument for, for example, code-timing analysis. Simply remove the jumper and add a *Dupont*-wire on the pin labeled `9`.
+    - :bulb: **TIP:** When `PIN 9` is connected to a microcontroller pin which can act as an output, the adapter can be used to *break-out* this pin to another instrument for, for example, code-timing analysis. Simply remove the jumper and add a jumper-wire on the pin labeled `9`.
   - **JTAG mode:** On J-Link's [9 pin](https://www.segger.com/products/debug-probes/j-link/accessories/adapters/9-pin-cortex-m-adapter/) and [19 pin](https://www.segger.com/products/debug-probes/j-link/accessories/adapters/19-pin-cortex-m-adapter/) Cortex-M adapters this pin can be connected to `nTRST` using a solder jumper. On this adapter board this can be done using a regular jumper.
-  - :bulb: **TIP:** the `nTRST` signal of a J-Link can be set *low* and *high* using **J-Link Commander** by executing `TRST0` and `TRST1` respectively <!-- TODO Even if no debug connection is active? -->
+    - :bulb: **TIP:** The `nTRST` signal of a J-Link can be set *low* and *high* using **J-Link Commander** by executing `TRST0` and `TRST1` respectively <!-- TODO Even if no debug connection is active? -->
 - :pushpin: **PIN 10** is used to reset the target board. A jumper is present to disconnect this line if necessary.
-  - :bulb: **TIP:** the `nRESET` signal of a J-Link can be set *low* and *high* using **J-Link Commander** by executing `R0` and `R1` respectively<!-- TODO Even if no debug connection is active? --><br/><img align="right" src="documentation/pictures/v4/reset-circuit.png" alt="Reset button circuit">
+  - :bulb: **TIP:** The `nRESET` signal of a J-Link can be set *low* and *high* using **J-Link Commander** by executing `R0` and `R1` respectively<!-- TODO Even if no debug connection is active? --><br/><img align="right" src="documentation/pictures/v4/reset-circuit.png" alt="Reset button circuit">
   - An `nRESET` button is also present on the adapter board, to manually pull the reset line low. An optional (100 Ω) series-resistor `R1` and (100 nF) filter capacitor C1 can be mounted on the bottom of the board, both in the 0603 package. They are depicted on the figure on the right. To *activate* the functionality of `R1` jumper `JP10` has to be cut.
 
 <br/>
 
-Finally a two-pin `GND` header, next to the `JL.TX TDI 8` jumper, also facilitates some additional ground-wire connections for general debugging.
-
-:bulb: **TIP:** `ShowHWStatus` or `ST` can be executed in **J-Link Commander* to show the `VTREF` voltage and signal-level of the `SWCLK|TCK`, `TDI`, `SWO|TDO`, `SWDIO|TMS`, `nRESET` (`TRES`) and `nTRST` pins.
+:bulb: **TIP:** `ShowHWStatus` or `ST` can be executed in *J-Link Commander* to show the `VTREF` voltage and signal-level of the `SWCLK|TCK`, `TDI`, `SWO|TDO`, `SWDIO|TMS`, `nRESET` (`TRES`) and `nTRST` pins.
 <!-- TODO Even if no debug connection is active? -->
+
+Additionally a two-pin `GND` header, next to the `JL.TX TDI 8` jumper, also facilitates some additional ground-wire connections for general debugging.
 
 <br/>
 
