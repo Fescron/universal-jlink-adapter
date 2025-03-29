@@ -35,7 +35,8 @@ Some general notes:
 
 - Arguments in `[ ... ]` are optional
 - Arguments in `< ... >` need to be filled in with values (`' ... '` denote fixed strings)
-- `FileName` expects (ideally) an absolute path
+- `FileName` (ideally) expects an absolute path
+- The commands are case-insensitive
 
 <br/>
 
@@ -129,14 +130,10 @@ The next paragraphs serve as an introduction and summary of RTT functionality. A
 
 ### 4.1 - Why use RTT and how does it work
 
-Some firmware developers debug using both **breakpoints** and a **UART connection**, the latter of which can be used for real-time code-flow information and displaying variable values. **Using UART however has a few disadvantages**.
-
-First of all two extra pin-connections are necessary (`TXD` and `RXD`), alongside the regular debugging pins. Using UART also means one looses a MCU peripheral, some RAM and FLASH space and precious clock-cycles.
+Some firmware developers debug using both **breakpoints** and a **UART connection**, the latter of which can be used for real-time code-flow information and displaying variable values. **Using UART however has a few disadvantages**. First of all two extra pin-connections are necessary (`TXD` and `RXD`), alongside the regular debugging pins. Using UART also means one looses a MCU peripheral, some RAM and FLASH space and precious clock-cycles.
 <!-- For a recent project I didn't have a single UART peripheral available for debugging purposes, so I couldn't use my self-written low-level UART debugging library [dbprint](https://github.com/Fescron/dbprint). -->
 
 <!-- I wrote [dbprint](https://github.com/Fescron/dbprint) in a way that it didn't need any external libraries, apart from the MCU-specific UART reading/writing functionality. All of the value-translations, like printing `uint32_t` in *decimal* or *hexadecimal* notation, were done with self-written functions. While it is interesting to understand everything that's going on *under-the-hood*, there are some limitations to this. A lot of time was spend creating the functions and the ability to *port* the code to a different MCU was not really kept in mind from the start. Printing `float` values is up until now also not possible. -->
-
-<br/>
 
 <!-- Because of the rather MCU-specific [dbprint](https://github.com/Fescron/dbprint) code and the fact that I did not have a spare UART connection for a recent project, I looked for another way to do **printf debugging**. -->
 
@@ -206,7 +203,7 @@ The application can also be called with arguments other than `-a` or `--autoconn
 
 <img align="right" src="documentation/pictures/JLink/JLinkRTTClientExe.png" width="430" alt="JLinkRTTClientExe">
 
-`JLinkRTTClient.exe/JLinkRTTClientExe` is a command-line application which acts as a Telnet client that automatically tries to reconnect to a J-Link connection when a debug session is closed. Communication is done using `Up/Down-Channel 0`. The application **has to be used in parallel** to a existing J-Link connection (via **J-Link Commander**) or running debug session.
+`JLinkRTTClient.exe/JLinkRTTClientExe` is a command-line application which acts as a Telnet client and automatically tries to reconnect to a J-Link connection when a debug session is closed. Communication is done using `Up/Down-Channel 0`. The application **has to be used in parallel** to a existing J-Link connection (via **J-Link Commander**) or running debug session.
 
 The application supports a few arguments when called. `-LocalEcho <1/0/On/Off>` enables (the default) or disables local echo. `-RTTTelnetPort <port>` changes the used port (default = `19021`).
 
@@ -298,7 +295,7 @@ SEGGER_RTT_Init();
 
 *Output/up buffer 0* is configured during compile-time. The following method-calls can change the behavior if the buffer is full. These are the so-called **buffer flags**.
 
-:pencil2: **NOTE:** `int`, returned by the RTT functions and assumed to be 32-bits in size, is not explicitly casted to `int8_t` but the returned values should fit according to the underlying code.
+:pencil: **NOTE:** `int`, returned by the RTT functions and assumed to be 32-bits in size, is not explicitly casted to `int8_t` but the returned values should fit according to the underlying code.
 
 ```C
 /** Configure output/up buffer 0 (first parameter) in non-blocking-skip mode
@@ -320,7 +317,7 @@ int8_t result = SEGGER_RTT_SetFlagsUpBuffer(0, SEGGER_RTT_MODE_BLOCK_IF_FIFO_FUL
 
 <br/>
 
-:pencil2: **NOTE:** The RAM regions or the specific address of the Control Block can also be set via the **host** applications to speed up detection or if the block cannot be found automatically.
+:pencil: **NOTE:** The RAM regions or the specific address of the Control Block can also be set via the **host** applications to speed up detection or if the block cannot be found automatically.
 
 <br/>
 
@@ -328,7 +325,7 @@ int8_t result = SEGGER_RTT_SetFlagsUpBuffer(0, SEGGER_RTT_MODE_BLOCK_IF_FIFO_FUL
 
 Below are a few examples on how to facilitate basic character output.
 
-:pencil2: **NOTE:** `int`, returned by the RTT functions and assumed to be 32-bits in size, is not explicitly casted to `uint8_t` but the returned values should fit according to the underlying code.
+:pencil: **NOTE:** `int`, returned by the RTT functions and assumed to be 32-bits in size, is not explicitly casted to `uint8_t` but the returned values should fit according to the underlying code.
 
 ```C
 /** Clear the screen and reposition the cursor to the top-left (RTT_CTRL_CLEAR), 
@@ -372,7 +369,7 @@ uint8_t bytes = SEGGER_RTT_PutChar(0, 'a');
 
 When using **J-Link RTT Viewer** to capture the RTT messages, some methods are available to change the *(virtual) Terminal* to which data is send. This is internally done with specific sequences that are interpreted by the J-Link RTT Viewer. Other applications like a Telnet Client will ignore them.
 
-:pencil2: **NOTE:** `int`, returned by the RTT functions and assumed to be 32-bits in size, is not explicitly casted to `int8_t` but the returned values should fit according to the underlying code.
+:pencil: **NOTE:** `int`, returned by the RTT functions and assumed to be 32-bits in size, is not explicitly casted to `int8_t` but the returned values should fit according to the underlying code.
 
 ```C
 /** Change the "virtual" terminal on channel 0 to show all following "Write",
@@ -558,7 +555,7 @@ int32_t result = SEGGER_RTT_printf(0,
 
 #### 4.5.6 - Character/value reading (input)
 
-:pencil2: **NOTE:** `int`, returned by the RTT functions and assumed to be 32-bits in size, is not explicitly casted to `uint8_t`/`int16_t` but the returned values should fit according to the underlying code.
+:pencil: **NOTE:** `int`, returned by the RTT functions and assumed to be 32-bits in size, is not explicitly casted to `uint8_t`/`int16_t` but the returned values should fit according to the underlying code.
 
 ```C
 /** Wait for (at least one) character, previously stored by the host, to be available 
