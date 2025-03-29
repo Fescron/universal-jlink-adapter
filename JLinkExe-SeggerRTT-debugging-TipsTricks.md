@@ -367,7 +367,7 @@ uint8_t bytes = SEGGER_RTT_PutChar(0, 'a');
 
 #### 4.4.3 - Character output to "virtual" terminals in J-Link RTT Viewer
 
-When using **J-Link RTT Viewer** to capture the RTT messages, some methods are available to change the *(virtual) Terminal* to which data is send. This is internally done with specific sequences that are interpreted by the J-Link RTT Viewer. Other applications like a Telnet Client will ignore them.
+When using **J-Link RTT Viewer** to capture the RTT messages, some methods are available to change the *(virtual) Terminal* to which data is send. This is internally done with specific sequences which are interpreted by the J-Link RTT Viewer. Other applications like a Telnet Client will ignore them.
 
 :pencil: **NOTE:** `int`, returned by the RTT functions and assumed to be 32-bits in size, is not explicitly casted to `int8_t` but the returned values should fit according to the underlying code.
 
