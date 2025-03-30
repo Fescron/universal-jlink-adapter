@@ -1,5 +1,7 @@
 # Segger J-Link debugging tips & tricks
 
+<kbd>[Go back to the adapter information](README.md)</kbd>
+
 <br/>
 
 - [Segger J-Link debugging tips \& tricks](#segger-j-link-debugging-tips--tricks)
@@ -27,7 +29,7 @@
 
 ## 1 - J-Link Commander
 
-`JLink.exe/JLinkExe` is a simple yet powerful command-line utility which can be very useful in the first stages of getting new hardware working and/or if the programming utility of a software development program doesn't give much feedback on why programming failed. Below is a list of some very useful commands. More information about J-Link Commander can be found on [this wiki page](https://kb.segger.com/J-Link_Commander).
+[`JLink.exe/JLinkExe`](https://kb.segger.com/J-Link_Commander) is a simple yet powerful command-line utility which can be very useful in the first stages of getting new hardware working and/or if the programming utility of a software development program doesn't give much feedback on why programming failed. Below is a list of some very useful commands.
 
 <br/>
 
@@ -40,51 +42,67 @@ Some general notes:
 
 <br/>
 
-| (Short) Command        | Function                                                            | Syntax                                                                            |
-| ---------------------- | ------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| `?`                    | Show all available commands                                         | `? [<Command>]`                                                                   |
-| `Exit`                 | Close J-Link connection and quit                                    |                                                                                   |
-| &nbsp;                 |                                                                     |                                                                                   |
-| `Halt` `H`             | Halt target chip                                                    |                                                                                   |
-| `IsHalted` `IH`        | Check current CPU state (halted/running)                            |                                                                                   |
-| `MoE`                  | Show mode-of-entry, the reason why the CPU is halted                |                                                                                   |
-| `Go` `G`               | Run target chip                                                     |                                                                                   |
-| `Step` `S`             | Single-step target chip                                             | `Step [<NumSteps (dec)>]`                                                         |
-| `Reset` `R`            | Reset target chip                                                   |                                                                                   |
-| `RSetType` `Rst`       | Set current reset type                                              | `RSetType [<Type>]`                                                               |
-| &nbsp;                 |                                                                     |                                                                                   |
-| `ClrRESET` `R0`        | Clear RESET pin                                                     |                                                                                   |
-| `SetRESET` `R1`        | Set RESET pin                                                       |                                                                                   |
-| `ClrTRST` `TRST0`      | Clear TRST pin                                                      |                                                                                   |
-| `SetTRST` `TRST1`      | Set TRST pin                                                        |                                                                                   |
-| `ClrTDI` `TDI0`        | Clear TDI pin                                                       |                                                                                   |
-| `SetTDI` `TDI1`        | Set TDI pin                                                         |                                                                                   |
-| &nbsp;                 |                                                                     |                                                                                   |
-| `Erase`                | Erase internal flash or flash range of selected device              | `Erase [<SAddr> <EAddr>] [<'noreset'/'reset'>]`                                   |
-| `LoadFile`             | Flash firmware on selected device                                   | `LoadFile <FileName (bin/elf/hex/...)> [<Addr(.bin only)>] [<'noreset'/'reset'>]` |
-| `SaveBin`              | Save target memory range into binary file                           | `SaveBin <FileName> <Addr> <NumBytes>`                                            |
-| `VerifyBin`            | Verify if specified bin-file is at specified target memory location | `VerifyBin <FileName> <Addr>`                                                     |
-| &nbsp;                 |                                                                     |                                                                                   |
-| `Mem`                  | Read memory of target chip                                          | `Mem  [<Zone>:]<Addr> <NumItems (hex)>`                                           |
-| `Regs`                 | Display contents of registers of halted target chip                 |                                                                                   |
-| `RReg`                 | Read register of target chip                                        | `RReg <RegName>`                                                                  |
-| `JTagId` `I`           | Read JTAG ID of target chip                                         |                                                                                   |
-| &nbsp;                 |                                                                     |                                                                                   |
-| `Connect` `Con`        | Establish a target connection                                       |                                                                                   |
-| `Device`               | Select a device to connect to and perform a reconnect               | `Device <DeviceName/'?'>`                                                         |
-| `SelectInterface` `SI` | Select target interface                                             | `SI <Interface ('SWD'/'JTAG'/...)>`                                               |
-| `Speed`                | Set target interface speed                                          | `Speed <Freq/'auto'/'adaptive'>`                                                  |
-| &nbsp;                 |                                                                     |                                                                                   |
-| `ShowHWStatus` `ST`    | Show debugger hardware status                                       |                                                                                   |
-| `ShowFWInfo` `F`       | Show debugger firmware info                                         |                                                                                   |
-| `ShowConf` `Conf`      | Show debugger configuration                                         |                                                                                   |
-| `Power`                | Switch power supply for target (J-Link 5V-out)                      | `Power <'On'/'Off'> ['perm']`                                                     |
-| `VCOM`                 | Enable/disable VCOM (takes effect after power cycle of J-Link)      | `VCOM <'enable'/'disable'>`                                                       |
-| `VTREF`                | Set a fixed mV-value for VTref on J-Link                            | `VTREF <Value (mV)>`                                                              |
-| &nbsp;                 |                                                                     |                                                                                   |
-| `TestWSpeed` `TestW`   | Measure download speed into target memory                           | `TestWSpeed [<Addr> [<Size>]]`                                                    |
-| `TestRSpeed` `TestR`   | Measure upload speed from target memory                             | `TestRSpeed [<Addr> [<Size>] [<NumBlocks>]]`                                      |
-| `TestCSpeed` `TestC`   | Measure CPU speed                                                   | `TestCSpeed [<RAMAddr>]`                                                          |
+| (Short) Command        | Function                                                            | Syntax                                                                                  |
+| ---------------------- | ------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| `?`                    | Show all available commands                                         | `? [<Command>]`                                                                         |
+| `Exit`                 | Close J-Link connection and quit                                    |                                                                                         |
+| `Sleep`                | Wait a given time                                                   | `Sleep <Delay (ms)>`                                                                    |
+| &nbsp;                 |                                                                     |                                                                                         |
+| `Halt` `H`             | Halt target chip                                                    |                                                                                         |
+| `IsHalted` `IH`        | Check current CPU state (halted/running)                            |                                                                                         |
+| `MoE`                  | Show mode-of-entry, the reason why the CPU is halted                |                                                                                         |
+| `Go` `G`               | Run target chip                                                     |                                                                                         |
+| `Step` `S`             | Single-step target chip                                             | `Step [<NumSteps (dec)>]`                                                               |
+| `Reset` `R`            | Reset target chip                                                   |                                                                                         |
+| `RSetType` `Rst`       | Set current reset type                                              | `RSetType [<Type>]`                                                                     |
+| &nbsp;                 |                                                                     |                                                                                         |
+| `ClrRESET` `R0`        | Clear RESET pin                                                     |                                                                                         |
+| `SetRESET` `R1`        | Set RESET pin                                                       |                                                                                         |
+| `ClrTRST` `TRST0`      | Clear TRST pin                                                      |                                                                                         |
+| `SetTRST` `TRST1`      | Set TRST pin                                                        |                                                                                         |
+| `ClrTDI` `TDI0`        | Clear TDI pin                                                       |                                                                                         |
+| `SetTDI` `TDI1`        | Set TDI pin                                                         |                                                                                         |
+| &nbsp;                 |                                                                     |                                                                                         |
+| `Erase`                | Erase internal flash or flash range of selected device              | `Erase [<SAddr (hex)> <EAddr (hex)>] [<'noreset'/'reset'>]`                             |
+| `LoadFile`             | Flash firmware on selected device                                   | `LoadFile <FileName (bin/elf/hex/...)> [<SAddr (for .bin only)>] [<'noreset'/'reset'>]` |
+| `SaveBin`              | Save target memory range into binary file                           | `SaveBin <FileName> <SAddr (hex)> <NumBytes (hex/dec)>`                                 |
+| `VerifyBin`            | Verify if specified bin-file is at specified target memory location | `VerifyBin <FileName> <SAddr (hex)>`                                                    |
+| &nbsp;                 |                                                                     |                                                                                         |
+| `Mem`                  | Read memory of target chip                                          | `Mem [<Zone>:]<SAddr (hex)> <NumBytes (hex/dec)>`                                       |
+| `Mem32`                | Read memory from target chip in 32-bit units                        | `Mem32 [<Zone>:]<Addr (hex)> <NumItems (hex)>`                                          |
+| `Write4` `W4`          | Write 32-bit items to target chip                                   | `Write4 [<Zone>:]<Addr (hex)> <Data (hex)>`                                             |
+| `Regs`                 | Display contents of registers of halted target chip                 |                                                                                         |
+| `RReg`                 | Read (named) (core) register of target chip                         | `RReg [<RegName>]`                                                                      |
+| `WReg`                 | Write (named) (core) register of target chip                        | `WReg <RegName> <Value (hex)>`                                                          |
+| `JTagId` `I`           | Read JTAG ID of target chip                                         |                                                                                         |
+| &nbsp;                 |                                                                     |                                                                                         |
+| `Connect` `Con`        | Establish a target connection                                       |                                                                                         |
+| `Device`               | Select a device to connect to and perform a reconnect               | `Device <DeviceName/'?'>`                                                               |
+| `SelectInterface` `SI` | Select target interface                                             | `SI <Interface ('SWD'/'JTAG'/...)>`                                                     |
+| `Speed`                | Set target interface speed                                          | `Speed <Freq (kHz)/'auto'/'adaptive'>`                                                  |
+| &nbsp;                 |                                                                     |                                                                                         |
+| `ShowHWStatus` `ST`    | Show debugger hardware status                                       |                                                                                         |
+| `ShowFWInfo` `F`       | Show debugger firmware info                                         |                                                                                         |
+| `ShowConf` `Conf`      | Show debugger configuration                                         |                                                                                         |
+| `Power`                | Switch power supply for target (J-Link 5V-out)                      | `Power <'On'/'Off'> ['perm']`                                                           |
+| `VCOM`                 | Enable/disable VCOM (takes effect after power cycle of J-Link)      | `VCOM <'enable'/'disable'>`                                                             |
+| `VTREF`                | Set a fixed mV-value for VTref on J-Link                            | `VTREF <'0' (= autodetect)/Value (mV)>`                                                 |
+| &nbsp;                 |                                                                     |                                                                                         |
+| `TestWSpeed` `TestW`   | Measure download speed into target memory                           | `TestWSpeed [<SAddr (hex)> [<Size>]]`                                                   |
+| `TestRSpeed` `TestR`   | Measure upload speed from target memory                             | `TestRSpeed [<SAddr (hex)> [<Size>] [<NumBlocks (dec)>]]`                               |
+| `TestCSpeed` `TestC`   | Measure CPU speed                                                   | `TestCSpeed [<RAMAddr (hex)>]`                                                          |
+
+<!-- TODO TestXSpeed: Addr, Size, NumBlocks and RAMAddr all hex? -->
+
+<br/>
+
+:pencil: **NOTE:** `JLink.exe/JLinkExe` can be ran using arguments to *bypass* certain steps. An example would be:
+
+```bash
+JLinkExe -Device STM32F103C8 -If SWD -Speed auto 
+```
+
+<!-- TODO What does `-AutoConnect 1` perform differently? -->
 
 <br/>
 
@@ -118,7 +136,7 @@ Replace the path to the actual J-Link installation location. Note that the exten
 
 <img align="right" src="documentation/pictures/JLink/JLinkWeb.png" width="440" alt="J-Link Control Panel">
 
-When a J-Link debugger has an active debug session, for instance when it is being used as a programmer or when `JLinkRTTViewerExe` is running, the **J-Link Web Control Panel** can be accessed on [http://localhost:19080/](http://localhost:19080/). This can be a very useful and intuitive tool where a lot of settings and functions can be easily accessed. The tab **RTT** can for example be used as a simple RTT-viewer.
+When a J-Link debugger has an active debug session, for instance when it is being used as a programmer or when [`JLinkRTTViewerExe`](https://kb.segger.com/J-Link_RTT_Viewer) is running, the **J-Link Web Control Panel** can be accessed on [http://localhost:19080/](http://localhost:19080/). This can be a very useful and intuitive tool where a lot of settings and functions can be easily accessed. The tab **RTT** can for example be used as a simple RTT-viewer.
 
 <br/>
 
@@ -161,7 +179,7 @@ The [RTT implementation code](https://github.com/adfernandes/segger-rtt) uses ab
 
 <img align="right" src="documentation/pictures/JLink/JLinkRTTViewerExe.png" width="430" alt="JLinkRTTViewerExe">
 
-`JLinkRTTViewer.exe/JLinkRTTViewerExe` is a GUI application which can be used in two modes:
+[`JLinkRTTViewer.exe/JLinkRTTViewerExe`](https://kb.segger.com/J-Link_RTT_Viewer) is a GUI application which can be used in two modes:
 
 - **Stand-alone mode**, opening a dedicated connection to a J-Link debugger and connected target.
 - **Attach mode**, connecting to an existing J-Link connection from either a debug session or **J-Link Commander** and running *parallel* alongside it.
@@ -203,7 +221,7 @@ The application can also be called with arguments other than `-a` or `--autoconn
 
 <img align="right" src="documentation/pictures/JLink/JLinkRTTClientExe.png" width="430" alt="JLinkRTTClientExe">
 
-`JLinkRTTClient.exe/JLinkRTTClientExe` is a command-line application which acts as a Telnet client and automatically tries to reconnect to a J-Link connection when a debug session is closed. Communication is done using `Up/Down-Channel 0`. The application **has to be used in parallel** to a existing J-Link connection, thus in tandem with running **J-Link Commander** or with an ongoing debug session.
+[`JLinkRTTClient.exe/JLinkRTTClientExe`](https://kb.segger.com/J-Link_RTT_Client) is a command-line application which acts as a Telnet client and automatically tries to reconnect to a J-Link connection when a debug session is closed. Communication is done using `Up/Down-Channel 0`. The application **has to be used in parallel** to a existing J-Link connection, thus in tandem with running **J-Link Commander** or with an ongoing debug session.
 
 The application supports a few arguments when called. `-LocalEcho <1/0/On/Off>` enables (which is the default setting) or disables local echo. `-RTTTelnetPort <port>` changes the used port (the default is `19021`).
 
@@ -213,7 +231,7 @@ The application supports a few arguments when called. `-LocalEcho <1/0/On/Off>` 
 
 <img align="right" src="documentation/pictures/JLink/JLinkRTTLoggerExe.png" width="360" alt="JLinkRTTLoggerExe">
 
-`JLinkRTTLogger.exe/JLinkRTTLoggerExe` is a command-line application which opens a dedicated connection to a J-Link debugger and can be used **stand-alone**, without a running debug session. Data from all RTT Up-Channels can be read and logged to a file (but the default is only `Up-Channel 1`).
+[`JLinkRTTLogger.exe/JLinkRTTLoggerExe`](https://kb.segger.com/J-Link_RTT_Logger) is a command-line application which opens a dedicated connection to a J-Link debugger and can be used **stand-alone**, without a running debug session. Data from all RTT Up-Channels can be read and logged to a file (but the default is only `Up-Channel 1`).
 
 The application supports a few arguments when called to, for example, directly set the target device or RTT channel. More information about this can be found on the [Segger RTT Logger Wiki page](https://kb.segger.com/J-Link_RTT_Logger).
 
