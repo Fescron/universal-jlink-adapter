@@ -8,7 +8,7 @@
 
 <br/>
 
-<img src="documentation/pictures/v4/jlink-adapter-v4.png" alt="Universal J-Link adapter on J-Link EDU debugger">
+<img src="documentation/pictures/v4/jlink-adapter-v4.JPG" alt="Universal J-Link adapter on J-Link EDU debugger">
 
 <br/>
 
@@ -117,21 +117,20 @@ In addition to the *default* SWD or JTAG pinouts it is also possible to add extr
   - **SWD mode:** Normally this pin is *not connected*, but a jumper labeled `JL.TX TDI 8` allows it to be connected to the J-Link's **VCOM** `TX` pin.
     - :bulb: **TIP:** The jumper can also be removed, and a separate UART `RXD` signal from a target board can be connected to the J-Link's `TX` output by connecting a jumper-wire to the `JL.TX` pin.
   - **JTAG mode:** On Segger's [9 pin](https://www.segger.com/products/debug-probes/j-link/accessories/adapters/9-pin-cortex-m-adapter/) and [19 pin](https://www.segger.com/products/debug-probes/j-link/accessories/adapters/19-pin-cortex-m-adapter/) Cortex-M adapters `PIN 9` is connected to `TDI`.
-    - :bulb: **TIP:** The `TDI` signal of a J-Link debugger can be set *low* or *high* using **J-Link Commander** by executing `TDI0` and `TDI1` respectively. This signal can thus be used as a general GP(I)O line to, for example, a MCU input pin. <!-- TODO Even if no debug connection is active? -->
+    - :bulb: **TIP:** The `TDI` signal of a J-Link debugger can be set *low* or *high* using **J-Link Commander** by executing `TDI0` and `TDI1` respectively, even if there is no target connection active. This signal can thus be used as a GP(I)O line to, for example, an MCU input pin.
   - :pencil: **NOTE:** `JL.TX` and `TDI` are for both modes located on the same physical J-Link pin. This means the jumper should normally not need to be disconnected when using the adapter in one or the other mode.
 - :pushpin: **PIN 9**
   - **SWD mode:** Normally this pin is *not connected*. Sometimes a target board however uses this pin as `GNDdetect`, so it can (as the name implies) detect the presence of a debugger. With a jumper labeled `nTRST 9 GND` this pin can be connected to `GND` to enable this functionality.
     - :bulb: **TIP:** When `PIN 9` is connected to a microcontroller pin which can act as an output, the adapter can be used to *break-out* this pin to another instrument for, for example, code-timing analysis. Simply remove the jumper and add a jumper-wire on the pin labeled `9`.
   - **JTAG mode:** On Segger's [9 pin](https://www.segger.com/products/debug-probes/j-link/accessories/adapters/9-pin-cortex-m-adapter/) and [19 pin](https://www.segger.com/products/debug-probes/j-link/accessories/adapters/19-pin-cortex-m-adapter/) Cortex-M adapters this pin can be connected to `nTRST` using a solder jumper. On this adapter board this can be done using a regular jumper.
-    - :bulb: **TIP:** The `nTRST` signal of a J-Link debugger can be set *low* or *high* using **J-Link Commander** by executing `TRST0` and `TRST1` respectively. This signal can thus be used as a general GP(I)O line to, for example, a MCU input pin. <!-- TODO Even if no debug connection is active? -->
+    - :bulb: **TIP:** The `nTRST` signal of a J-Link debugger can be set *low* or *high* using **J-Link Commander** by executing `TRST0` and `TRST1` respectively, even if there is no target connection active. This signal can thus be used as a GP(I)O line to, for example, an MCU input pin.
 - :pushpin: **PIN 10** is used to reset the target board. A jumper is present to disconnect this line if necessary.
-  - :bulb: **TIP:** The `nRESET` signal of a J-Link debugger can be set *low* or *high* using **J-Link Commander** by executing `R0` and `R1` respectively.<!-- TODO Even if no debug connection is active? --><br/><img align="right" src="documentation/pictures/v4/reset-circuit.png" alt="Reset button circuit">
+  - :bulb: **TIP:** The `nRESET` signal of a J-Link debugger can be set *low* or *high* using **J-Link Commander** by executing `R0` and `R1` respectively, even if there is no target connection active.<br/><img align="right" src="documentation/pictures/v4/reset-circuit.png" alt="Reset button circuit">
   - An `nRESET` button is also present on the adapter board to manually pull the reset line low. An optional (100 Ω) series-resistor `R1` and (100 nF) filter capacitor C1 can be mounted on the bottom of the board, both in the 0603 package. They are depicted on the figure on the right. To *activate* the functionality of `R1` jumper `JP10` has to be cut.
 
 <br/>
 
-:bulb: **TIP:** `ShowHWStatus` or `ST` can be executed in **J-Link Commander** to show the current `VTREF` voltage as well as the signal-level of the `SWCLK|TCK`, `TDI`, `SWO|TDO`, `SWDIO|TMS`, `nRESET` (`TRES`) and `nTRST` pins.
-<!-- TODO Even if no debug connection is active? -->
+:bulb: **TIP:** `ShowHWStatus` or `ST` can be executed in **J-Link Commander** to show the current `VTREF` voltage as well as the signal-level of the `SWCLK|TCK`, `TDI`, `SWO|TDO`, `SWDIO|TMS`, `nRESET` (`TRES`) and `nTRST` pins, even if there is no target connection active.
 
 Additionally a two-pin `GND` header, next to the `JL.TX TDI 8` jumper, also facilitates some additional ground-wire connections for general debug connections.
 
@@ -143,9 +142,9 @@ Additionally a two-pin `GND` header, next to the `JL.TX TDI 8` jumper, also faci
 
 ## 2 - Serial flashing
 
-Due to the availability of the jumpers on the adapter PCB certain pins can also be used to detect if a target board is plugged in. A board such as the [Macropedal](https://github.com/Fescron/macropedal) can for example be used to check if `pin 5` is, via a target board, connected to ground. If this is the case, the *Macropedal* can enter a command in a terminal to flash firmware to a board. This way one after the other board can be programmed in a **series production** scenario. The target board can even be powered by the adapter itself for a complete *stand-alone* setup. Refer to [Segger J-Link debugging tips & tricks - 2 - Scripting](JLinkExe-SeggerRTT-debugging-TipsTricks.md#2---scripting) for more information.
+<img align="right" src="documentation/pictures/v4/serial-flashing.JPG" height="270" alt="Universal J-Link Adapter Board and Macropedal for Serial Flashing">
 
-<!-- TODO Picture -->
+Due to the availability of the jumpers on the adapter PCB certain pins can also be used to detect if a target board is plugged in. A board such as the [Macropedal](https://github.com/Fescron/macropedal) can for example be used to check if `pin 5` is, via a target board, connected to ground. If this is the case, the *Macropedal* can enter a command in a terminal to flash firmware to a board. This way one after the other board can be programmed in a **series production** scenario. The target board can even be powered by the adapter itself for a complete *stand-alone* setup. The figure on the right depicts this arrangement. Refer to [Segger J-Link debugging tips & tricks - 2 - Scripting](JLinkExe-SeggerRTT-debugging-TipsTricks.md#2---scripting) for more information.
 
 <br/>
 

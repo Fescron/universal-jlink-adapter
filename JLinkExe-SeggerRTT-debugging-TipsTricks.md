@@ -39,6 +39,7 @@ Some general notes:
 - Arguments in `< ... >` need to be filled in with values (`' ... '` denote fixed strings)
 - `FileName` expects an absolute path (depending on where `JLink.exe/JLinkExe` is *started*)
 - The commands are case-insensitive
+- `(hex)` values don't specifically need to be entered with a leading `0x`
 
 <br/>
 
@@ -48,38 +49,38 @@ Some general notes:
 | `Exit`                 | Close J-Link connection and quit                                    |                                                                                         |
 | `Sleep`                | Wait a given time                                                   | `Sleep <Delay (ms)>`                                                                    |
 | &nbsp;                 |                                                                     |                                                                                         |
+| `Connect` `Con`        | Establish a target connection                                       |                                                                                         |
+| `Device`               | Select a device to connect to and perform a reconnect               | `Device <DeviceName/'?'>`                                                               |
+| `SelectInterface` `SI` | Select target interface                                             | `SI <Interface ('SWD'/'JTAG'/...)>`                                                     |
+| `Speed`                | Set target interface speed                                          | `Speed <Freq (kHz)/'auto'/'adaptive'>`                                                  |
+| &nbsp;                 |                                                                     |                                                                                         |
+| `Reset` `R`            | Reset target chip                                                   |                                                                                         |
+| `RSetType` `Rst`       | Set current reset type                                              | `RSetType [<Type>]`                                                                     |
 | `Halt` `H`             | Halt target chip                                                    |                                                                                         |
 | `IsHalted` `IH`        | Check current CPU state (halted/running)                            |                                                                                         |
 | `MoE`                  | Show mode-of-entry, the reason why the CPU is halted                |                                                                                         |
 | `Go` `G`               | Run target chip                                                     |                                                                                         |
 | `Step` `S`             | Single-step target chip                                             | `Step [<NumSteps (dec)>]`                                                               |
-| `Reset` `R`            | Reset target chip                                                   |                                                                                         |
-| `RSetType` `Rst`       | Set current reset type                                              | `RSetType [<Type>]`                                                                     |
 | &nbsp;                 |                                                                     |                                                                                         |
-| `ClrRESET` `R0`        | Clear RESET pin                                                     |                                                                                         |
-| `SetRESET` `R1`        | Set RESET pin                                                       |                                                                                         |
-| `ClrTRST` `TRST0`      | Clear TRST pin                                                      |                                                                                         |
-| `SetTRST` `TRST1`      | Set TRST pin                                                        |                                                                                         |
+| `ClrRESET` `R0`        | Clear nRESET pin                                                    |                                                                                         |
+| `SetRESET` `R1`        | Set nRESET pin                                                      |                                                                                         |
+| `ClrTRST` `TRST0`      | Clear nTRST pin                                                     |                                                                                         |
+| `SetTRST` `TRST1`      | Set nTRST pin                                                       |                                                                                         |
 | `ClrTDI` `TDI0`        | Clear TDI pin                                                       |                                                                                         |
 | `SetTDI` `TDI1`        | Set TDI pin                                                         |                                                                                         |
 | &nbsp;                 |                                                                     |                                                                                         |
 | `Erase`                | Erase internal flash or flash range of selected device              | `Erase [<SAddr (hex)> <EAddr (hex)>] [<'noreset'/'reset'>]`                             |
 | `LoadFile`             | Flash firmware on selected device                                   | `LoadFile <FileName (bin/elf/hex/...)> [<SAddr (for .bin only)>] [<'noreset'/'reset'>]` |
-| `SaveBin`              | Save target memory range into binary file                           | `SaveBin <FileName> <SAddr (hex)> <NumBytes (hex/dec)>`                                 |
+| `SaveBin`              | Save target memory range into binary file                           | `SaveBin <FileName> <SAddr (hex)> <NumBytes (hex)>`                                     |
 | `VerifyBin`            | Verify if specified bin-file is at specified target memory location | `VerifyBin <FileName> <SAddr (hex)>`                                                    |
 | &nbsp;                 |                                                                     |                                                                                         |
-| `Mem`                  | Read memory of target chip                                          | `Mem [<Zone>:]<SAddr (hex)> <NumBytes (hex/dec)>`                                       |
+| `Mem`                  | Read memory of target chip                                          | `Mem [<Zone>:]<SAddr (hex)> <NumBytes (hex)>`                                           |
 | `Mem32`                | Read memory from target chip in 32-bit units                        | `Mem32 [<Zone>:]<Addr (hex)> <NumItems (hex)>`                                          |
 | `Write4` `W4`          | Write 32-bit items to target chip                                   | `Write4 [<Zone>:]<Addr (hex)> <Data (hex)>`                                             |
 | `Regs`                 | Display contents of registers of halted target chip                 |                                                                                         |
 | `RReg`                 | Read (named) (core) register of target chip                         | `RReg [<RegName>]`                                                                      |
 | `WReg`                 | Write (named) (core) register of target chip                        | `WReg <RegName> <Value (hex)>`                                                          |
 | `JTagId` `I`           | Read JTAG ID of target chip                                         |                                                                                         |
-| &nbsp;                 |                                                                     |                                                                                         |
-| `Connect` `Con`        | Establish a target connection                                       |                                                                                         |
-| `Device`               | Select a device to connect to and perform a reconnect               | `Device <DeviceName/'?'>`                                                               |
-| `SelectInterface` `SI` | Select target interface                                             | `SI <Interface ('SWD'/'JTAG'/...)>`                                                     |
-| `Speed`                | Set target interface speed                                          | `Speed <Freq (kHz)/'auto'/'adaptive'>`                                                  |
 | &nbsp;                 |                                                                     |                                                                                         |
 | `ShowHWStatus` `ST`    | Show debugger hardware status                                       |                                                                                         |
 | `ShowFWInfo` `F`       | Show debugger firmware info                                         |                                                                                         |
@@ -88,11 +89,9 @@ Some general notes:
 | `VCOM`                 | Enable/disable VCOM (takes effect after power cycle of J-Link)      | `VCOM <'enable'/'disable'>`                                                             |
 | `VTREF`                | Set a fixed mV-value for VTref on J-Link                            | `VTREF <'0' (= autodetect)/Value (mV)>`                                                 |
 | &nbsp;                 |                                                                     |                                                                                         |
-| `TestWSpeed` `TestW`   | Measure download speed into target memory                           | `TestWSpeed [<SAddr (hex)> [<Size>]]`                                                   |
-| `TestRSpeed` `TestR`   | Measure upload speed from target memory                             | `TestRSpeed [<SAddr (hex)> [<Size>] [<NumBlocks (dec)>]]`                               |
+| `TestWSpeed` `TestW`   | Measure download speed into target memory                           | `TestWSpeed [<SAddr (hex)> [<Size (hex)>]]`                                             |
+| `TestRSpeed` `TestR`   | Measure upload speed from target memory                             | `TestRSpeed [<SAddr (hex)> [<Size (hex)>] [<NumBlocks (dec)>]]`                         |
 | `TestCSpeed` `TestC`   | Measure CPU speed                                                   | `TestCSpeed [<RAMAddr (hex)>]`                                                          |
-
-<!-- TODO TestXSpeed: Addr, Size, NumBlocks and RAMAddr all hex? -->
 
 <br/>
 
@@ -101,8 +100,6 @@ Some general notes:
 ```bash
 JLinkExe -Device STM32F103C8 -If SWD -Speed auto 
 ```
-
-<!-- TODO What does `-AutoConnect 1` perform differently? -->
 
 <br/>
 
