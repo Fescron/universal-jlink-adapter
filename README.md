@@ -8,7 +8,7 @@
 
 <br/>
 
-<img src="documentation/pictures/v4/jlink-adapter-v4.JPG" alt="Universal J-Link adapter on J-Link EDU debugger">
+<img src="documentation/pictures/v4/jlink-adapter-v4.png" alt="Universal J-Link adapter on J-Link EDU debugger">
 
 <br/>
 
@@ -142,9 +142,9 @@ Additionally a two-pin `GND` header, next to the `JL.TX TDI 8` jumper, also faci
 
 ## 2 - Serial flashing
 
-<img align="right" src="documentation/pictures/v4/serial-flashing.JPG" height="270" alt="Universal J-Link Adapter Board and Macropedal for Serial Flashing">
+<img align="right" src="documentation/pictures/v4/serial-flashing.png" height="270" alt="Universal J-Link Adapter Board and Macropedal for Serial Flashing">
 
-Due to the availability of the jumpers on the adapter PCB certain pins can also be used to detect if a target board is plugged in. A board such as the [Macropedal](https://github.com/Fescron/macropedal) can for example be used to check if `pin 5` is, via a target board, connected to ground. If this is the case, the *Macropedal* can enter a command in a terminal to flash firmware to a board. This way one after the other board can be programmed in a **series production** scenario. The target board can even be powered by the adapter itself for a complete *stand-alone* setup. The figure on the right depicts this arrangement. Refer to [Segger J-Link debugging tips & tricks - 2 - Scripting](JLinkExe-SeggerRTT-debugging-TipsTricks.md#2---scripting) for more information.
+Due to the availability of the jumpers on the adapter PCB certain pins can also be used to detect if a target board is plugged in. A board such as the [Macropedal](https://github.com/Fescron/macropedal) can for example be used to check if `pin 5` is, via a target board, connected to ground. If this is the case, the *Macropedal* can enter a command in a terminal to flash firmware to a board. This way one after the other board can be programmed in a **series production** scenario. The target board can even be powered by the adapter itself for a complete *stand-alone* setup. The figure on the right depicts such an arrangement. Refer to [Segger J-Link debugging tips & tricks - 2 - Scripting](JLinkExe-SeggerRTT-debugging-TipsTricks.md#2---scripting) for more information.
 
 <br/>
 

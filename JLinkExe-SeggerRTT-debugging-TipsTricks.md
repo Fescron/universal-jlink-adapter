@@ -98,7 +98,7 @@ Some general notes:
 :pencil: **NOTE:** `JLink.exe/JLinkExe` can be ran using arguments to *bypass* certain steps. An example would be:
 
 ```bash
-JLinkExe -Device STM32F103C8 -If SWD -Speed auto 
+JLinkExe -Device STM32F103C8 -If SWD -Speed auto -AutoConnect 1
 ```
 
 <br/>
